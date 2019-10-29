@@ -257,13 +257,13 @@
             task.addData("GameName", $("[name=GameName]").val());
             task.addData("GameID", $("[name=GameID]").val());
             
-            task.setRequestHeader("Server_Token", encodeURI(Server_Token))
+            task.setRequestHeader("Server_Token", encodeURIComponent(Server_Token))
             task.start();
 
             //$.ajax({
             //    url: ajaxurl + "Certification",
             //    method: "POST",
-            //    headers: { "Server_Token": encodeURI(Server_Token) },
+            //    headers: { "Server_Token": encodeURIComponent(Server_Token) },
             //    data: formData,
             //    processData: false, // 告訴JQuery不要去處理發送的數據，不然會把data
             //    //設置的物件轉換成查詢字符串以配合預設的application/x-www-form-urlencoded

@@ -82,7 +82,12 @@
                 </div>-->
                 <div class="playertitlebar" style="display:flex;width:85%;height:60px;color:white;text-align:left;position:relative;bottom:80px;overflow-y:hidden;padding:5px 15px ">
                     <div style="flex:1">
-                        <p style="text-overflow: ellipsis;overflow: hidden;white-space:nowrap;padding-bottom:5px">{{data.SkillInfo.Name}}  <span class="ganlabel_s" v-if="('{{data.SkillInfo.GameTag}}' != '')">{{data.SkillInfo.GameTag}}</span></p>
+                        <p style="text-overflow: ellipsis;overflow: hidden;white-space:nowrap;padding-bottom:5px">
+                            {{data.SkillInfo.Name}}  {{  test }}
+                            <span class="ganlabel_s" v-if="('{{data.SkillInfo.GameTag}}' != '')">
+                                {{data.SkillInfo.GameTag}}
+                            </span>
+                        </p>
 
                         <h4 class="" style="position:relative;padding-top:0px">
                             <i v-for="(va,inx) in 5" v-bind:class='{ "fa-star": (ScoreAvg-(inx+1)>=0),"fa-star-half-o": (ScoreAvg-(inx+1)<0&&ScoreAvg-(inx+1)>=-0.5),"fa-star-o": (ScoreAvg-(inx+1)<-0.5) } ' alt="" class="fa fa-2x " style="font-size:18px;color:gold"></i>
@@ -276,7 +281,7 @@
                     url: ajaxurl + "Follow",
                     type: 'post',
                     data: { id: id },
-                    headers: { "Server_Token": encodeURI(Server_Token) },
+                    headers: { "Server_Token": encodeURIComponent(Server_Token) },
                     timeout: 30000,
                     success: function (r) {
                         if (r.result_status) {
@@ -316,7 +321,7 @@
             //    url: ajaxurl + "Order",
             //    type: 'post',
             //    data: { id:"{{data.SkillInfo.Member_Certification_ID}}"},
-            //    headers: { "Server_Token": encodeURI(Server_Token) },
+            //    headers: { "Server_Token": encodeURIComponent(Server_Token) },
 
             //    success: function (r) {
             //        if (r.result_status) {
@@ -496,7 +501,8 @@
                     isplaying: false,
                     currentTime: 0.0,
                     audioobj: null,
-                    duration: 1
+                    duration: 1,
+                    test: 'Test'
                 },
                 created: function () {
                     this.orga = ("{{data.SkillInfo.Audio}}" || "");
@@ -606,8 +612,8 @@
                     else
                         canshow = 0;
                    // $(".skillpage .flexbar div.backb").css("color", "rgb(" + ((1 - canshow) * 255) + "," + ((1 - canshow) * 255) + "," + ((1 - canshow) * 255) + ")");
-                    $(".skillpage .flexbar div.backb").css("background-color", "rgba(221,114,153," + (1 - canshow) + ")");
-                    $(".skillpage .flexbar").css("background-color", "rgba(221,114,153," + canshow + ")");
+                    $(".skillpage .flexbar div.backb").css("background-color", "rgba(166, 223, 154," + (1 - canshow) + ")");
+                    $(".skillpage .flexbar").css("background-color", "rgba(166, 223, 154," + canshow + ")");
                     $(".skillpage .memberinfo").css("top", ((1 - canshow) * 60) + "px");
                 });
                 $('#skillpage').imagesLoaded(function () {

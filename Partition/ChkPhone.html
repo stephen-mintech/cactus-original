@@ -143,7 +143,7 @@
                             url: ajaxurl + "VCode",
                             type: 'post',
                             data: self.$data,
-                            headers: { "Server_Token": encodeURI(Server_Token) },
+                            headers: { "Server_Token": encodeURIComponent(Server_Token) },
                             timeout: 30000,
                             success: function (r) {
                                 if (r.result_status) {
@@ -173,7 +173,7 @@
                             $.ajax({
                                 url: ajaxurl + "VCode/?phone=" + self.phone + "&AreaCode=" + self.AreaCode,
                                 type: 'get',
-                                headers: { "Server_Token": encodeURI(Server_Token) },
+                                headers: { "Server_Token": encodeURIComponent(Server_Token) },
                                 timeout: 30000,
                                 success: function (r) {
                                     if (r.result_status) {

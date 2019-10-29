@@ -590,7 +590,7 @@
                                   url: ajaxurl + "Block/",
                                   type: 'post',
                                   data: { targetid: "{{sheinfo.Member_ID}}",block:false },
-                                  headers: { "Server_Token": encodeURI(Server_Token) },
+                                  headers: { "cache-control": "no-cache","Server_Token": encodeURIComponent(Server_Token) },
                                   timeout: 30000,
                                   success: function (r) {
                                       if (r.result_status) {
@@ -622,7 +622,7 @@
                                   url: ajaxurl + "Block/",
                                   type: 'post',
                                   data: { targetid: "{{sheinfo.Member_ID}}", block: true },
-                                  headers: { "Server_Token": encodeURI(Server_Token) },
+                                  headers: { "cache-control": "no-cache","Server_Token": encodeURIComponent(Server_Token) },
                                   timeout: 30000,
                                   success: function (r) {
                                       if (r.result_status) {
@@ -809,7 +809,7 @@
                                                                 task.addFile(fs.root.toLocalURL() + "tmp.mp4", { key: "file" });
                                                                 task.addFile(fs.root.toLocalURL() + "tmp.jpg", { key: "fileimg" });
                                                                 task.addData("type", "video");
-                                                                task.setRequestHeader("Server_Token", encodeURI(Server_Token))
+                                                                task.setRequestHeader("Server_Token", encodeURIComponent(Server_Token))
                                                                 task.start();
                                                             }, 2000)
                                                            
@@ -899,7 +899,7 @@
                             }
                         });
                    // publicTools.ShowActionSheet(this.$refs.myphoto, cb, true, true);
-                    //  task.setRequestHeader("Server_Token",encodeURI(Server_Token))
+                    //  task.setRequestHeader("Server_Token",encodeURIComponent(Server_Token))
                 },
                 sendpic: function () {
                     var self = this;
@@ -976,11 +976,11 @@
                         );
                         task.addFile(src, { key: "file" });
                         task.addData("type", "img");
-                        task.setRequestHeader("Server_Token", encodeURI(Server_Token))
+                        task.setRequestHeader("Server_Token", encodeURIComponent(Server_Token))
                         task.start();
                     }
                     publicTools.ShowActionSheet(this.$refs.myphoto, cb, true,true);
-                    //  task.setRequestHeader("Server_Token",encodeURI(Server_Token))
+                    //  task.setRequestHeader("Server_Token",encodeURIComponent(Server_Token))
                 },
             }
         })
@@ -1082,7 +1082,7 @@
         getHistory = function () {
             getimdata("getOrderInfo", "{{sheinfo.Member_ID}}", function (ev) { 
            //bim.getOrderInfo("{{sheinfo.Member_ID}}", function (ev) {
-               // console.dir(ev)
+            
                 orderinfo = ev;
                 if (OrderControl) {
                     OrderControl.order = (orderinfo.length == 0 ? null : orderinfo[0]);
@@ -1171,7 +1171,7 @@
                                         $.ajax({
                                             url: ajaxurl + "Order/" + self.order.Order_ID,
                                             type: 'delete',
-                                            headers: { "Server_Token": encodeURI(Server_Token) },
+                                            headers: { "cache-control": "no-cache","Server_Token": encodeURIComponent(Server_Token) },
                                             data: { se: "", msg: "" },
                                             timeout: 30000,
                                             success: function (r) {
@@ -1201,13 +1201,14 @@
                                     });
                             },
                             keeporder: function () {
+                                var self = this;
+                              
                                 plus.nativeUI.showWaiting(this.btntext + "中");
                                 $.ajax({
-                                    url: ajaxurl + "Order/" + this.order.Order_ID,
+                                    url: ajaxurl + "Order/" + self.order.Order_ID,
                                     type: 'patch',
-                                    crossDomain: true,
-                                
-                                    headers: { "Content-Type": "application/json","Server_Token": encodeURI(Server_Token) },
+                                    data: { id: self.order.Order_ID },
+                                    headers: { "cache-control": "no-cache","Content-Type": "application/json","Server_Token": encodeURIComponent(Server_Token) },
                                     timeout: 30000,
                                     success: function (r) {
                                         if (!r.result_status) {
@@ -1233,7 +1234,7 @@
                                         $.ajax({
                                             url: ajaxurl + "Order/" + self.order.Order_ID,
                                             type: 'put',
-                                            headers: { "Server_Token": encodeURI(Server_Token) },
+                                            headers: { "cache-control": "no-cache","Server_Token": encodeURIComponent(Server_Token) },
                                             timeout: 30000,
                                             success: function (r) {
                                                 if (!r.result_status) {
@@ -1262,12 +1263,13 @@
                                     });
                             },
                             nextstep: function () {
+                                var self = this;
                                 plus.nativeUI.showWaiting(this.btntext + "中");
                                 if (this.order.Order_Status == 8) {
                                     plus.nativeUI.closeWaiting();
                                 }
                                 else if (this.order.Order_Status == 4) {
-                                    var self = this;
+                                    
                                     if (self.order.isFree == false) {
                                         var cw;
                                         if (JSON.parse(Server_Token).Status == "管理員") {
@@ -1281,39 +1283,12 @@
                                         }, false);
                                         plus.webview.currentWebview().append(cw)
                                     } else {
-                                        //var xhr = new plus.net.XMLHttpRequest();
-                                        //xhr.onreadystatechange = function () {
-                                        //    switch (xhr.readyState) {
-
-                                        //        case 4:
-                                        //            var r = xhr.response;
-                                        //            if (!r.result_status) {
-                                        //                plus.nativeUI.closeWaiting();
-
-                                        //                alert(r.result_message);
-                                        //            } else {
-
-                                        //                plus.nativeUI.closeWaiting();
-                                        //                alert("體驗單自動完成評價,評價完成");
-
-                                        //            }
-                                        //            plus.webview.close(plus.webview.currentWebview())
-                                        //            break;
-                                        //        default:
-                                        //            break;
-                                        //    }
-                                        //}
-                                        //xhr.open("patch", ajaxurl + "Order/" + self.order.Order_ID);
-                                        //xhr.setRequestHeader('Server_Token', encodeURI(Server_Token));
-                                        //xhr.responseType = 'json';
-                                        //xhr.setRequestHeader('Content-Type', 'application/json');
-                                        //xhr.send(JSON.stringify({ rate: 5, msg: "" }));
-
+                                       
                                         $.ajax({
                                             url: ajaxurl + "Order/" + self.order.Order_ID,
                                             type: 'patch',
                                             data: { rate: 5, msg: "" },
-                                            headers: { "Server_Token": encodeURI(Server_Token) },
+                                            headers: { "cache-control": "no-cache","Server_Token": encodeURIComponent(Server_Token) },
                                             timeout: 30000,
                                             success: function (r) {
                                                 if (!r.result_status) {
@@ -1341,33 +1316,12 @@
                                     plus.nativeUI.closeWaiting();
                                   
                                 } else {
-                                    //var xhr = new plus.net.XMLHttpRequest();
-                                    //xhr.onreadystatechange = function () {
-                                    //    switch (xhr.readyState) {
-
-                                    //        case 4:
-                                    //            if (!r.result_status) {
-                                    //                //  plus.nativeUI.closeWaiting();
-                                    //                alert(r.result_message);
-                                    //            }
-                                    //            plus.nativeUI.closeWaiting();
-                                    //            break;
-                                    //        default:
-                                    //            break;
-                                    //    }
-                                    //}
-                                    //xhr.open("patch", ajaxurl + "Order/" + self.order.Order_ID);
-                                    //xhr.setRequestHeader('Server_Token', encodeURI(Server_Token));
-                                    //xhr.responseType = 'json';
-                                    //xhr.setRequestHeader('Content-Type', 'application/json');
-                                    //xhr.send();
-
+                                   
                                     $.ajax({
-                                        url: ajaxurl + "Order/" + this.order.Order_ID,
+                                        url: ajaxurl + "Order/" + self.order.Order_ID,
                                         type: 'patch',
-                                        crossDomain: true,
-                                       
-                                        headers: { "Content-Type": "application/json","Server_Token": encodeURI(Server_Token) },
+                                        data: { id: self.order.Order_ID},
+                                        headers: { "cache-control": "no-cache","Content-Type": "application/json","Server_Token": encodeURIComponent(Server_Token) },
                                         timeout: 30000,
                                         success: function (r) {
                                             if (!r.result_status) {
@@ -1704,7 +1658,7 @@
             );
             task.addFile(url, { key: "file" });
             task.addData("type", "voice");
-            task.setRequestHeader("Server_Token", encodeURI(Server_Token))
+            task.setRequestHeader("Server_Token", encodeURIComponent(Server_Token))
             task.start();
         }
 

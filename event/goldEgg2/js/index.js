@@ -118,7 +118,7 @@ document.addEventListener('plusready', function () {
                     $.ajax({
                         url: ajaxurl + "GetEgg",
                         type: 'post',
-                        headers: { "Server_Token": encodeURI(Server_Token) },
+                        headers: { "Server_Token": encodeURIComponent(Server_Token) },
                         success: function (r) {
                             if (r.result_status) {
                                 $("#card .win").css("background-image", 'url("image/' + r.result_content["Img"] + '")')
@@ -179,7 +179,7 @@ document.addEventListener('plusready', function () {
         url: ajaxurl + "Points/",
         data: { id: 9 },
         type: 'post',
-        headers: { "Server_Token": encodeURI(Server_Token) },
+        headers: { "Server_Token": encodeURIComponent(Server_Token) },
         success: function (r) {
             if (r.result_status) {
 

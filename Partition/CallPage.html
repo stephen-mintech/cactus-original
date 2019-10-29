@@ -303,7 +303,7 @@
     <script>
         function getimdata(fnname, param, cccb) {
             var puuid = plus.webview.currentWebview().__uuid__;
-            var eventname = "ev" + (new Date().getTime());
+            var eventname = "ev" + (new Date().getTime()) + "" + (Math.random() * 10000000);
 
             var param = JSON.stringify(param);
 

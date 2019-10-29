@@ -76,7 +76,7 @@
                                     $.ajax({
                                         url: ajaxurl + "Payment",
                                         type: 'post',
-                                        headers: { "Server_Token": encodeURI(Server_Token) },
+                                        headers: { "Server_Token": encodeURIComponent(Server_Token) },
                                         data: {  PaymentType_ID: 1, JSONCallBack: JSON.stringify(result)},
                                         timeout: 30000,
                                         success: function (r) {

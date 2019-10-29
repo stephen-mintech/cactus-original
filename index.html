@@ -1,25 +1,48 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
+
+    <!--<script src="js/html5plus/jpush.js"></script>-->
+
     <script src="js/vue.min.js"></script>
     <link href="css/materialize.css" rel="stylesheet" />
+    <!--<script src="js/materialize.js"></script>-->
     <link href="css/ionicons/ionicons.min.css?4" rel="stylesheet" />
+    <!--<script src="js/jmessage-sdk-web.2.6.0.min.js"></script>-->
+    <!--<script src="js/hammer.min.js"></script>-->
+    <!--<script src="js/canvas-video-player.js"></script>-->
+    <!--<script src="js/eruda.min.js"></script>-->
     <script src="js/exif.js"></script>
+    <!--<script src="html5plus://ready"></script>-->
     <script src="js/html5plus/common.js?5"></script>
+    <!--<script type="text/javascript" src="js/iframeapi.js"></script>
+    <script src="js/recorder.mp3.min.js"></script>-->
+    <!--<script type="text/javascript" src="http://player.youku.com/jsapi"></script>-->
     <script src="js/weui/jquery-2.1.4.js"></script>
     <script src="js/weui/jquery-weui.min.js"></script>
+    <!--<script src="js/bodymovin.js"></script>-->
+    <!--<script src="js/lottie.min.js?2"></script>-->
+    <!--<script src="js/lottie_light.js"></script>-->
+    <!--<script src="js/weui/weui.min.js"></script>-->
+    <!--<script src="js/weui/swiper.js"></script>-->
+    <!--<script src="js/jquery.qrcode.min.js"></script>-->
+    <!--<script src="js/weui/example.js"></script>-->
     <link href="css/swiper/swiper.min.css" rel="stylesheet" />
     <link href="css/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <!--<link href="css/weui/jquery-weui.css" rel="stylesheet" />-->
     <link href="css/weui/weui.min.css?1" rel="stylesheet" />
     <link href="css/weui/example.css" rel="stylesheet" />
     <script src="js/PublicTools.js?13"></script>
     <script src="js/BridgeClass.js?16"></script>
     <script src="js/Main.js?16"></script>
+    <!--<script src="js/howler.js?5"></script>-->
+    <!--<script src="js/AudioControl.js?18"></script>-->
     <script src="js/swiper/swiper.min.js"></script>
     <script src="js/JQPlus/jquery.masonry.min.js"></script>
     <script src="js/linq.min.js"></script>
     <script src="js/linq.jquery.js"></script>
+    <!--<script src="js/ScrollTrigger.js?8"></script>-->
     <script src="js/moment.min.js"></script>
     <script src="js/jquery.lazyload.min.js"></script>
 
@@ -33,6 +56,10 @@
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <title></title>
     <style>
+        /*@font-face {
+            font-family: "HanyiSenty";
+            src: url('css/font/HanyiSenty.ttf');
+        }*/
         * {
             font-family: Ionicons;
             -webkit-user-select: none;
@@ -425,6 +452,13 @@
         var ajaxurl = "";
         // var debugurl = "http://192.168.1.254:888/Zuzu/";
         var debugurl = "http://192.168.1.110:8999/";
+
+        //window.onerror = function (message, source, lineno, colno, error) {
+        //    location.href = "ErrorMsg.html?msg=" + encodeURIComponent(error);
+        //};
+        //onerror = function (message, source, lineno, colno, error) {
+        //    location.href = "ErrorMsg.html?msg=" + encodeURIComponent(error);
+        //};
         var conf = {}
         conf = new Vue({
             data: {
@@ -440,7 +474,8 @@
 
             },
             methods: {
-                review: function () {s
+                review: function () {
+                    // $("#ggs").html(".isand{display:inherit ;}.isnotand{display:none !important;}")
                     if (this.hidenews == true) {
                         $("#ggs").html(".isand{display:none !important;}.isnotand{display:inherit ;}")
 
@@ -452,13 +487,44 @@
             }
         })
 
+        // conf = new Vue({
+        //    data: {
+        //        hidenews: true
+        //     },
+        //     watch: {
+        //         hidenews: function (val) {
+        //             if (val == true) {
 
+        //                 $(".isand").hide();
+        //             } else {
+
+        //                 $(".isand").show();
+        //             }
+
+        //         }
+
+        //     }
+        //})
+
+
+    </script>
+
+
+    <!--<script src="https://connect.facebook.net/en_US/sdk.js"></script>-->
+    <script>
+        //window.fbAsyncInit = function () {
+        //    FB.init({
+        //        appId: '2205366512890758',
+        //        xfbml: true,
+        //        version: 'v2.8'
+        //    });
+
+        //    FB.AppEvents.logEvent('OpenApp');
+        //};
     </script>
 </head>
 
 <body ontouchstart style="height:1920px;">
-    
-    
     <div id="loadingToast" style="display:none">
         <div class="weui-mask" style=""></div>
         <div class="weui-toast">
@@ -466,13 +532,13 @@
             <p class="weui-toast__content">載入中</p>
         </div>
     </div>
-    
-    
     <div class="container" id="container">
         <div class="page layers js_show bdbg" style="">
             <div class="weui-navbar" style="display:none">
                 <div class="weui-navbar__item navbg" style="">
-                    <div class="weui-flex">xs
+                    <div class="weui-flex">
+
+
                         <div style="width:15%;height:100%" id="BackBtn" onclick="clicknav(this)" btag="Home">
                             <div style="color:white;font-size:18px" class="weui-flex__item">
                                 <i class="fa fa-angle-left" style=""></i>
@@ -493,7 +559,13 @@
 
                 </div>
                 <div class="weui-tabbar tabbg" id="idxtab" style="">
-                    
+                    <!--<div class="event_tip" style="z-index:3">
+                        <img src="event/goldEgg2/image/tips.png" class="event_sh " style="width:23.66px;height:14.66px;position:absolute;top:-54px;right:38px;" />
+
+                    </div>
+                    <img src="event/goldEgg2/image/egg.png" onclick="eventpage()" class="event_sh" style="width:48px;height:51px;position:absolute;top:-58px;right:10px;z-index:2" />
+                    <img src="event/goldEgg2/image/base.png" class="event_sh" style="width:48px;height:auto;position:absolute;top:-15px;right:10px;z-index:1" />-->
+
                     <a href="javascript:;" onclick="clicknav(this)" btag="NewHome" homech="0" ctag="index" class="weui-tabbar__item weui-bar__item_on">
                         <span style="display: inline-block;position: relative;">
                             <i alt="" class="weui-tabbar__icon shadow_icon fa fa-2x ion-ios-home-outline"></i>
@@ -503,21 +575,23 @@
 
                     </a>
 
+                    
                     <a href="javascript:;" onclick="clicknav(this,0)" btag="Home" class="weui-tabbar__item isand2" style="">
                         <span style="display: inline-block;position: relative;">
                             <i alt="" class="weui-tabbar__icon shadow_icon fa fa-2x ion-ios-game-controller-a-outline"></i>
-                            
+                            <!--<span id="hiscount" class="weui-badge" style="position: absolute;top: -2px;right: -13px;display:none"></span>-->
                         </span>
                         <p class="weui-tabbar__label">動態</p>
                     </a>
-                    <a href="javascript:;" onclick="clicknav(this,0)" btag="RareHome" class="weui-tabbar__item" style="">
+                    <!-- <a href="javascript:;" onclick="clicknav(this,0)" btag="RareHome" class="weui-tabbar__item" style="">
                         <span style="display: inline-block;position: relative;">
                             <i alt="" class="weui-tabbar__icon shadow_icon fa fa-2x fa-gittip"></i>
-                            
                         </span>
                         <p class="weui-tabbar__label">排行</p>
+                    </a> -->
                     <a href="javascript:;" onclick="clicknav(this)" btag="MessageBox" class="weui-tabbar__item">
                         <span style="display: inline-block;position: relative;">
+							                                                        
                             <i alt="" class="weui-tabbar__icon shadow_icon fa fa-2x ion-ios-list-outline"></i>
                             <span class="weui-badge" id="notreadmsg" style="position: absolute;top: -2px;right: -13px;display:none" v-bind:style="{'display':(totalcount==0?'none':'inline')}">{{totalcount}}</span>
                         </span>
@@ -572,16 +646,18 @@
 
     </script>
 
+    <!--<script src="js/fastclick.js"></script>-->
     <script>
-        
+        var reloadmsgbox = function () { };
         function closesp() {
             //plus.webview.getWebviewById("loading").hide()
         }
+        //var JIM = new JMessage();
         var first = null;
         var BackBtnFn = function () {
             if (first == null) {
                 first = new Date().getTime();
-                plus.nativeUI.toast("再按一次返回退出傾心陪玩");
+                plus.nativeUI.toast("再按一次返回退出仙人掌公園");
                 setTimeout(function () {
                     first = null;
                 }, 1000);
@@ -595,7 +671,7 @@
         var BackBtnFn_org = function () {
             if (first == null) {
                 first = new Date().getTime();
-                plus.nativeUI.toast("再按一次返回退出傾心陪玩");
+                plus.nativeUI.toast("再按一次返回退出仙人掌公園");
                 setTimeout(function () {
                     first = null;
                 }, 1000);
@@ -615,6 +691,8 @@
         var bgsoundid;
 
         var GInfo;
+        //window.onfocus = onFocus;
+        //window.onblur = onBlur;
         var IMClient;
         var Server_Token = "";
         var HistoryCount = 0;
@@ -631,7 +709,6 @@
             plus.key.addEventListener('backbutton', BackBtnFn, false);
         }
         function clicknav(e, param) {
-            console.log('clicknav');
             plus.webview.currentWebview().endPullToRefresh();
             plus.webview.currentWebview().setPullToRefresh({ support: false, style: 'circle', offset: '5px' });
 
@@ -652,6 +729,11 @@
                 $(e).addClass("weui-bar__item_on");
             }
             var tagid = $(e).attr("btag");
+
+           // $(".weui-tab__panel").html("");
+          //  $("#MainPanel").html("");
+            //$(".layers").append($("#toast").html());
+            // $("#loadingToast").show();
             $(".weui-navbar").hide();
             $("#NavTitle").text("");
             $("#BackBtn").css("visibility", "hidden");
@@ -666,7 +748,9 @@
                     function () {
                         $html.removeClass('slideIn').addClass('js_show');
                     });
-                $("#loadingToast").hide();
+                $("#loadingToast").hide();//$("#loadingToast").remove();
+             //   $(".weui-tab__panel").children().remove();
+               // $(".weui-tab__panel").empty();
 
                 $(".weui-tab__panel").html($html);
 
@@ -683,6 +767,7 @@
         var hoverwindow;
 
         function hovernav(e, param, needim, orgdata) {
+            //alert(needim)
             var newneedim = true;
             if (needim == false) {
                 newneedim = false;
@@ -700,6 +785,12 @@
 
             var tagid = e;
 
+            //$(".layers").append($("#toast").html());
+            //$("#loadingToast").show();
+
+
+
+
             var callback = function (s) {
                 var $html = $(s).addClass('slideIn');
 
@@ -712,16 +803,27 @@
                 $(".layers.page").prepend($html);
 
             }
-
+            //if ($(e).attr("btag") == "NewsPage") {
+            //    eval("mainui." + $(e).attr("btag") + "(Server_Token,callback,param)");
+            //    return;
+            //}
             if (JSON.parse(Server_Token).Status == "管理員") {
+                // hoverwindow.loadURL(debugurl + 'layout.html?needim=' + needim + '&p=' + $(e).attr("btag") + "&param=" + param, $(e).attr("btag"), { PreloadData: orgdata})
                 var w = plus.webview.create(debugurl + 'layout.html?needim=' + needim + '&p=' + $(e).attr("btag"), $(e).attr("btag"), { "cachemode": "default", "popGesture": "close", "userSelect": true, "softinputMode": "adjustResize"}, { PreloadData: (orgdata || null), param: encodeURIComponent(param), newneedim: newneedim });
+                // plus.webview.getLaunchWebview().append(w)
+
                 w.show("slide-in-right");
             }
             else {
+                // hoverwindow.loadURL('layout.html?needim=' + needim + '&p=' + $(e).attr("btag") + "&param=" + param, $(e).attr("btag"), { PreloadData: orgdata })
                 var w = plus.webview.create('layout.html?needim=' + needim + '&p=' + $(e).attr("btag"), $(e).attr("btag"), { "cachemode": "default", "popGesture": "close", "userSelect": true, "softinputMode": "adjustResize" }, { PreloadData: (orgdata || null), param: encodeURIComponent(param), newneedim: newneedim });
                 w.show("slide-in-right");
+                //  plus.webview.getLaunchWebview().loadURL(w)
 
             }
+            // hoverwindow = plus.webview.create("", { "cachemode": "noCache", "background": "#84D8ff", "backgroundColorTop": "#84D8ff", "backgroundColorBottom": "#84D8ff", "popGesture": "close" });
+
+            //eval("mainui." + $(e).attr("btag") + "(Server_Token,callback,param)");
 
         }
         function hovernav_new(e, param, nview) {
@@ -760,14 +862,14 @@
                 {
                     'type': 'back',
                     'float': 'left',
-                    'background': '#dd7299',
+                    'background': '#a6df9a',
 
                 }
             ]
             if (nview.moreinfo == true) {
                 nbtn.push({
                     'type': 'menu',
-                    'background': '#dd7299',
+                    'background': '#a6df9a',
                     'float': 'right',
                     'onclick': function () {
                         w.evalJS('moreclick()')
@@ -777,7 +879,29 @@
             }
             var ntags = [];
             if ((nview.img || '') != '') {
-                
+                //var imgview = {
+                //    'tag': 'img',
+                //    'id': 'imgview',
+                //    'position': { right: '44px',top:'2px', width: '40px', height: '40px' },
+                //    'src': nview.img,
+                //    'rectStyles': {
+                //        'radius':'999px'
+                //    }
+
+                //}
+                //var imgview2 = {
+                //    'tag': 'rect',
+                //    'id': 'rectview',
+                //    'position': { right: '88px', top: '2px', width: '40px', height: '40px' },
+
+                //    'rectStyles': {
+                //        'color':'white',
+                //        'radius': '999px'
+                //    }
+
+                //}
+                //ntags.push(imgview)
+                //ntags.push(imgview2)
             }
             console.dir(ntags);
             var sntags = [
@@ -823,7 +947,7 @@
 
                 'titleNView': {
                     // autoBackButton:true,
-                    'backgroundColor': '#dd7299',
+                    'backgroundColor': '#a6df9a',
                     'type': (nview.type || 'default'),
                     'titleColor': 'white',
                     'titleText': (nview.titleText || ''),
@@ -837,7 +961,12 @@
                 }]
             }, { PreloadData: (orgdata || null), param: encodeURIComponent(param), newneedim: newneedim });
 
-            
+            //w.addEventListener("close", function () {
+            //    console.dir("close")
+            //    w.removeEventListener("rendered", rendw)
+            //})
+            //w.addEventListener("rendered", rendw)
+            // w.show("slide-in-right");
             if ((nview.img || '') != '') {
                 plus.nativeUI.showWaiting("", { loading: { icon: "img/loading.png", display: "inline", height: "150px", interval: 50 }, background: 'rgba(0,0,0,0)' });
             }
@@ -845,19 +974,20 @@
             w.show("fade-in");
         }
         function R_GInfo() {
-            //console.dir('R_GInfo')
+            console.dir('R_GInfo')
             var obj = {
                 MyInfo: GInfo.MyInfo,
                 MyCert: GInfo.MyCert,
                 KindList: GInfo.KindList,
             }
             for (i = 0; i < plus.webview.all().length; i++) {
-                //console.dir(plus.webview.all())
+                console.dir(plus.webview.all())
                 if (plus.webview.all()[i].id != "7cplay" && plus.webview.all()[i].id != "BBIM") {
                     console.dir(plus.webview.all()[i].id)
                     plus.webview.all()[i].evalJS("try{R_GInfo(" + JSON.stringify(obj) + ")}catch(ex){console.dir(ex)}")
                 }
-                //console.dir(plus.webview.all())
+                console.dir(plus.webview.all())
+
             }
 
         }
@@ -887,17 +1017,22 @@
             if (!pready || !$ready) {
                 return;
             }
-            console.dir(1);
+            console.dir(1)
+            //  $(".weui-tab").html($("#AllTab").html());
 
 
             Bridge = new BridgeClass();
             mainui = new MainUI();
+            // audiocontrol = new AudioControl();
             publicTools = new PublicTools();
             document.addEventListener("pause", function () {
-                console.log("pause");
+                console.log("pause")
+                //audiocontrol.BGPause("background");
             }, false);
             document.addEventListener("resume", function () {
-                console.log("resume");
+                console.log("resume")
+                //publicTools.CheckVersion();
+                //audiocontrol.BGPlay();
             }, false);
             document.addEventListener("background", function () {
                 console.log("background")
@@ -925,46 +1060,56 @@
                             if (Server_Token != "") {
 
                                 if (JSON.parse(Server_Token).Status == "管理員") {
-                                    ajaxurl = "http://192.168.1.110:8900/api/";
-                                   
+                                    ajaxurl = "http://192.168.1.110:8900/api/"
+                                   // window.eruda && eruda.init() && eruda.get('console').config.set('displayUnenumerable', false);
                                     if (window.location.href.slice(0, 4) == "file") {
+                                        // console.log(debugurl + "index.html");
+                                        // view.close();
+                                       // plus.webview.getWebviewById("loading").close()
                                         var ws = plus.webview.currentWebview();
                                         ws.loadURL(debugurl + "index.html?" + Math.random());
 
+
                                     } else {
+                                        // audiocontrol.BGPlay("main");
                                         if (p != "")
                                             $("a[btag=" + p + "]").click();
                                         else
                                             $("a[ctag=index]").click();
                                         addBackEvent(BackBtnFn);
                                         closesp();
-                                        Bridge.getOnClickRemoteNotificationData();
+                                        Bridge.getOnClickRemoteNotificationData()
+                                        //Bridge.getOnClickRemoteNotificationData();
                                     }
                                 } else {
+                                    // audiocontrol.BGPlay("main");
                                     if (p != "")
                                         $("a[btag=" + p + "]").click();
                                     else
                                         $("a[ctag=index]").click();
                                     addBackEvent(BackBtnFn);
                                     closesp();
-                                    Bridge.getOnClickRemoteNotificationData();
+                                    Bridge.getOnClickRemoteNotificationData()
+                                    //Bridge.getOnClickRemoteNotificationData();
                                 }
 
 
                             } else {
-                                console.dir("notoken");
+                                console.dir("notoken")
+                                // audiocontrol.BGPlay("main");
                                 if (p != "")
                                     $("a[btag=" + p + "]").click();
                                 else
                                     $("a[ctag=index]").click();
                                 addBackEvent(BackBtnFn);
                                 closesp();
-                                Bridge.getOnClickRemoteNotificationData();
+                                Bridge.getOnClickRemoteNotificationData()
+                                //Bridge.getOnClickRemoteNotificationData();
                             }
 
                         }
                         var firstin = plus.storage.getItem("firstin");
-                        goind("");
+                        goind("")
 
                         return;
 
@@ -1008,11 +1153,27 @@
                 console.dir(3)
                 //推波相關
 
+                //plus.push.setAutoNotification(false);
+                //plus.push.addEventListener("click", function (msg) {
+                //    // 分析msg.payload处理业务逻辑
+                //    alert("You clicked: " + msg.content);
+                //}, false);
+
                 //推波相關結束
                 if (Server_Token != "") {
                     var imurl = "wss://wss.7cplay.com:2053/App/";
                     if (JSON.parse(Server_Token).Status == "管理員")
                         imurl = "wss://192.168.1.110:3002/App/";
+
+
+                    //var { Query, User } = AV;
+                    //AV.init('L5JmLMmR5SgbGBBuKz98s6fR-gzGzoHsz', 'UKv9q7UAqc7ierPPPAMAp4SQ');
+                    //// 实时消息服务
+                    //var { Realtime, TextMessage, Event } = AV;
+                    //var realtime = new AV.Realtime({
+                    //    appId: 'L5JmLMmR5SgbGBBuKz98s6fR-gzGzoHsz',
+                    //    appKey: 'UKv9q7UAqc7ierPPPAMAp4SQ',
+                    //});
                     var isnewed = false;
                     var OrderCountt = 0;
                     var UnreadUpdatet = 0;
@@ -1022,10 +1183,11 @@
                     var bbimw = plus.webview.create("Partition/BBIMPage.html", "BBIM", { "cachemode": "noCache", "popGesture": "none", "userSelect": true, "render": "always" });
 
 
-                   getsett();
+                    getsett();
                    var bbimot =  function () {
                        if (typeof (BBIM) == 'undefined') {
-                            setTimeout(bbimot,50);
+                           setTimeout(bbimot,50)
+                         //   bbimot();
                             return;
                         }
                         bbim = new BBIM(imurl, Server_Token, function (ev2) {
@@ -1034,6 +1196,7 @@
 
                             isnewed = true;
                             bbim.on("OrderCount", function (ev) {
+                                //  console.dir("oc")
                                 $("#boxordercount").text(ev);
                                 OrderCountt = ev;
                                 if (ev == 0) {
@@ -1050,6 +1213,7 @@
                                     $("#notreadmsg").show();
                                     if (plus.webview.all()[plus.webview.all().length - 1] == plus.webview.getLaunchWebview()) {
                                         Bridge.getRoot(function (url) {
+                                            //console.log(url);
                                             var p = plus.audio.createPlayer(url + "audio/dido/1.mp3");
                                             p.play();
                                         })
@@ -1079,7 +1243,7 @@
                                     $("#notreadmsg").show();
                                     if (plus.webview.all()[plus.webview.all().length - 1] == plus.webview.getLaunchWebview()) {
                                         Bridge.getRoot(function (url) {
-                                            
+                                            //console.log(url);
                                             var p = plus.audio.createPlayer(url + "audio/dido/1.mp3");
                                             p.play();
                                         })
@@ -1110,6 +1274,7 @@
                                 $("#notreadmsg").show();
                                 if (plus.webview.all()[plus.webview.all().length - 1] == plus.webview.getLaunchWebview()) {
                                     Bridge.getRoot(function (url) {
+                                        //console.log(url);
                                         var p = plus.audio.createPlayer(url + "audio/dido/1.mp3");
                                         p.play();
                                     })
@@ -1120,22 +1285,27 @@
 
                         })
                     }
+                    // setTimeout(bbimot, 50)
 
                 } else {
                     $("#notreadmsg").hide();
                     getsett();
 
                 }
+               // getsett();
 
 
             }
+            // console.dir("a")
+            //alert(7);
+            // console.dir(plus.android.importClass('tw.cactus.park.core.Bridge'));
             Bridge.getData("APIUrl", function (apiurl) {
-               
+                // alert(apiurl);
                 ajaxurl = apiurl;
                 Bridge.getData("Server_Token",
                     function (tok) {
-                        
-                        console.dir(tok);
+                        console.dir("tok")
+                        console.dir(tok)
                         if (tok) {
                             var odata = JSON.parse(tok);
                             var data = {};
@@ -1150,13 +1320,14 @@
                             data["mobilevendor"] = plus.device.vendor;
                             Server_Token = tok;
                             if (data["isnew"] == true) {
+                               // alert("恭喜您獲得了一張體驗券！體驗券請於72小時內完成使用，逾期將會失效");
                                 plus.nativeUI.confirm("現在綁定手機將會發送一張30元體驗券，是否前往榜定", function (e) {
                                         console.log("Close confirm: " + e.index);
 
                                         if (e.index == 1) {
-                                            
+                                            // goind("")
                                         } else {
-                                            
+                                            // goind("Setting");
                                             $('<a btag="ProfileEdit" onclick="hovernav(this, \'id\')"></a>').click()
                                         }
                                     },
@@ -1170,7 +1341,7 @@
                             var isalerted = false;
                             GInfo = new Vue({
                                 data: {
-                                    
+                                    // MyInfo: r.result_content
                                     AnnouncementLast: new Date(0).toLocaleString(),
                                     SeeAnnouncementLast: new Date(0).toLocaleString(),
                                     MyInfo: {},
@@ -1186,8 +1357,24 @@
                                             isalerted = true;
                                             var firstin = plus.storage.getItem("firstin");
                                             if ((val.Phone || "") == "" && firstin == null) {
-                                                
+                                                //plus.nativeUI.confirm("為保障您的帳號安全，建議您增加手機號碼綁定；若是您要加入陪玩師，則必須完成手機號碼綁定。", function (e) {
+                                                //    console.log("Close confirm: " + e.index);
+                                                //    plus.storage.setItem("firstin", "1");
+                                                //    if (e.index == 1) {
+                                                //        // goind("")
+                                                //    } else {
+                                                //        // goind("Setting");
+                                                //        $('<a btag="ProfileEdit" onclick="hovernav(this, \'id\')"></a>').click()
+                                                //    }
+                                                //},
+                                                //    {
+                                                //        "title": "是否綁定手機",
+                                                //        "buttons": ["前往綁定", "再等等"],
+
+                                                //    }
+                                                //);
                                             }
+                                            //getsett()
                                         }
 
                                     }
@@ -1201,7 +1388,7 @@
                                                     url: ajaxurl + "Block/",
                                                     type: 'post',
                                                     data: { targetid: id, block: false },
-                                                    headers: { "Server_Token": encodeURI(Server_Token) },
+                                                    headers: { "Server_Token": encodeURIComponent(Server_Token) },
                                                     timeout: 30000,
                                                     success: function (r) {
                                                         if (r.result_status) {
@@ -1237,7 +1424,7 @@
                                                     url: ajaxurl + "Block/",
                                                     type: 'post',
                                                     data: { targetid: id, block: true },
-                                                    headers: { "Server_Token": encodeURI(Server_Token) },
+                                                    headers: { "Server_Token": encodeURIComponent(Server_Token) },
                                                     timeout: 30000,
                                                     success: function (r) {
                                                         if (r.result_status) {
@@ -1276,15 +1463,17 @@
                                 timeout: 30000,
                                 success: function (r) {
                                     if (r.result_status) {
-
+                                        if ((r.result_message || "") != "") {
+                                            alert(r.result_message);
+                                        }
                                         Server_Token = JSON.stringify(r.result_content);
 
                                         conf.hidenews = JSON.parse(JSON.stringify(r.result_content)).hidenews;
-                                        
+                                        //conf.hidenews = false;
                                         conf.review()
                                         var params = {};
                                         params['Member_ID'] = r.result_content.Member_ID;
-                                       
+                                       // FB.AppEvents.logEvent('LoginApp', null, params);
 
                                         console.dir("setJPushAlias")
                                         Bridge.setData("Server_Token", Server_Token, function () {
@@ -1301,13 +1490,13 @@
                                     } else {
 
                                         alert(r.result_message);
-                                       
+                                        //  alldata();
                                     }
                                     console.dir("tok3")
                                 },
                                 onerror: function () {
                                     console.dir("tok4")
-                                    
+                                    // alldata();
                                 },
                                 complete: function () {
 
@@ -1324,7 +1513,7 @@
 
 
             })
-           
+            //alert(8);
             $(document).on('click', '.btn_click', function (e) {
                 if ($(this).attr("disabled") == "disabled") {
                     return;
@@ -1333,10 +1522,11 @@
                     return;
                 }
 
-                
+                //if (!$(this).is('.nosound'))
+                //    audiocontrol.ClickPlay()
 
             })
-           
+            // alert(9);
             $(document).on('click', '.btn_click_org', function (e) {
                 if ($(this).attr("disabled") == "disabled") {
                     return;
@@ -1345,10 +1535,11 @@
                     return;
                 }
 
-                
+                //if (!$(this).is('.nosound'))
+                // audiocontrol.ClickPlay()
 
             })
-           
+            //alert(10);
             function initWebUX() {
                 switch (plus.os.name) {
                     case "Android":
@@ -1370,9 +1561,8 @@
 
         }
 
-       
+        //  $("#loadingToast").show();
         document.addEventListener('plusready', function () {
-            console.log('plusready');
             if (plus.webview.getWebviewById("loading") == null) {
                 plus.webview.create('Partition/loading.html', "loading", {
                     top: "0px",
@@ -1400,21 +1590,47 @@
                                             if (JV.Version > CJV.Version) {
                                                 if (plus.os.name == "Android") {
                                                     plus.android.importClass('tw.cactus.park.core.Bridge').appUpdate();
-                                                   
+                                                    //    else {
+                                                    //    plus.nativeUI.alert("語音通話功能已經完成優化，煩請到Google Play下載更新", function () {
+                                                    //        var Intent = plus.android.importClass("android.content.Intent");
+                                                    //        var Uri = plus.android.importClass("android.net.Uri");
+                                                    //        var main = plus.android.runtimeMainActivity();
+                                                    //        var intent = new Intent(Intent.ACTION_VIEW);
+                                                    //        var uri = Uri.parse("market://details?id=tw.com.sevencplay&hl=zh-TW");
+                                                    //        intent.setData(uri);
+                                                    //        main.startActivity(intent);
+                                                    //    }, "強制更新", "前往更新");
+                                                    //}
 
                                                 } else if (plus.os.name == "iOS") {
                                                     plus.ios.importClass('_cplay.WebUtil').appUpdate();
-                                                  
+                                                    //pready = true;
+                                                    //indexready();
                                                 }
 
                                             } else {
                                                 if (plus.os.name == "Android") {
-                                                    
+                                                    //if (plus.runtime.version == "1.0.13") {
+                                                    //    plus.webview.getWebviewById("loading").show();
+                                                    //    pready = true;
+                                                    //    indexready();
+                                                    //} else {
+                                                    //    plus.nativeUI.alert("語音通話功能已經完成優化，煩請到Google Play下載更新", function () {
+                                                    //        var Intent = plus.android.importClass("android.content.Intent");
+                                                    //        var Uri = plus.android.importClass("android.net.Uri");
+                                                    //        var main = plus.android.runtimeMainActivity();
+                                                    //        var intent = new Intent(Intent.ACTION_VIEW);
+                                                    //        var uri = Uri.parse("market://details?id=tw.com.sevencplay&hl=zh-TW");
+                                                    //        intent.setData(uri);
+                                                    //        main.startActivity(intent);
+                                                    //    }, "強制更新", "前往更新");
+                                                    //}
+                                                    //plus.webview.getWebviewById("loading").show();
                                                     pready = true;
                                                     indexready();
 
                                                 } else if (plus.os.name == "iOS") {
-                                                  
+                                                   // plus.webview.getWebviewById("loading").show();
                                                     pready = true;
                                                     indexready();
                                                 }
@@ -1447,7 +1663,9 @@
 
             }
             chkversion();
-          
+            //  hoverwindow = plus.webview.create("", { "cachemode": "noCache", "background": "#84D8ff", "backgroundColorTop": "#84D8ff", "backgroundColorBottom": "#84D8ff", "popGesture": "close" });
+
+            //alert("pready")
             alert = function (e, cb) {
                 plus.nativeUI.alert(e, function () {
                     if (cb) {
@@ -1460,13 +1678,65 @@
             plus.navigator.setFullscreen(false)
             var winH = $(window).height();
             $("body").height(winH);
-           
+            //if (plus.navigator.hasNotchInScreen()) {
+            //   // plus.navigator.setFullscreen(false)
 
-           
+            //    var winH = $(window).height() - plus.navigator.getStatusbarHeight();
+
+            //    $("body").height(winH);
+            //} else {
+            //   // plus.navigator.setFullscreen(true)
+            //    var winH = $(window).height();
+            //    $("body").height(winH);
+            //}
+
+            //plus.webview.getWebviewById("loading").show();
+            //plus.push.addEventListener("click", function (msg) {
+            //    // 分析msg.payload处理业务逻辑
+            //  //  var event = document.createEvent('HTMLEvents')
+            //   // //event.initEvent("jpush.receiveMessage", true, true)
+            //   // event.eventType = 'message'
+            //   // event.arguments = msg;
+            //   // document.dispatchEvent(event)
+            //    console.dir(msg);
+            //}, false);
+            //plus.push.addEventListener("receive", function (msg) {
+            //    // 分析msg.payload处理业务逻辑
+            //  //  var event = document.createEvent('HTMLEvents')
+            //   // event.initEvent("jpush.receiveMessage", true, true)
+            //  //  event.eventType = 'message'
+            //  //  event.arguments = msg;
+            //  //  document.dispatchEvent(event)
+            //    console.dir(msg);
+            //}, false);
 
 
         }, false);
-       
+        //document.addEventListener("jpush.receiveMessage", function (msg) {
+
+        //    if (msg.arguments.type == "click") {
+        //        //console.dir(msg.arguments.payload.PageMoveTo);
+        //        var str = msg.arguments.payload.PageMoveTo;
+        //        var page = str.split("|")[0];
+        //        if (page == "msg") {
+        //            var op = plus.webview.getWebviewById("MessagePage");
+        //            if (op)
+        //                op.close();
+        //            var html = "<a onclick='hovernav(this,\"" + str.split("|")[1] + "\")' btag=\"MessagePage\"></a>"
+        //            //console.dir(html)
+        //            $(html).click();
+        //        }
+        //    }
+        //    if (msg.arguments.type == "receive") {
+        //        //console.dir(msg.arguments.payload.PageMoveTo);
+        //        var str = msg.arguments.payload.PageMoveTo;
+        //        var page = str.split("|")[0];
+        //        if (page == "order") {
+
+        //        }
+        //    }
+
+        //}, false);
         var OrderCountt = 0;
         var UnreadUpdatet = 0;
         var infodot = new Vue({
@@ -1542,7 +1812,24 @@
                 else
                     GInfo.SeeAnnouncementLast = new Date(0).toLocaleString();
             })
-         
+
+            //if (infodot.UnreadUpdatet + infodot.OrderCountt == 0) {
+            //    $("#notreadmsg").hide();
+            //} else {
+
+            //    $("#notreadmsg").text(infodot.UnreadUpdatet + infodot.OrderCountt);
+            //    $("#notreadmsg").show();
+            //    if (plus.webview.all()[plus.webview.all().length - 1] == plus.webview.getLaunchWebview()) {
+            //        Bridge.getRoot(function (url) {
+            //            //console.log(url);
+            //            var p = plus.audio.createPlayer(url + "audio/dido/1.mp3");
+            //            p.play();
+            //        })
+
+            //    }
+
+            //}
+           // getsett();
         }
         function UnreadUpdatefn(ev) {
             var allc = 0;
@@ -1557,7 +1844,22 @@
 
             }
             infodot.UnreadUpdatet = allc;
-           
+            //if (infodot.UnreadUpdatet + infodot.OrderCountt == 0) {
+            //    $("#notreadmsg").hide();
+            //} else {
+
+            //    $("#notreadmsg").text(infodot.UnreadUpdatet + infodot.OrderCountt);
+            //    $("#notreadmsg").show();
+            //    if (plus.webview.all()[plus.webview.all().length - 1] == plus.webview.getLaunchWebview()) {
+            //        Bridge.getRoot(function (url) {
+            //            //console.log(url);
+            //            var p = plus.audio.createPlayer(url + "audio/dido/1.mp3");
+            //            p.play();
+            //        })
+
+            //    }
+
+            //}
         }
         function OrderCountfn(ev) {
             $("#boxordercount").text(ev);
@@ -1567,11 +1869,27 @@
             } else {
                 $("#boxordercount").show()
             }
-           
+            //if (infodot.UnreadUpdatet + infodot.OrderCountt == 0) {
+            //    Bridge.clearBadge();
+            //    $("#notreadmsg").hide();
+            //} else {
+
+            //    $("#notreadmsg").text(infodot.UnreadUpdatet + infodot.OrderCountt);
+            //    $("#notreadmsg").show();
+            //    if (plus.webview.all()[plus.webview.all().length - 1] == plus.webview.getLaunchWebview()) {
+            //        Bridge.getRoot(function (url) {
+            //            //console.log(url);
+            //            var p = plus.audio.createPlayer(url + "audio/dido/1.mp3");
+            //            p.play();
+            //        })
+
+            //    }
+
+            //}
         }
         $(function () {
             $ready = true;
-           
+            //alert("$ready")
 
 
             indexready();
@@ -1594,7 +1912,7 @@
 
             Bridge.ClearData(function () {
                 Bridge.LogOut(function () {
-                   
+                    // location.href = "Login.html";
                 })
 
             })
@@ -1602,7 +1920,7 @@
         }
         function getimdata(fnname, param, cccb) {
             var puuid = plus.webview.currentWebview().__uuid__;
-            var eventname = "ev" + (new Date().getTime());
+            var eventname = "ev" + (new Date().getTime()) + "" + (Math.random() * 10000000);
 
             var param = JSON.stringify(param);
 
@@ -1613,13 +1931,13 @@
             });
             //getWebviewById
             plus.webview.getWebviewById("BBIM").evalJS("bbim.p_get('" + puuid + "','" + eventname + "','" + fnname + "'," + param + ")")
-            
+            // plus.webview.getLaunchWebview().evalJS("bbim.p_get('" + puuid + "','" + eventname + "','" + fnname + "'," + param + ")")
         }
         function eventpage() {
             $.ajax({
                 url: ajaxurl + "GetEgg",
                 type: 'get',
-                headers: { "Server_Token": encodeURI(Server_Token) },
+                headers: { "Server_Token": encodeURIComponent(Server_Token) },
                 success: function (r) {
                     if (r.result_status) {
                         var cw;
@@ -1636,6 +1954,14 @@
                         else {
                             cw = plus.webview.create('event/goldEgg2/index.html', "eventpage", { "cachemode": "noCache", "background": "transparent", "popGesture": "none", "height": "70%", "margin": "auto", "width": "80%", "userSelect": false }, { data: r.result_content });
                         }
+
+                        //cw.onclose = function () {
+
+                        //    var sendobj = { OffSource: GInfo.MyInfo.Member_ID, OffTarget: "{{sheinfo.Member_ID}}", Event: "Off" };
+                        //    bbim.callphone(JSON.stringify(sendobj));
+
+                        //    cw = null;
+                        //}
                         cw.show();
                     } else {
                         console.error(r.result_message);

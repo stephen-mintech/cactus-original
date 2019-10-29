@@ -379,7 +379,7 @@
             url: ajaxurl + "MessageBox",
             type: 'post',
             data: { id: ar },
-            headers: { "Server_Token": encodeURI(Server_Token) },
+            headers: { "Server_Token": encodeURIComponent(Server_Token) },
             timeout: 30000,
             success: function (r) {
                 if (r.result_status) {

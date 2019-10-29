@@ -282,7 +282,7 @@
             },
            methods: {
                buycoupon: function () {
-                   plus.nativeUI.confirm("你確定要花30傾心幣購買1張體驗券嗎?", function (e) {
+                   plus.nativeUI.confirm("你確定要花30仙人掌幣購買1張體驗券嗎?", function (e) {
                        if (e.index == 0) {
                            
                            plus.nativeUI.showWaiting("購買中...")
@@ -290,7 +290,7 @@
                                url: ajaxurl + "Coupon",
                                type: 'post',
                                data: { c: 1 },
-                               headers: { "Server_Token": encodeURI(Server_Token) },
+                               headers: { "Server_Token": encodeURIComponent(Server_Token) },
                                success: function (r) {
                                    if (r.result_status) {
                                        alert("購買成功");

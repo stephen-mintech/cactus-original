@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="">
-                    擁有傾心幣
+                    擁有仙人掌幣
                     <br>
                     <span>{{GInfo.MyInfo.P}}</span>幣
                 </div>
@@ -56,8 +56,8 @@
                     <img src="img/icon/coin.png" style="width: 40px;display: block">
                 </div>
                 <div class="weui-cell__bd">
-                    <p>預估傾心幣收益</p>
-                    <p style="font-size: 13px;color: #888888;">本月預估傾心幣收益</p>
+                    <p>預估仙人掌幣收益</p>
+                    <p style="font-size: 13px;color: #888888;">本月預估仙人掌幣收益</p>
                 </div>
                 <div class="weui-cell__ft" style="color:deepskyblue">
 
@@ -242,7 +242,7 @@
 
                         }, "", "我知道了");
                     } else {
-                        plus.nativeUI.alert("紅利是從官方活動獲取，或是用傾心幣轉換。玩家若是擁有紅利，可以購買禮物送給對方，或是可以在消費過程中進行折抵，折抵上限為該筆交易金額的20%。陪練師若擁有紅利，可以連同收益在隔月進行提現，紅利與新台幣的兌換比例為1:1。", function () {
+                        plus.nativeUI.alert("紅利是從官方活動獲取，或是用仙人掌幣轉換。玩家若是擁有紅利，可以購買禮物送給對方，或是可以在消費過程中進行折抵，折抵上限為該筆交易金額的20%。陪練師若擁有紅利，可以連同收益在隔月進行提現，紅利與新台幣的兌換比例為1:1。", function () {
 
                         }, "", "我知道了");
                     }
@@ -254,7 +254,7 @@
                 $.ajax({
                     url: ajaxurl + "Coupon",
                     type: 'get',
-                    headers: { "Server_Token": encodeURI(Server_Token) },
+                    headers: { "Server_Token": encodeURIComponent(Server_Token) },
                     success: function (r) {
                         self.cpcount = r.result_content.filter(e => e.UseTime == null && e.isDead == false).length;
                         console.dir(self.cpcount)

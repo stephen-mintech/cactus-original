@@ -382,7 +382,7 @@
                             url: ajaxurl + "CertificationDetail/",
                             type: 'patch',
                             data: ((ischgenable == true) ? { id: id, isEnable: me.isEnable } : { id: id, sortlist: sortlist }),
-                            headers: { "Server_Token": encodeURI(Server_Token) },
+                            headers: { "Server_Token": encodeURIComponent(Server_Token) },
                             timeout: 30000,
                             success: function (r) {
                                 if (r.result_status) {
@@ -408,7 +408,7 @@
                         $.ajax({
                             url: ajaxurl + "CertificationDetail/" + id,
                             type: 'delete',
-                            headers: { "Server_Token": encodeURI(Server_Token) },
+                            headers: { "Server_Token": encodeURIComponent(Server_Token) },
                             timeout: 30000,
                             success: function (r) {
                                 plus.webview.getWebviewById('CertSkill').reload(true);
@@ -431,7 +431,7 @@
                         url: ajaxurl + "CertificationDetail/",
                         type: 'post',
                         data: self.PostData,
-                        headers: { "Server_Token": encodeURI(Server_Token) },
+                        headers: { "Server_Token": encodeURIComponent(Server_Token) },
                         timeout: 30000,
                         success: function (r) {
                             if (r.result_status) {

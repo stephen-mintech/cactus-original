@@ -376,7 +376,7 @@ a {
 
 .weui-icon-success {
     font-size: 23px;
-    color: #dc2873;
+    color: #a6df9a;
 }
 
 .weui-icon-waiting {
@@ -396,12 +396,12 @@ a {
 
 .weui-icon-success-circle {
     font-size: 23px;
-    color: #dc2873;
+    color: #a6df9a;
 }
 
 .weui-icon-success-no-circle {
     font-size: 23px;
-    color: #dc2873;
+    color: #a6df9a;
 }
 
 .weui-icon-waiting-circle {
@@ -416,16 +416,16 @@ a {
 
 .weui-icon-download {
     font-size: 23px;
-    color: #dc2873;
+    color: #a6df9a;
 }
 
 .weui-icon-info-circle {
     font-size: 23px;
-    color: #dc2873;
+    color: #a6df9a;
 }
 
 .weui-icon-safe-success {
-    color: #dc2873;
+    color: #a6df9a;
 }
 
 .weui-icon-safe-warn {
@@ -508,7 +508,7 @@ a {
     font-size: 18px;
     text-align: center;
     text-decoration: none;
-    color: #dd7299;
+    color: #a6df9a;
     line-height: 2.55555556;
     border-radius: 10em;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -522,7 +522,7 @@ a {
         position: absolute;
         top: 0;
         left: 0;
-        border: 1px solid #dd7299;
+        border: 1px solid #a6df9a;
         transform: scale(0.5);
         transform-origin: 0 0;
         box-sizing: border-box;
@@ -548,7 +548,7 @@ a {
 * limitations under the License.
 */
 .weui-btn_default {
-    color: #dd7299;
+    color: #a6df9a;
     background-color: #F8F8F8;
 }
 
@@ -576,7 +576,7 @@ a {
 * limitations under the License.
 */
 .weui-btn_primary {
-    background-color: #dd7299;
+    background-color: #a6df9a;
     color: #FFFFFF;
 }
 
@@ -586,7 +586,7 @@ a {
 
     .weui-btn_primary:not(.weui-btn_disabled):active {
         color: rgba(255, 255, 255, 0.6);
-        background-color: #ae5877;
+        background-color: #a6df9a;
     }
 /*
 * Tencent is pleased to support the open source community by making WeUI available.
@@ -1072,7 +1072,7 @@ z-index:
 .weui-cells_radio .weui-check:checked + .weui-icon-checked:before {
     display: block;
     content: '\EA08';
-    color: #dc2873;
+    color: #a6df9a;
     font-size: 16px;
 }
 /*
@@ -1103,7 +1103,7 @@ z-index:
 
 .weui-cells_checkbox .weui-check:checked + .weui-icon-checked:before {
     content: '\EA06';
-    color: #dc2873;
+    color: #a6df9a;
 }
 /*
 * Tencent is pleased to support the open source community by making WeUI available.
@@ -1344,7 +1344,7 @@ z-index:
     position: relative;
     display: block;
     flex: 1;
-    color: #dc2873;
+    color: #a6df9a;
     text-align: center;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -1383,7 +1383,7 @@ button.weui-form-preview__btn {
 }
 
 .weui-form-preview__btn_primary {
-    color: #dc2873;
+    color: #a6df9a;
 }
 /*
 * Tencent is pleased to support the open source community by making WeUI available.
@@ -1533,7 +1533,7 @@ button.weui-form-preview__btn {
     line-height: 45px;
     vertical-align: middle;
     font-size: 17px;
-    color: #dc2873;
+    color: #a6df9a;
 }
 
 button.weui-vcode-btn {
@@ -2007,7 +2007,7 @@ button.weui-vcode-btn {
     .weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon,
     .weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon > i,
     .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {
-        color: #dc2873;
+        color: #a6df9a;
     }
 
 .weui-tabbar__icon {
@@ -2155,7 +2155,7 @@ button.weui-vcode-btn {
 .weui-progress__inner-bar {
     width: 0;
     height: 100%;
-    background-color: #dc2873;
+    background-color: #a6df9a;
 }
 
 .weui-progress__opr {
@@ -2648,7 +2648,7 @@ a.weui-media-box {
 .weui-dialog__btn {
     display: block;
     flex: 1;
-    color: #dc2873;
+    color: #a6df9a;
     text-decoration: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     position: relative;
@@ -2680,7 +2680,7 @@ a.weui-media-box {
 }
 
 .weui-dialog__btn_primary {
-    color: #dc2873;
+    color: #a6df9a;
 }
 
 .weui-skin_android .weui-dialog {
@@ -3207,7 +3207,7 @@ a.weui-media-box {
     display: none;
     margin-left: 10px;
     line-height: 28px;
-    color: #dc2873;
+    color: #a6df9a;
     white-space: nowrap;
 }
 
@@ -3494,7 +3494,7 @@ input[type="search"]::-webkit-search-results-decoration {
         vertical-align: middle;
         text-decoration: inherit;
         content: "\EA08";
-        color: #dc2873;
+        color: #a6df9a;
         font-size: 13px;
         position: absolute;
         top: 50%;
@@ -3624,7 +3624,7 @@ input[type="search"]::-webkit-search-results-decoration {
 .weui-tabbar__item .weui-tabbar__icon,
 .weui-tabbar__item .weui-tabbar__icon > i,
 .weui-tabbar__item .weui-tabbar__label {
-    /*color: #dd7299;*/
+    /*color: #a6df9a;*/
     color:gray
 }
 
@@ -3633,11 +3633,11 @@ input[type="search"]::-webkit-search-results-decoration {
 .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {
     /*color: #004AF7;*/
     /*color: #f4f4f4;*/
-    color: #dd7299
+    color: #a6df9a
 }
 
 .tabbg {
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#dc2873+0,8a2786+99 */
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a6df9a+0,8a2786+99 */
     background: rgb(255,255,255); /* Old browsers */
     background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgb(200, 200, 200) 99%); /* FF3.6-15 */
     background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgb(200, 200, 200) 99%); /* Chrome10-25,Safari5.1-6 */
@@ -3649,7 +3649,7 @@ input[type="search"]::-webkit-search-results-decoration {
     /*text-shadow: 2px 1px 0px rgba(80,80,80,0.15);*/
 }
 .navbg {
-    background-color: #dd7299;
+    background-color: #a6df9a;
 }
 
 .hdbg {
@@ -3669,13 +3669,13 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 .weui-btn_notfollow {
-    color: #dc2873;
+    color: #a6df9a;
     background-color: white;
 }
 
     .weui-btn_notfollow:not(.weui-btn_disabled):active {
         color: white;
-        background-color: #dc2873;
+        background-color: #a6df9a;
     }
 
     .weui-btn_notfollow:after {
@@ -3685,7 +3685,7 @@ input[type="search"]::-webkit-search-results-decoration {
         position: absolute;
         top: 0;
         left: 0;
-        border: 1px solid #dc2873;
+        border: 1px solid #a6df9a;
         transform: scale(0.5);
         transform-origin: 0 0;
         box-sizing: border-box;
@@ -3694,11 +3694,11 @@ input[type="search"]::-webkit-search-results-decoration {
 
 .weui-btn_follow {
     color: white;
-    background-color: #dc2873;
+    background-color: #a6df9a;
 }
 
     .weui-btn_follow:not(.weui-btn_disabled):active {
-        color: #dc2873;
+        color: #a6df9a;
         background-color: white;
     }
 

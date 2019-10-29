@@ -109,7 +109,7 @@
                                 $.ajax({
                                     url: ajaxurl + "Recommend",
                                     type: 'post',
-                                    headers: { "Server_Token": encodeURI(Server_Token) },
+                                    headers: { "Server_Token": encodeURIComponent(Server_Token) },
                                     data: { UpMemberCode: e.value},
                                     timeout: 30000,
                                     success: function (r) {

@@ -502,14 +502,14 @@
          //fileImg
             task.addData("Content", data["Content"]);
             task.addData("Kind", data["Kind"]);
-            task.setRequestHeader("Server_Token",encodeURI(Server_Token))
+            task.setRequestHeader("Server_Token", encodeURIComponent(Server_Token))
             task.start();
 
             //$.ajax({
             //    url: ajaxurl + "News",
             //    type: 'post',
             //    data: formData,
-            //    headers: { "Server_Token": encodeURI(Server_Token) },
+            //    headers: { "Server_Token": encodeURIComponent(Server_Token) },
             //    processData: false,
             //    contentType: false,
             //    success: function (r) {

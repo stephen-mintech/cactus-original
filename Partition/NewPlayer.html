@@ -52,7 +52,7 @@
         $.ajax({
             url: ajaxurl + "NewPlayer",
             type: 'get',
-            headers: { "Server_Token": encodeURI(Server_Token) },
+            headers: { "Server_Token": encodeURIComponent(Server_Token) },
             success: function (rs) {
                 if (rs.result_status) {
                     new Vue({

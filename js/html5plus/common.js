@@ -47,7 +47,7 @@ function plusReady(){
             return;
         }
         xhr.open("POST", ajaxurl + "Trace");
-        //   headers: { "Server_Token": encodeURI(Server_Token) },
+        //   headers: { "Server_Token": encodeURIComponent(Server_Token) },
         xhr.setRequestHeader('Server_Token', encodeURI(ST));
         xhr.responseType = 'json';
         xhr.setRequestHeader('Content-Type', 'application/json');

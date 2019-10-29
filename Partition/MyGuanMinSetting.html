@@ -10,7 +10,7 @@
 
 </head>
 <body style="background-color:#f8f8f8;margin:0;">
-    <div id="mybody" style="width:100%;">
+    <div id="mybody" style="width:100%;display:none" v-show="loaded">
         <div style="display:none" ref="newpost">
             <div class="weui-form-preview">
                 <div class="weui-form-preview__hd">
@@ -118,7 +118,13 @@
     <script>
         var ttt;
         document.addEventListener("plusready", function () {
-           
+            alert = function (e, cb) {
+                plus.nativeUI.alert(e, function () {
+                    if (cb) {
+                        cb()
+                    }
+                }, "訊息", "確定");
+            }
             plus.key.addEventListener('backbutton', function () {
                 plus.webview.currentWebview().close()
             }, false);
@@ -128,12 +134,13 @@
             $.ajax({
                 url: "https://api_m.7cplay.com/api/" + "GuanMin",
                 type: 'get',
-                headers: { "Server_Token": encodeURI(Server_Token) },
+                headers: { "Server_Token": encodeURIComponent(Server_Token) },
                 success: function (rs) {
                     if (rs.result_status) {
                         ttt = new Vue({
                             el: '#mybody',
                             data: {
+                                loaded:false,
                                 canshow: false,
                                 Data: rs.result_content,
                                 postdata: {
@@ -162,13 +169,13 @@
                                                 url: "https://api_m.7cplay.com/api/" + "GuanMin",
                                                 type: 'delete',
                                                 data: { id: id },
-                                                headers: { "Server_Token": encodeURI(Server_Token) },
+                                                headers: { "Server_Token": encodeURIComponent(Server_Token) },
                                                 success: function (r) {
                                                     if (r.result_status) {
                                                         alert("刪除成功");
                                                         plus.webview.currentWebview().reload();
                                                     } else {
-                                                        console.error(r.result_message);
+                                                       alert(r.result_message);
                                                     }
                                                     plus.nativeUI.closeWaiting()
                                                 }
@@ -184,15 +191,32 @@
                                         });
                                 },
                                 post: function () {
+                                    var self = this;
+                                    $.ajax({
+                                        url: "https://api_m.7cplay.com/api/" + "GuanMin",
+                                        type: 'post',
+                                        data: self.postdata,
+                                        headers: { "Server_Token": encodeURIComponent(Server_Token) },
+                                        success: function (r) {
+                                            if (r.result_status) {
+                                                alert("新增成功");
+                                                plus.webview.currentWebview().reload();
+                                            } else {
+                                                alert(r.result_message);
+                                            }
+                                            plus.nativeUI.closeWaiting()
+                                        }
+                                    });
 
-                                    this.Data.SettingData.unshift(JSON.parse(JSON.stringify(this.postdata)))
-                                    this.postdata = {
-                                        CanOrderOther: true,
-                                        Fee: null,
-                                        HaveDay: null,
-                                        Name: ''
-                                    }
-                                    this.addshow(false)
+                                    //this.Data.SettingData.unshift(JSON.parse(JSON.stringify(this.postdata)))
+
+                                    //this.postdata = {
+                                    //    CanOrderOther: true,
+                                    //    Fee: null,
+                                    //    HaveDay: null,
+                                    //    Name: ''
+                                    //}
+                                    //this.addshow(false)
                                 },
                                 addshow: function (v) {
                                     var self = this;
@@ -228,6 +252,7 @@
                                 var self = this;
                                 var ws = plus.webview.currentWebview();
                                 ws.show("slide-in-bottom")
+                                this.loaded = true;
                                 try {
                                     ws.setStyle({
                                         titleNView: {

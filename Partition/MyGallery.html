@@ -56,7 +56,7 @@
                         }
                     );
                     task.addFile(url, { key: "file" });
-                    task.setRequestHeader("Server_Token", Server_Token)
+                    task.setRequestHeader("Server_Token",encodeURIComponent(Server_Token))
                     task.start();
 
                 }
@@ -86,7 +86,7 @@
             $.ajax({
                 url: "https://api_m.7cplay.com/api/" + "Gallery",
                 type: 'get',
-                headers: { "Server_Token": encodeURI(Server_Token) },
+                headers: { "Server_Token": encodeURIComponent(Server_Token) },
                 success: function (rs) {
                     if (rs.result_status) {
                         ttt = new Vue({
@@ -140,7 +140,7 @@
                                                     url: "https://api_m.7cplay.com/api/" + "Gallery",
                                                     type: 'delete',
                                                     data: {list: self.dellist },
-                                                    headers: { "Server_Token": encodeURI(Server_Token) },
+                                                    headers: { "Server_Token": encodeURIComponent(Server_Token) },
                                                     success: function (drs) {
                                                         plus.nativeUI.closeWaiting();
                                                         if (drs.result_status) {

@@ -342,7 +342,6 @@
             plus.key.addEventListener('backbutton', BackBtnFn, false);
         }
         function clicknav(e, param) {
-           
             // addBackEvent(BackBtnFn_org);
             if (param == undefined) {
                 if ($(e).attr("bparam"))
@@ -617,7 +616,7 @@
         var bbim;
         function getimdata(fnname, param, cccb) {
             var puuid = plus.webview.currentWebview().__uuid__;
-            var eventname = "ev" + (new Date().getTime());
+            var eventname = "ev" + (new Date().getTime()) +""+ (Math.random()*10000000);
 
             var param = JSON.stringify(param);
 
@@ -891,7 +890,7 @@
                                                     url: ajaxurl + "Block/",
                                                     type: 'post',
                                                     data: { targetid: id, block: false },
-                                                    headers: { "Server_Token": encodeURI(Server_Token) },
+                                                    headers: { "Server_Token": encodeURIComponent(Server_Token) },
                                                     timeout: 30000,
                                                     success: function (r) {
                                                         if (r.result_status) {
@@ -927,7 +926,7 @@
                                                     url: ajaxurl + "Block/",
                                                     type: 'post',
                                                     data: { targetid: id, block: true },
-                                                    headers: { "Server_Token": encodeURI(Server_Token) },
+                                                    headers: { "Server_Token": encodeURIComponent(Server_Token) },
                                                     timeout: 30000,
                                                     success: function (r) {
                                                         if (r.result_status) {

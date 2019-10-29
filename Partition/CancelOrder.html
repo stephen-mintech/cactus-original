@@ -153,7 +153,7 @@
                         $.ajax({
                             url: ajaxurl + "Order/" + plus.webview.currentWebview().orderid,
                             type: 'delete',
-                            headers: { "Server_Token": encodeURI(Server_Token) },
+                            headers: { "Server_Token": encodeURIComponent(Server_Token) },
                             data: { se: se, msg: msg },
                             timeout: 30000,
                             success: function (r) {

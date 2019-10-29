@@ -176,7 +176,7 @@
                         url: ajaxurl + "PlayerInfo",
                         type: 'post',
                         data: self.data,
-                        headers: { "Server_Token": encodeURI(Server_Token) },
+                        headers: { "Server_Token": encodeURIComponent(Server_Token) },
                         success: function (r) {
                             if (r.result_status) {
                                 if (plus.webview.getWebviewById("BBIM") != null)

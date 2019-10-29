@@ -53,29 +53,31 @@
             ws.addEventListener('maskClick', function () {
                 if (plus.webview.getWebviewById("PaiDanAdd"))
                     plus.webview.getWebviewById("PaiDanAdd").close();
-                ws.setStyle({ mask: 'none' });
+               
 
             }, false);
 
 
 
             if (JSON.parse(Server_Token).Status == "管理員") {
-                var w = plus.webview.create(debugurl + 'layout.html?needim=false&p=PaiDanAdd', 'PaiDanAdd', { "top": "0%", "bottom": "0px", "cachemode": "default", "popGesture": "close", "userSelect": true, plusrequire: "ahead", background: "transparent" }, { PreloadData: null, param: "", newneedim: false });
+                var w = plus.webview.create(debugurl + 'layout.html?needim=false&p=PaiDanAdd', 'PaiDanAdd', { position: "dock", dock: "bottom","height": "0%", "cachemode": "default", "popGesture": "close", "userSelect": true, plusrequire: "ahead", background: "transparent" }, { PreloadData: null, param: "", newneedim: false });
 
             }
             else {
-                var w = plus.webview.create('layout.html?needim=false&p=PaiDanAdd', 'PaiDanAdd', { "top": "0%", "bottom": "0px", "cachemode": "default", "popGesture": "close", "userSelect": true, plusrequire: "ahead", background: "transparent" }, { PreloadData: null, param: "", newneedim: false });
+                var w = plus.webview.create('layout.html?needim=false&p=PaiDanAdd', 'PaiDanAdd', { position: "dock", dock: "bottom","height":"0%", "cachemode": "default", "popGesture": "close", "userSelect": true, plusrequire: "ahead", background: "transparent" }, { PreloadData: null, param: "", newneedim: false });
 
             }
 
-
+            w.addEventListener("close", function () {
+                ws.setStyle({ mask: 'none' });
+            })
         }
         var vued;
         var regetdata = function () {
             $.ajax({
                 url: ajaxurl + "PaiDan",
                 type: 'get',
-                headers: { "Server_Token": encodeURI(Server_Token) },
+                headers: { "Server_Token": encodeURIComponent(Server_Token) },
                 success: function (rs) {
                     if (rs.result_status) {
                         vued.list= rs.result_content;
@@ -91,7 +93,7 @@
         $.ajax({
             url: ajaxurl + "PaiDan",
             type: 'get',
-            headers: { "Server_Token": encodeURI(Server_Token) },
+            headers: { "Server_Token": encodeURIComponent(Server_Token) },
             success: function (rs) {
                 if (rs.result_status) {
                     vued= new Vue({
@@ -105,23 +107,24 @@
                                 var ws = plus.webview.currentWebview();
                                 ws.setStyle({ mask: 'rgba(0,0,0,0.5)' });
                                 ws.addEventListener('maskClick', function () {
-                                    if (plus.webview.getWebviewById("PaiDanAdd"))
-                                        plus.webview.getWebviewById("PaiDanAdd").close();
-                                    ws.setStyle({ mask: 'none' });
-
+                                    if (plus.webview.getWebviewById("PaiDanDetail"))
+                                        plus.webview.getWebviewById("PaiDanDetail").close();
+                                 
                                 }, false);
 
 
 
                                 if (JSON.parse(Server_Token).Status == "管理員") {
-                                    var w = plus.webview.create(debugurl + 'layout.html?needim=false&p=PaiDanDetail', 'PaiDanDetail', { "top": "0%", "bottom": "0px", "cachemode": "default", "popGesture": "close", "userSelect": true, plusrequire: "ahead", background: "transparent" }, { PreloadData: item, param: "", newneedim: false });
+                                    var w = plus.webview.create(debugurl + 'layout.html?needim=false&p=PaiDanDetail', 'PaiDanDetail', { position: "dock", dock: "bottom", "height": "0%",  "cachemode": "default", "popGesture": "close", "userSelect": true, plusrequire: "ahead", background: "transparent" }, { PreloadData: item, param: "", newneedim: false });
 
                                 }
                                 else {
-                                    var w = plus.webview.create('layout.html?needim=false&p=PaiDanDetail', 'PaiDanDetail', { "top": "0%", "bottom": "0px", "cachemode": "default", "popGesture": "close", "userSelect": true, plusrequire: "ahead", background: "transparent" }, { PreloadData: item, param: "", newneedim: false });
+                                    var w = plus.webview.create('layout.html?needim=false&p=PaiDanDetail', 'PaiDanDetail', { position: "dock", dock: "bottom","height": "0%",  "cachemode": "default", "popGesture": "close", "userSelect": true, plusrequire: "ahead", background: "transparent" }, { PreloadData: item, param: "", newneedim: false });
 
                                 }
-
+                                w.addEventListener("close", function () {
+                                    ws.setStyle({ mask: 'none' });
+                                })
 
                             }
                         },

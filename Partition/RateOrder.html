@@ -187,7 +187,7 @@
                     url: ajaxurl + "Order/" + plus.webview.currentWebview().orderid,
                     type: 'patch',
                     data: { rate: rate, msg: msg},
-                    headers: { "Server_Token": encodeURI(Server_Token) },
+                    headers: { "Server_Token": encodeURIComponent(Server_Token) },
                     timeout: 30000,
                     success: function (r) {
                         if (!r.result_status) {

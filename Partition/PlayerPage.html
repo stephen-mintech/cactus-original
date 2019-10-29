@@ -127,7 +127,7 @@
         </div>
 
         <div class="page__bd " style="">
-         
+            
             <div class="weui-panel weui-panel_access">
                 <div class="weui-panel__hd">我的相簿</div>
                 <div class="weui-panel__bd" id="glist" style="padding: 10px 10px;">
@@ -142,38 +142,46 @@
                 </div>
 
             </div>
-            <div class="weui-panel weui-panel_access">
-                <div class="weui-panel__hd">我的技能</div>
-                <div class="weui-panel__bd" id="skilllist">
-
-
+            <!-- 隱藏我的技能區塊 -->
+            <div style="display: none;">
+                <div class="weui-panel weui-panel_access">
+                    <div class="weui-panel__hd">我的技能</div>
+                    <div class="weui-panel__bd" id="skilllist">
+    
+    
+                    </div>
+    
                 </div>
-
             </div>
-            <div class="weui-panel weui-panel_access isand" style="">
-                <div class="weui-panel__hd">我的乾爹</div>
-                <div class="weui-panel__bd" id="myfather">
-                    <div v-for="(item, index) in GiftList" href="javascript:;" class="weui-grid" style="overflow-x:hidden">
+            <!-- 隱藏我的技能區塊 -->
+            <div style="display: none;">
+            <!-- 隱藏我的乾爹區塊 -->
+                <div class="weui-panel weui-panel_access isand" >
+                    <div class="weui-panel__hd">我的乾爹</div>
+                    <div class="weui-panel__bd" id="myfather">
+                        <div v-for="(item, index) in GiftList" href="javascript:;" class="weui-grid" style="overflow-x:hidden">
 
-                        <div class="weui-grid__icon" style="width:80px;height:80px;position:relative;">
-                            <img :src="item.Img+'_s'" style="object-fit:cover;border-radius:999em;width:80px;height:80px" onerror="this.src='img/icon/noimage_person.png'" alt="">
-                            <div style="position:absolute;width:80px;height:80px;top:0;left:0;transform: rotate(-15deg);">
-                                <img v-if="index==0" src="img/icon/golden.png" style="position:absolute;top:-20px;left:30px;width:20px;height:auto;" />
-                                <img v-if="index==1" src="img/icon/silver.png" style="position:absolute;top:-20px;left:30px;width:20px;height:auto;" />
-                                <img v-if="index==2" src="img/icon/copper.png" style="position:absolute;top:-20px;left:30px;width:20px;height:auto;" />
-                                <!--<img v-if="index>2" src="img/icon/number_frame.png" style="position:absolute;top:-20px;left:30px;width:20px;height:auto;" />-->
+                            <div class="weui-grid__icon" style="width:80px;height:80px;position:relative;">
+                                <img :src="item.Img+'_s'" style="object-fit:cover;border-radius:999em;width:80px;height:80px" onerror="this.src='img/icon/noimage_person.png'" alt="">
+                                <div style="position:absolute;width:80px;height:80px;top:0;left:0;transform: rotate(-15deg);">
+                                    <img v-if="index==0" src="img/icon/golden.png" style="position:absolute;top:-20px;left:30px;width:20px;height:auto;" />
+                                    <img v-if="index==1" src="img/icon/silver.png" style="position:absolute;top:-20px;left:30px;width:20px;height:auto;" />
+                                    <img v-if="index==2" src="img/icon/copper.png" style="position:absolute;top:-20px;left:30px;width:20px;height:auto;" />
+                                    <!--<img v-if="index>2" src="img/icon/number_frame.png" style="position:absolute;top:-20px;left:30px;width:20px;height:auto;" />-->
+
+                                </div>
 
                             </div>
+                            <p class="weui-grid__label" v-bind:style="{color:'black'}">{{item.Name}}</p>
+                            <p class="" style="margin-top:1vh;font-size:3vw;text-align:center;color:gray">送了 {{item.Points*4}} 能量</p>
 
                         </div>
-                        <p class="weui-grid__label" v-bind:style="{color:'black'}">{{item.Name}}</p>
-                        <p class="" style="margin-top:1vh;font-size:3vw;text-align:center;color:gray">送了 {{item.Points*4}} 能量</p>
 
                     </div>
 
                 </div>
-
             </div>
+             <!-- 隱藏我的乾爹區塊 -->
 
             <div class="weui-panel weui-panel_access isand" style="">
                 <div class="weui-panel weui-panel_access">
@@ -368,7 +376,7 @@
                     url: ajaxurl + "Follow",
                     type: 'post',
                     data: { id: id },
-                    headers: { "Server_Token": encodeURI(Server_Token) },
+                    headers: { "Server_Token": encodeURIComponent(Server_Token) },
                     timeout: 30000,
                     success: function (r) {
                         if (r.result_status) {
@@ -610,8 +618,8 @@
                 else
                     canshow = 0;
                 // $(".playerpage .flexbar div.backb").css("color", "rgb(" + ((1 - canshow) * 255) + "," + ((1 - canshow) * 255) + "," + ((1 - canshow) * 255) + ")");
-                $(".playerpage .flexbar div.backb").css("background-color", "rgba(221,114,153," + (1 - canshow) + ")");
-                $(".playerpage .flexbar").css("background-color", "rgba(221, 114, 153, " + canshow + ")");
+                $(".playerpage .flexbar div.backb").css("background-color", "rgba(166, 223, 154," + (1 - canshow) + ")");
+                $(".playerpage .flexbar").css("background-color", "rgba(166, 223, 154, " + canshow + ")");
                 $(".playerpage .memberinfo").css("top", ((1 - canshow) * 60) + "px");
             });
             $(".playerpage .playerdiv").scroll();

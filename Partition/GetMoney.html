@@ -317,7 +317,7 @@
                         url: ajaxurl + "UpdateIDNumber",
                         type: 'post',
                         data: { id: self.PostIDNumber, addr: self.PostAddress },
-                        headers: { "Server_Token": encodeURI(Server_Token) },
+                        headers: { "Server_Token": encodeURIComponent(Server_Token) },
                         success: function (r) {
                             if (r.result_status) {
                                 self.IDNumber = JSON.parse(JSON.stringify(self.PostIDNumber));
@@ -355,7 +355,7 @@
                         url: ajaxurl + "GetMoney",
                         type: 'post',
                         data: { Money: submitmoney },
-                        headers: { "Server_Token": encodeURI(Server_Token) },
+                        headers: { "Server_Token": encodeURIComponent(Server_Token) },
                         success: function (r) {
                             if (r.result_status) {
 
@@ -436,7 +436,7 @@
                     );
                  
                     task.addData("img", s);
-                    task.setRequestHeader("Server_Token", Server_Token)
+                    task.setRequestHeader("Server_Token", encodeURIComponent(Server_Token))
                     task.start();
                 },
                 chgsign: function () {
@@ -493,7 +493,7 @@
                         );
                         task.addFile(src, { key: "file" + idx });
                         //task.addData("user", Server_Token);
-                        task.setRequestHeader("Server_Token", Server_Token)
+                        task.setRequestHeader("Server_Token", encodeURIComponent(Server_Token))
                         task.start();
                     }
                     publicTools.ShowActionSheet({ id: "id" }, cb, true, true);

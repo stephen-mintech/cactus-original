@@ -321,7 +321,7 @@
                 url: ajaxurl + "Certification/{{data.Member_Certification_ID}}",
                 type: 'patch',
                 data: postdata,
-                headers: { "Server_Token": encodeURI(Server_Token) },
+                headers: { "Server_Token": encodeURIComponent(Server_Token) },
                 timeout: 30000,
                 success: function (r) {
                     $("#postMask").hide();
@@ -551,7 +551,7 @@
                 );
                 task.addFile(path, { key: "file" });
                 task.addData("ID", "{{data.Member_Certification_ID}}");
-                task.setRequestHeader('Server_Token', encodeURI(Server_Token));
+                task.setRequestHeader('Server_Token', encodeURIComponent(Server_Token));
                 task.start();
             })
             
@@ -578,7 +578,7 @@
             );
             task.addFile(url, { key: "file" });
             task.addData("ID", "{{data.Member_Certification_ID}}");
-            task.setRequestHeader('Server_Token', encodeURI(Server_Token));
+            task.setRequestHeader('Server_Token', encodeURIComponent(Server_Token));
             task.start();
         }
         function seerule() {

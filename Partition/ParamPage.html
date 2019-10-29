@@ -154,7 +154,7 @@
                             url: ajaxurl + "OnlineStatus_new",
                             type: 'post',
                             data: { online:v},
-                            headers: { "Server_Token": encodeURI(Server_Token) },
+                            headers: { "Server_Token": encodeURIComponent(Server_Token) },
                             success: function (r) {
                                
                             },
@@ -166,7 +166,7 @@
                             url: ajaxurl + "OnlineStatus_new",
                             type: 'post',
                             data: { iamhide: v },
-                            headers: { "Server_Token": encodeURI(Server_Token) },
+                            headers: { "Server_Token": encodeURIComponent(Server_Token) },
                             success: function (r) {
 
                             },

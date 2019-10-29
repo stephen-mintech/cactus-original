@@ -269,8 +269,8 @@
 
                 <div class="weui-cell__bd" style="text-align:left">
                     <div class="weui-media-box weui-media-box_text">
-                        <h4 class="weui-media-box__title">{{item.Coin}}傾心幣</h4>
-                        <p class="weui-media-box__desc">加值{{item.Coin}}傾心幣,{{(item.AddValue==0)?"免手續費":("手續費"+item.AddValue+"元")}}</p>
+                        <h4 class="weui-media-box__title">{{item.Coin}}仙人掌幣</h4>
+                        <p class="weui-media-box__desc">加值{{item.Coin}}仙人掌幣,{{(item.AddValue==0)?"免手續費":("手續費"+item.AddValue+"元")}}</p>
 
                     </div>
                 </div>
@@ -484,7 +484,7 @@
                                             url: ajaxurl + "/IAP",
                                             type: 'post',
                                             data: result,
-                                            headers: { "Server_Token": encodeURI(Server_Token) },
+                                            headers: { "Server_Token": encodeURIComponent(Server_Token) },
 
                                             success: function (r) {
                                                 if (r.result_status) {
@@ -569,7 +569,7 @@
                                     //    }
                                     //});
                                 })
-                                Bridge.getPaymentToken("傾心陪玩娛樂費用", amt)
+                                Bridge.getPaymentToken("仙人掌公園服務費用", amt)
                             }
 
 

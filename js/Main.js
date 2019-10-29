@@ -235,7 +235,7 @@
             $.ajax({
                 url: ajaxurl + "Coupon",
                 type: 'get',
-                headers: { "Server_Token": encodeURI(Server_Token) },
+                headers: { "Server_Token": encodeURIComponent(Server_Token) },
                 success: function (r) {
                     if (r.result_status) {
                         Bridge.readFile("Partition/Coupon.html", function (st) {
@@ -263,7 +263,7 @@
             $.ajax({
                 url: ajaxurl + "GiftList",
                 type: 'get',
-                headers: { "Server_Token": encodeURI(Server_Token) },
+                headers: { "Server_Token": encodeURIComponent(Server_Token) },
                 success: function (r) {
                     if (r.result_status) {
                         Bridge.readFile("Partition/GiftList.html", function (st) {
@@ -291,7 +291,7 @@
             $.ajax({
                 url: ajaxurl + "GetMoney",
                 type: 'get',
-                headers: { "Server_Token": encodeURI(Server_Token) },
+                headers: { "Server_Token": encodeURIComponent(Server_Token) },
                 success: function (r) {
                     if (r.result_status) {
                         Bridge.readFile("Partition/GetMoney.html", function (st) {
@@ -329,7 +329,7 @@
             $.ajax({
                 url: ajaxurl + "Recommend",
                 type: 'get',
-                headers: { "Server_Token": encodeURI(Server_Token) },
+                headers: { "Server_Token": encodeURIComponent(Server_Token) },
                 timeout: 30000,
                 success: function (r) {
                     if (r.result_status) {
@@ -419,7 +419,7 @@
             $.ajax({
                 url: ajaxurl + "FollowList",
                 type: 'get',
-                headers: { "Server_Token": encodeURI(Server_Token) },
+                headers: { "Server_Token": encodeURIComponent(Server_Token) },
                 timeout: 30000,
                 success: function (r) {
                     if (r.result_status) {
@@ -449,7 +449,7 @@
             $.ajax({
                 url: ajaxurl + "FansList",
                 type: 'get',
-                headers: { "Server_Token": encodeURI(Server_Token) },
+                headers: { "Server_Token": encodeURIComponent(Server_Token) },
                 timeout: 30000,
                 success: function (r) {
                     if (r.result_status) {
@@ -479,7 +479,7 @@
             $.ajax({
                 url: ajaxurl + "Order",
                 type: 'get',
-                headers: { "Server_Token": encodeURI(Server_Token) },
+                headers: { "Server_Token": encodeURIComponent(Server_Token) },
                 timeout: 30000,
                 success: function (r) {
                     if (r.result_status) {
@@ -511,7 +511,7 @@
             $.ajax({
                 url: ajaxurl + "HistoryTrace",
                 type: 'get',
-                headers: { "Server_Token": encodeURI(Server_Token) },
+                headers: { "Server_Token": encodeURIComponent(Server_Token) },
                 success: function (r) {
                     if (r.result_status) {
 
@@ -557,7 +557,7 @@
             $.ajax({
                 url: ajaxurl + "Order/" + param,
                 type: 'get',
-                headers: { "Server_Token": encodeURI(Server_Token) },
+                headers: { "Server_Token": encodeURIComponent(Server_Token) },
                 timeout: 30000,
                 success: function (r) {
                     if (r.result_status) {
@@ -608,7 +608,7 @@
             $.ajax({
                 url: ajaxurl + "KindList/" + JSON.parse(Server_Token).Member_ID,
                 type: 'get',
-                headers: { "Server_Token": encodeURI(Server_Token) },
+                headers: { "Server_Token": encodeURIComponent(Server_Token) },
                 timeout: 30000,
                 success: function (r) {
                     if (r.result_status) {
@@ -699,7 +699,7 @@
                             //var myinfo = r.result_content.find(function (el) {
                             //    return el.Member_ID == JSON.parse(Server_Token).Member_ID
                             //});
-                            myinfo = GInfo.MyInfo
+                            var myinfo = GInfo.MyInfo
                             var sheinfo = r.result_content;
 
                             var newstring = applyProps(st, { r: param, data: r.result_content, myinfo: myinfo, sheinfo: sheinfo })
@@ -725,7 +725,7 @@
             $.ajax({
                 url: ajaxurl + "OnlineStatus_new",
                 type: 'get',
-                headers: { "Server_Token": encodeURI(Server_Token) },
+                headers: { "Server_Token": encodeURIComponent(Server_Token) },
                 timeout: 30000,
                 success: function (r) {
                     Bridge.readFile("Partition/ParamPage.html", function (st) {
@@ -774,7 +774,7 @@
             $.ajax({
                 url: ajaxurl + "Certification/" + param,
                 type: 'get',
-                headers: { "Server_Token": encodeURI(Server_Token) },
+                headers: { "Server_Token": encodeURIComponent(Server_Token) },
                 timeout: 30000,
                 success: function (r) {
                     if (r.result_status) {
@@ -808,7 +808,7 @@
             $.ajax({
                 url: ajaxurl + "CertificationDetail/" + param,
                 type: 'get',
-                headers: { "Server_Token": encodeURI(Server_Token) },
+                headers: { "Server_Token": encodeURIComponent(Server_Token) },
                 timeout: 30000,
                 success: function (r) {
                     if (r.result_status) {
@@ -866,7 +866,7 @@
             //$.ajax({
             //    url: ajaxurl + "Home",
             //    type: 'get',
-            //    headers: { "Server_Token": encodeURI(Server_Token) },
+            //    headers: { "Server_Token": encodeURIComponent(Server_Token) },
             //    timeout: 30000,
             //    success: function (r) {
             //        if (r.result_status) {
@@ -944,7 +944,7 @@
             $.ajax({
                 url: ajaxurl + "Home/" + nparam.id + "?free=" + free,
                 type: 'get',
-                headers: { "Server_Token": encodeURI(Server_Token) },
+                headers: { "Server_Token": encodeURIComponent(Server_Token) },
                 timeout: 30000,
                 success: function (r) {
                     if (r.result_status) {
@@ -1065,7 +1065,7 @@
             $.ajax({
                 url: ajaxurl + "PlayerInfo",
                 type: 'get',
-                headers: { "Server_Token": encodeURI(Server_Token) },
+                headers: { "Server_Token": encodeURIComponent(Server_Token) },
                 timeout: 30000,
                 success: function (r) {
                     if (r.result_status) {

@@ -122,7 +122,7 @@
                             type: 'post',
                             data: self.$data,
                             timeout: 30000,
-                            headers: { "Server_Token": encodeURI(Server_Token) },
+                            headers: { "Server_Token": encodeURIComponent(Server_Token) },
                             success: function (r) {
                                 if (r.result_status) {
                                     alert("舉報成功,我們將會在24小時內進行處理");
@@ -236,7 +236,7 @@
                 $.ajax({
                     url: ajaxurl + "Order/" + plus.webview.currentWebview().orderid,
                     type: 'delete',
-                    headers: { "Server_Token": encodeURI(Server_Token) },
+                    headers: { "Server_Token": encodeURIComponent(Server_Token) },
                     data: {se:se,msg:msg},
                     timeout: 30000,
                     success: function (r) {
