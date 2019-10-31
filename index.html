@@ -827,6 +827,7 @@
 
         }
         function hovernav_new(e, param, nview) {
+            alert('hovernav_new');
             var orgdata = null
             var needim = false;
             var newneedim = true;
@@ -1161,7 +1162,7 @@
 
                 //推波相關結束
                 if (Server_Token != "") {
-                    var imurl = "wss://wss.7cplay.com:2053/App/";
+                    var imurl = "wss://wss.7cplay.com:2083/App/";
                     if (JSON.parse(Server_Token).Status == "管理員")
                         imurl = "wss://192.168.1.110:3002/App/";
 

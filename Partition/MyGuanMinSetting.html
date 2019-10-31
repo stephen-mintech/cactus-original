@@ -132,7 +132,7 @@
             var Server_Token = plus.storage.getItem("Server_Token");
 
             $.ajax({
-                url: "https://api_m.7cplay.com/api/" + "GuanMin",
+                url: "https://api_m2.7cplay.com/api/" + "GuanMin",
                 type: 'get',
                 headers: { "Server_Token": encodeURIComponent(Server_Token) },
                 success: function (rs) {
@@ -166,7 +166,7 @@
                                         if (e.index == 0) {
                                             plus.nativeUI.showWaiting()
                                             $.ajax({
-                                                url: "https://api_m.7cplay.com/api/" + "GuanMin",
+                                                url: "https://api_m2.7cplay.com/api/" + "GuanMin",
                                                 type: 'delete',
                                                 data: { id: id },
                                                 headers: { "Server_Token": encodeURIComponent(Server_Token) },
@@ -193,7 +193,7 @@
                                 post: function () {
                                     var self = this;
                                     $.ajax({
-                                        url: "https://api_m.7cplay.com/api/" + "GuanMin",
+                                        url: "https://api_m2.7cplay.com/api/" + "GuanMin",
                                         type: 'post',
                                         data: self.postdata,
                                         headers: { "Server_Token": encodeURIComponent(Server_Token) },

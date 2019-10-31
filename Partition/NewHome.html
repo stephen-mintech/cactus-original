@@ -96,24 +96,10 @@
 
                     </div>
 
-                    <!--<div style="flex:0 0 50%;height:80px;" @click="getcoupon()">
-        <div style="display:flex;position:relative;background-color:rgb(255, 65, 172);margin:0 auto ;width:98%;height:95%;border-radius:10px">
-            <div style="flex:0 0 35%;height:100%;">
-                <img src="img/icon/gift2.png" style="object-fit:scale-down;max-width:60%;max-height:100%;border-radius:999em;position:relative;top:50%;left:50%;transform:translate(-50%,-50%)" />
-            </div>
-            <div style="flex:0 0 65%;height:100%;">
-                <div style="top:50%;transform:translateY(-50%);position:relative">
-                    兌換體驗券
-                    <div style="font-size:12px">了解陪陪 免費體驗</div>
-                </div>
-            </div>
-        </div>
-    </div>-->
-
 
                 </div>
 
-                <div style="height:3px"></div>
+                <div style="height:3px">{{ this.list.length }}  </div>
                 <!-- 隱藏優質新人 -->
                 <div style="display:none;font-size:16px;color:black;margin-top:5px;padding-left:2%" class="weui-cells__title">
 
@@ -167,7 +153,7 @@
                         <div v-if="list.length != 0" style="width:45vw;display: inline-block;padding-bottom:10px;position:relative" v-for="arr in ((list.find(e=>e.Zuzu_Kind_ID == item.ID))? (list.find(e=>e.Zuzu_Kind_ID == item.ID)).List :[])" @click="hov(arr.Member_Certification_ID)">
 
                             <div style="width:98%;background-color:white;border-radius:10px;position:relative;overflow:hidden;padding-bottom:5px">
-                                <div style="object-fit:cover;width:100%;height:22vh;border-radius:10px;position:relative;background-position:top;background-size:cover" v-bind:style="getAvatarStyle(arr)">
+                                <div style="object-fit:cover;width:100%;height:22vh;border-radius:10px;position:relative;background-position:top;background-size:cover" v-bind:style='{"background-image":"url("+arr.Img+"_s)" }'>
                                     <div v-bind:class="((arr.R.isRecommand==true)?{T_R:true}:((arr.R.isTop==true)?{T_T:true}:{}))" class=""></div>
                                     <div v-bind:class="((arr.CanFree>0)?{T_Free:true}:{})" class=""></div>
                                     <!--<div style="position:relative;width:100%;top:110px;height:18px">
@@ -275,13 +261,13 @@
                 mescroll:null,
                 icon: 'Test'
             },
+            computed: {
+                topThreeMenu: function () {
+                    if(!this.list) return [];
+                    return this.list.slice(0, 3);
+                }
+            },
             methods: {
-                getAvatarStyle: function (item) {
-                    var index = Math.floor(Math.random() * Math.floor(14));
-                    index += 1;
-                    var src = 'img/avatars/' + index + '.jpg';
-                    return 'background-image: url(' + src +')';
-                },
                 paidan: function () {
                     var nviewobj = {};
                     nviewobj.titleText = "閃電約單";

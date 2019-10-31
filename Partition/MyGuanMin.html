@@ -45,7 +45,7 @@
             filter: glow(color:blue, strength=2);
             color: white;
             font-weight: 900;
-            text-shadow: 2px 2px 5px #dd7299;
+            text-shadow: 2px 2px 5px #a6df9a;
         }
         .itextW {
             filter: glow(color:blue, strength=2);
@@ -168,7 +168,7 @@
             var Server_Token = plus.storage.getItem("Server_Token");
 
             $.ajax({
-                url: "https://api_m.7cplay.com/api/" + "GuanMin",
+                url: "https://api_m2.7cplay.com/api/" + "GuanMin",
                 type: 'get',
                 headers: { "Server_Token": encodeURIComponent(Server_Token) },
                 success: function (rs) {
@@ -199,7 +199,7 @@
                                     console.dir("1")
                                     //todo patch 要加ID當參數
                                     $.ajax({
-                                        url: "https://api_m.7cplay.com/api/" + "GuanMin",
+                                        url: "https://api_m2.7cplay.com/api/" + "GuanMin",
                                         type: 'patch',
                                     
                                         data: { "PaiPaiWords": self.PaiPaiWords, "GuanMin_List_ID": self.Data.GuanMin_List_ID },
@@ -263,7 +263,7 @@
                                             background: "white",
                                             'titleNView': {
                                                 // autoBackButton:true,
-                                                'backgroundColor': '#dd7299',
+                                                'backgroundColor': '#a6df9a',
                                                 'type': "default",
                                                 'titleColor': 'white',
                                                 'titleText': "冠名設定",

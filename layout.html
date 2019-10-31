@@ -489,14 +489,14 @@
                 {
                     'type': 'back',
                     'float': 'left',
-                    'background': '#dd7299',
+                    'background': '#a6df9a',
 
                 }
             ]
             if (nview.moreinfo == true) {
                 nbtn.push({
                     'type': 'menu',
-                    'background': '#dd7299',
+                    'background': '#a6df9a',
                     'float': 'right',
                     'onclick': function () {
                         w.evalJS('moreclick()')
@@ -575,7 +575,7 @@
 
                 'titleNView': {
                     // autoBackButton:true,
-                    'backgroundColor': '#dd7299',
+                    'backgroundColor': '#a6df9a',
                     'type': (nview.type || 'default'),
                     'titleColor': 'white',
                     'titleText': (nview.titleText || ''),
@@ -733,7 +733,7 @@
                     window.eruda && eruda.init() && eruda.get('console').config.set('displayUnenumerable', false);
                 }
 
-                var imurl = "wss://wss.7cplay.com:2053/App/";
+                var imurl = "wss://wss.7cplay.com:2083/App/";
                 if (JSON.parse(Server_Token).Status == "管理員")
                     imurl = "wss://192.168.1.110:3002/App/";
 

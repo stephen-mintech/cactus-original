@@ -198,7 +198,7 @@
                 <div style="flex:1">
                     <div class="weui-cell tabbg" style="width:100%;border-radius: 999em; color: black; font-size: 4vw; top:50%;transform:translateY(-50%);box-shadow: rgba(80, 80, 80, 0) 0px 0px 0px;background:transparent;padding:0">
                         <div class="weui-cell__bd" style="width:70%">
-                            <select class="weui-select" name="OrderBy" @change="chgtag" v-model="OrderBy" style="color:#dd7299;text-align:center">
+                            <select class="weui-select" name="OrderBy" @change="chgtag" v-model="OrderBy" style="color:#a6df9a;text-align:center">
                                 <option v-for="(option, index) in OrderByList" v-bind:value="option.value">
                                     {{option.text}}
                                 </option>
@@ -206,8 +206,8 @@
 
                         </div>
                         <div class="weui-cell__ft" style="position:relative;width:30%;height:35px" @click="((AescDesc=='Aecs')?(AescDesc='Desc'):(AescDesc='Aecs'))">
-                            <i class="fa fa-sort-asc" v-bind:style="{color:(AescDesc=='Aecs'?'#dd7299':'#808080')}" style="position:absolute;top:50%;transform:translate(-50%,-50%);left:50%"></i>
-                            <i class="fa fa-sort-desc" v-bind:style="{color:(AescDesc=='Desc'?'#dd7299':'#808080')}" style="position:absolute;top:50%;transform:translate(-50%,-50%);left:50%"></i>
+                            <i class="fa fa-sort-asc" v-bind:style="{color:(AescDesc=='Aecs'?'#a6df9a':'#808080')}" style="position:absolute;top:50%;transform:translate(-50%,-50%);left:50%"></i>
+                            <i class="fa fa-sort-desc" v-bind:style="{color:(AescDesc=='Desc'?'#a6df9a':'#808080')}" style="position:absolute;top:50%;transform:translate(-50%,-50%);left:50%"></i>
 
 
                         </div>
