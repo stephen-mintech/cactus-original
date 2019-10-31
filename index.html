@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -827,7 +827,6 @@
 
         }
         function hovernav_new(e, param, nview) {
-            alert('hovernav_new');
             var orgdata = null
             var needim = false;
             var newneedim = true;
@@ -983,7 +982,7 @@
             }
             for (i = 0; i < plus.webview.all().length; i++) {
                 console.dir(plus.webview.all())
-                if (plus.webview.all()[i].id != "7cplay" && plus.webview.all()[i].id != "BBIM") {
+                if (plus.webview.all()[i].id != "CactusPark" && plus.webview.all()[i].id != "BBIM") {
                     console.dir(plus.webview.all()[i].id)
                     plus.webview.all()[i].evalJS("try{R_GInfo(" + JSON.stringify(obj) + ")}catch(ex){console.dir(ex)}")
                 }
@@ -1162,7 +1161,7 @@
 
                 //推波相關結束
                 if (Server_Token != "") {
-                    var imurl = "wss://wss.7cplay.com:2083/App/";
+                    var imurl = "wss://wss.7cplay.com:2053/App/";
                     if (JSON.parse(Server_Token).Status == "管理員")
                         imurl = "wss://192.168.1.110:3002/App/";
 

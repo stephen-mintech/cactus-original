@@ -61,8 +61,8 @@
     </div>-->
 
 
-        <div class="weui-cells__title">選擇版面樣式</div>
-        <div class="weui-cells weui-cells_checkbox">
+        <div style="display:none" class="weui-cells__title">選擇版面樣式</div>
+        <div style="display:none" class="weui-cells weui-cells_checkbox">
             <label v-for="(item,idx) in List " class="weui-cell weui-check__label" :for="'sty'+item.Key">
                 <div class="weui-cell__hd">
                     <input type="radio" class="weui-check" name="checkbox1" :id="'sty'+item.Key" :value="item.Key" v-model="GetStyle">

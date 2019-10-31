@@ -39,10 +39,10 @@
 
     -->
 
-                    <div style="flex:0 0 50%;height:80px;" onclick="hovernav_new(this, 'love',{titleText:'為愛而苦'})" btag="love">
+                    <div style="flex:0 0 50%;height:80px;" @click="cho(2)" btag="love">
                         <div style="display:flex;position:relative;background-color:#f8c9c9;margin:0 auto ;width:98%;height:95%;border-radius:10px">
                             <div style="flex:0 0 35%;height:100%;">
-                                <img src="img/icon/category/love.png" style="object-fit:scale-down;max-width:60%;max-height:100%;border-radius:999em;position:relative;top:50%;left:50%;transform:translate(-50%,-50%)" />
+                                <img src="img/icon/game/love.png" style="object-fit:scale-down;max-width:60%;max-height:100%;border-radius:999em;position:relative;top:50%;left:50%;transform:translate(-50%,-50%)" />
                             </div>
                             <div style="flex:0 0 65%;height:100%;">
                                 <div style="top:50%;transform:translateY(-50%);position:relative">
@@ -52,10 +52,10 @@
                             </div>
                         </div>
                     </div>
-                    <div style="flex:0 0 50%;height:80px;" onclick="hovernav_new(this, null,{titleText:'紓壓解悶'})" btag="career">
+                    <div style="flex:0 0 50%;height:80px;" @click="cho(3)" btag="career">
                         <div style="display:flex;position:relative;background-color:#dbefeb;margin:0 auto ;width:98%;height:95%;border-radius:10px">
                             <div style="flex:0 0 35%;height:100%;">
-                                <img src="img/icon/category/career.png" style="object-fit:scale-down;max-width:60%;max-height:100%;border-radius:999em;position:relative;top:50%;left:50%;transform:translate(-50%,-50%)" />
+                                <img src="img/icon/game/career.png" style="object-fit:scale-down;max-width:60%;max-height:100%;border-radius:999em;position:relative;top:50%;left:50%;transform:translate(-50%,-50%)" />
                             </div>
                             <div style="flex:0 0 65%;height:100%;">
                                 <div style="top:50%;transform:translateY(-50%);position:relative">
@@ -66,10 +66,10 @@
                         </div>
 
                     </div>
-                    <div style="flex:0 0 50%;height:80px;" onclick="hovernav_new(this, null,{titleText:'人際課題'})" btag="relationship">
+                    <div style="flex:0 0 50%;height:80px;" @click="cho(4)" btag="relationship">
                         <div style="display:flex;position:relative;background-color:#ffe599;margin:0 auto ;width:98%;height:95%;border-radius:10px">
                             <div style="flex:0 0 35%;height:100%;">
-                                <img src="img/icon/category/relationship.png" style="object-fit:scale-down;max-width:60%;max-height:100%;border-radius:999em;position:relative;top:50%;left:50%;transform:translate(-50%,-50%)" />
+                                <img src="img/icon/game/relationship.png" style="object-fit:scale-down;max-width:60%;max-height:100%;border-radius:999em;position:relative;top:50%;left:50%;transform:translate(-50%,-50%)" />
                             </div>
                             <div style="flex:0 0 65%;height:100%;">
                                 <div style="top:50%;transform:translateY(-50%);position:relative">
@@ -84,7 +84,7 @@
                     <div style="flex:0 0 50%;height:80px;" onclick="hovernav_new(this, null,{titleText:'全部品類'})" btag="HomeAllType">
                         <div style="display:flex;position:relative;background-color:#d0d873;margin:0 auto ;width:98%;height:95%;border-radius:10px">
                             <div style="flex:0 0 35%;height:100%;">
-                                <img src="img/icon/category/family.png" style="object-fit:scale-down;max-width:60%;max-height:100%;border-radius:999em;position:relative;top:50%;left:50%;transform:translate(-50%,-50%)" />
+                                <img src="img/icon/game/family.png" style="object-fit:scale-down;max-width:60%;max-height:100%;border-radius:999em;position:relative;top:50%;left:50%;transform:translate(-50%,-50%)" />
                             </div>
                             <div style="flex:0 0 65%;height:100%;">
                                 <div style="top:50%;transform:translateY(-50%);position:relative">
@@ -99,7 +99,7 @@
 
                 </div>
 
-                <div style="height:3px">{{ this.list.length }}  </div>
+                
                 <!-- 隱藏優質新人 -->
                 <div style="display:none;font-size:16px;color:black;margin-top:5px;padding-left:2%" class="weui-cells__title">
 
@@ -258,14 +258,7 @@
                 list: top["DataBase"]["NewHome"],
                 newerlist: top["DataBase"]["NewHotNewer"],
                 canshow: true,
-                mescroll:null,
-                icon: 'Test'
-            },
-            computed: {
-                topThreeMenu: function () {
-                    if(!this.list) return [];
-                    return this.list.slice(0, 3);
-                }
+                mescroll:null
             },
             methods: {
                 paidan: function () {
