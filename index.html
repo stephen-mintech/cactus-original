@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -767,6 +767,11 @@
         var hoverwindow;
 
         function hovernav(e, param, needim, orgdata) {
+			
+            console.log('hovernav:', {
+                e,
+                param
+            });
             //alert(needim)
             var newneedim = true;
             if (needim == false) {

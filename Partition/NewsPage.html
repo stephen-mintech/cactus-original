@@ -709,10 +709,10 @@
 
 
                 var op = $(this).scrollTop() * 1.0 / $(".newspich").height();
-                $(".newspage .flexbar div.backb").css("background-color", "rgba(221,114,153," + (1 - op) + ")");
+                $(".newspage .flexbar div.backb").css("background-color", "rgba(166,223,154," + (1 - op) + ")");
                 var co = Math.floor((1 - op) * 255);
                // $(".newspage .flexbar div.backb").css("color", "rgb(" + co + "," + co + "," + co + ")");
-                $(".newspage .flexbar").css("background-color", "rgba(221,114,153," + op + ")");
+                $(".newspage .flexbar").css("background-color", "rgba(166,223,154," + op + ")");
                 var hidehiegth = 60 - (($(this).scrollTop() * 1.0 - $(".newspich").height() + ($(".newspage .profileinfo").height() * 0.6)) / ($(".newspage .profileinfo").height()) * 60);
                 if (hidehiegth > 60)
                     hidehiegth = 60;
@@ -721,9 +721,9 @@
                 $(".newspage .memberinfo").css("top", hidehiegth + "px");
             });
            // $(".newspage .newsdiv").scroll();
-            $(".newspage .flexbar div.backb").css("background-color", "rgba(221,114,153,1)");
+            $(".newspage .flexbar div.backb").css("background-color", "rgba(166,223,154,1)");
             $(".newspage .flexbar div.backb").css("color", "rgb(255,255,255)");
-            $(".newspage .flexbar").css("background-color", "rgba(221,114,153,0)");
+            $(".newspage .flexbar").css("background-color", "rgba(166,223,154,0)");
             $(".newspage .memberinfo").css("top", "60px");
             var $html = $($("#giftaction").html());
             var h = "";
