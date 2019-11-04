@@ -332,6 +332,8 @@
             ns = "Google";
         } else if (s == "LINE") {
             ns = "LINE";
+        }else if (s == "GUEST") {
+            ns = "GUEST";
         }
         _bridge.signIn(ns)
     }
