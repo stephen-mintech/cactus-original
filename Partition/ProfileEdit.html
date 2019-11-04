@@ -201,7 +201,7 @@
                         }
                     });
                 },
-                xxchgimg: function () {
+                old_chgimg: function () {
                     var self = this;
                     var cb = function (imgId, imgkey, id, src) {
 
@@ -234,25 +234,8 @@
                     publicTools.ShowActionSheet(this.$refs.myphoto, cb, true);
                 },
                 chgimg: function () {
-                    
-                    cw = plus.webview.create('Partition/test.html', "test", { "cachemode": "noCache", "backButtonAutoControl": "close", "background": "transparent", "popGesture": "close", "height": "100%", "margin": "auto", "width": "100%", "userSelect": false }, { paylist: [] });
+                    cw = plus.webview.create('Partition/AvatarList.html', "AvatarList", { "cachemode": "noCache", "backButtonAutoControl": "close", "background": "transparent", "popGesture": "close", "height": "100%", "margin": "auto", "width": "100%", "userSelect": false }, { paylist: [] });
                     plus.webview.currentWebview().append(cw);
-                    // getimdata("getPaymentList", "", function (r) {
-                    //     if (r.result_status) {
-                    //         var cw;
-                    //         if (JSON.parse(Server_Token).Status == "管理員") {
-                    //             cw = plus.webview.create(debugurl + "Partition/LXPay.html", "LXPay", { "cachemode": "noCache", "backButtonAutoControl": "close", "background": "transparent", "popGesture": "close", "height": "100%", "margin": "auto", "width": "100%", "userSelect": false }, { paylist: r });
-                    //         }
-                    //         else {
-                    //             cw = plus.webview.create('Partition/LXPay.html', "LXPay", { "cachemode": "noCache", "backButtonAutoControl": "close", "background": "transparent", "popGesture": "close", "height": "100%", "margin": "auto", "width": "100%", "userSelect": false }, { paylist: r });
-                    //         }
-                    //         //cw.show("slide-in-right");
-                    //         plus.webview.currentWebview().append(cw)
-                    //     } else {
-                    //         plus.nativeUI.closeWaiting();
-                    //         alert(r.result_message);
-                    //     }
-                    // })
                 },
             },
             beforeMount() {

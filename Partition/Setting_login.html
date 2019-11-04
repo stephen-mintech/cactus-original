@@ -81,7 +81,7 @@
                 </div>
                 <div class="weui-btn-area" style="">
                     <!-- <a class="weui-btn weui-btn_default" style="width:90%;" onclick="beforelogin('GUEST')">匿名登入</a> -->
-                    <a class="weui-btn" style="width:90%;color:#fff;background-color:#a6df9a;" onclick="beforelogin('GUEST')">匿名登入</a>    
+                    <button class="weui-btn" style="width:90%;color:#fff;background-color:#a6df9a;" onclick="guestLogin()">匿名登入</button>    
                 </div>
             </div>
             <!--<div class=" weui-cells_checkbox">
@@ -128,6 +128,39 @@
         </div>-->
     </div>
     <script>
+        function guestLogin() {
+            console.log('guestLogin');
+            plus.nativeUI.showWaiting("驗證中...");
+            $.ajax({
+                url: ajaxurl + "thirdLogin",
+                type: 'post',
+                data: { from: 'GUEST', key: "" },
+                timeout: 30000,
+                success: function (r) {
+                    if (r.result_status) {
+
+                        Server_Token = JSON.stringify(r.result_content);
+
+                        Bridge.setData("Server_Token", Server_Token, function () {
+                            plus.nativeUI.closeWaiting();
+                            var ws = plus.webview.currentWebview();
+                            ws.loadURL("index.html?" + Math.random());
+                        });
+                    } else {
+                        $("#Reg_Wran_Msg").text(r.result_message);
+                        $("#Reg_Wran").show();
+                        plus.nativeUI.closeWaiting();
+                        //  $(".regbtn a").toggle();
+                    }
+                },
+                error: function () {
+                    $("#Reg_Wran_Msg").text("網路錯誤");
+                    $("#Reg_Wran").show();
+                    plus.nativeUI.closeWaiting();
+                    //  $(".regbtn a").toggle();
+                }
+            });
+        }
         function beforelogin(type) {
             //if ($("#s11:checked").length == 0) {
             //    alert("請先同意傾心陪玩的服務條款(EULA)");

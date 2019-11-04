@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <script src="../js/vue.min.js"></script>
+
+   <link href="../css/font-awesome/css/font-awesome.css" rel="stylesheet" />
+   <script src="../js/weui/jquery-2.1.4.js"></script>
+   <script src="../js/weui/jquery-weui.js"></script>
+   <link href="../css/weui/weui.min.css?1" rel="stylesheet" />
+   <link href="../css/style/style1.css" rel="stylesheet" />
+   <script src="../js/BridgeClass.js?15"></script>
+   <link href="../css/ionicons/ionicons.min.css" rel="stylesheet" />
+   <meta http-equiv="cache-control" content="private">
+   <meta http-equiv="pragma" content="private">
+   <meta charset="utf-8" name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+   <script>
+      window.onerror = function (message, source, lineno, colno, error) {
+         alert(error);
+      };
+      onerror = function (message, source, lineno, colno, error) {
+         alert(error);
+      };
+   </script>
+   <style>
+      /* Template for logo only button (height independent). */
+      /* HTML */
+
+      /* CSS */
+      @supports (-webkit-appearance: -apple-pay-button) {
+         .apple-pay-button {
+            display: inline-block;
+            -webkit-appearance: -apple-pay-button;
+         }
+
+         .apple-pay-button-black {
+            -apple-pay-button-style: black;
+         }
+
+         .apple-pay-button-white {
+            -apple-pay-button-style: white;
+         }
+
+         .apple-pay-button-white-with-line {
+            -apple-pay-button-style: white-outline;
+         }
+      }
+
+      @supports not (-webkit-appearance: -apple-pay-button) {
+         .apple-pay-button {
+            display: inline-block;
+            background-size: 100% 60%;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            border-radius: 5px;
+            padding: 0px;
+            box-sizing: border-box;
+            min-width: 200px;
+            min-height: 32px;
+            max-height: 64px;
+         }
+
+         .apple-pay-button-black {
+            background-image: -webkit-named-image(apple-pay-logo-white);
+            background-color: black;
+         }
+
+         .apple-pay-button-white {
+            background-image: -webkit-named-image(apple-pay-logo-black);
+            background-color: white;
+         }
+
+         .apple-pay-button-white-with-line {
+            background-image: -webkit-named-image(apple-pay-logo-black);
+            background-color: white;
+            border: .5px solid black;
+         }
+      }
+   </style>
+</head>
+
+<body style="width:100%;height:100%;position:fixed">
+   <div class="weui-mask" onclick="plus.webview.close(plus.webview.currentWebview())">
+   </div>
+
+   <div id="vueview" style="width: 90%; height: 90%; left: 5%; top: 5%; border-radius: 0.8em; margin: 0px 0px auto; position: relative; background-color: rgb(255, 255, 255); text-align: center; z-index: 5000;">
+      
+      <div onclick="plus.webview.close(plus.webview.currentWebview())" style="font-size: 30px; line-height: 30px; width: 30px; height: 30px; top: -15px; right: -15px; border-radius: 999em; background-color: rgba(150, 150, 150, 0.6); color: white; position: absolute; vertical-align: middle; z-index: 15;">         
+         <i class="ion-ios-close-outline"></i>
+      </div>
+      <div style="display: flex; flex-flow: wrap;">
+         <div v-on:click="select(item)" v-for="(item, index) in list" :key="index" style="flex: 0 0 27vw; height: 25vw; margin: 5px; position: relative;">
+            <img :src="item" style="width: 100%; height: 100%; object-fit: cover; object-position: center center; filter: contrast(1);" >
+         </div>
+      </div>
+      <div style="display: flex; flex-flow: wrap;padding-top:35px">
+         <div style="flex: 0 0 60vw;">
+            <button v-on:click="phoneAlbum" class="weui-btn" style="width:90%;color:#fff;background-color:#a6df9a;">從手機相簿選擇</button>
+         </div>
+         <div style="flex: 0 0 25vw;">
+            <button v-on:click="cancel" class="weui-btn weui-btn_default" style="margin-left:10px;width:90%;color:#a6df9a;background-color:#fff;">取消</button>
+         </div>
+      </div>
+   </div>
+
+   <script>
+      var vue = new Vue({
+         el: '#vueview',
+         data: {
+            list: []
+         },
+         beforeMount: function () {
+            for(var i = 1; i <=15; i++){
+               let src = '../img/avatars/' + i + '.jpg';
+               this.list.push(src);
+            }    
+         },
+         methods: {
+            select: function (item) {
+               console.log('select:', item);
+            },
+            phoneAlbum: function () {
+               console.log('phoneAlbum');
+            },
+            cancel: function () {
+               plus.webview.close(plus.webview.currentWebview());
+            }
+         }
+      })
+   </script>
+</body>
+
+</html>
