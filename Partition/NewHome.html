@@ -153,7 +153,7 @@
                         <div v-if="list.length != 0" style="width:45vw;display: inline-block;padding-bottom:10px;position:relative" v-for="arr in ((list.find(e=>e.Zuzu_Kind_ID == item.ID))? (list.find(e=>e.Zuzu_Kind_ID == item.ID)).List :[])" @click="hov(arr.Member_Certification_ID)">
 
                             <div style="width:98%;background-color:white;border-radius:10px;position:relative;overflow:hidden;padding-bottom:5px">
-                                <div style="object-fit:cover;width:100%;height:22vh;border-radius:10px;position:relative;background-position:top;background-size:cover" v-bind:style='{"background-image":"url("+arr.Img+"_s)" }'>
+                                <div style="object-fit:cover;width:100%;height:22vh;border-radius:10px;position:relative;background-position:top;background-size:cover"   v-bind:style="getAvatar(arr)">
                                     <div v-bind:class="((arr.R.isRecommand==true)?{T_R:true}:((arr.R.isTop==true)?{T_T:true}:{}))" class=""></div>
                                     <div v-bind:class="((arr.CanFree>0)?{T_Free:true}:{})" class=""></div>
                                     <!--<div style="position:relative;width:100%;top:110px;height:18px">
@@ -261,6 +261,9 @@
                 mescroll:null
             },
             methods: {
+                getAvatar: function (item) {
+                    return 'background-image: url("' + item.Img +'")';
+                },
                 paidan: function () {
                     var nviewobj = {};
                     nviewobj.titleText = "閃電約單";

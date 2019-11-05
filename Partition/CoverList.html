@@ -112,12 +112,14 @@
          },
          beforeMount: function () {
             for(var i = 1; i <=15; i++){
-               let src = '../img/avatars/' + i + '.jpg';
+               let src = '../img/covers/' + i + '.jpg';
                this.list.push(src);
             }    
          },
          methods: {
             select: function (item) {
+               var h = plus.webview.getWebviewById( plus.runtime.appid );
+	            console.log( "应用首页Webview窗口："+h.getURL() );
                console.log('select:', item);
             },
             phoneAlbum: function () {

@@ -81,8 +81,11 @@
 
             <div class="weui-panel__bd" style="">
                 <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" style="">
-                    <div class="weui-media-box__hd" id="myphoto">
+                    <!-- <div class="weui-media-box__hd" id="myphoto">
                         <img class="weui-media-box__thumb"  onerror="this.onerror=null;this.src='img/icon/noimage_person.png';" :src="GInfo.MyInfo.Img" style="object-fit:cover;border-radius:999em;width:50px;height:50px" alt="Alternate Text" />
+                    </div> -->
+                    <div class="weui-media-box__hd" id="myphoto">
+                        <img class="weui-media-box__thumb"  :src="GInfo.MyInfo.Img" onerror="this.onerror=null;this.src='img/icon/noimage_person.png';" style="object-fit:cover;border-radius:999em;width:50px;height:50px" alt="Alternate Text" />
                     </div>
                     <div class="weui-media-box__bd" style="height:50px">
                         <h4 class="weui-media-box__title" v-bind:style="{color:(GInfo.MyInfo.color||'black')}" v-bind:class="{nameshadow:(GInfo.MyInfo.color||'black' != 'black')}">{{GInfo.MyInfo.Status}} / {{GInfo.MyInfo.Name}}</h4>
@@ -617,7 +620,7 @@
             //publicTools.ShowActionSheet(this,chgimg());
             var chgimg = function (imgId, imgkey, id, src) {
                 //background-image: url({{data.Img}}),url('img/icon/noimage_person.png');
-                alert(src);
+                //alert(src);
                 //上传图片，实例中没有添加上传按钮
 
                     //plus.storage.clear();
