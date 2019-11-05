@@ -91,6 +91,7 @@
         window.model = {
             GameID: id
         };
+        console.log(window.model);
 
         function onImageSelected(val){
             var event = new CustomEvent('cover-selected', { 'detail': val });
@@ -106,7 +107,7 @@
                 }
             },
             beforeMount: function () {
-                this.model.GameID = window.model.ID;
+                this.model.GameID = window.model.GameID;
                 window.addEventListener('cover-selected', this.onImageSelected)   
             },
             methods: {
