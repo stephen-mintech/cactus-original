@@ -125,6 +125,11 @@
     </div>
 
     <script>
+        function onImageSelected(val){
+            console.log('onImageSelected', val);
+            var event = new CustomEvent('avatar-selected', { 'detail': val });
+            window.dispatchEvent(event);
+        }
         //top["DataBase"]["Partition"]
         new Vue({
             el: '#profileEdit',
@@ -142,6 +147,11 @@
                     { SN: 8, color: "#7f34da" },
                 ],
                 chosecolor: 2
+            },
+            beforeMount: function () {
+                window.addEventListener('avatar-selected', this.onImageSelected);
+                this.chosecolor = (this.colorlist.find(e => e.color == this.data.color) ? this.colorlist.find(e => e.color == this.data.color).SN : 0)
+                this.data["_Birthday"] = this.data.Birthday.replace(/\//g, '-'); 
             },
             methods: {
                 chkphone: function () {
@@ -237,11 +247,9 @@
                     cw = plus.webview.create('Partition/AvatarList.html', "AvatarList", { "cachemode": "noCache", "backButtonAutoControl": "close", "background": "transparent", "popGesture": "close", "height": "100%", "margin": "auto", "width": "100%", "userSelect": false }, { paylist: [] });
                     plus.webview.currentWebview().append(cw);
                 },
-            },
-            beforeMount() {
-                this.chosecolor = (this.colorlist.find(e => e.color == this.data.color) ? this.colorlist.find(e => e.color == this.data.color).SN : 0)
-                this.data["_Birthday"] = this.data.Birthday.replace(/\//g, '-')
-                //console.dir(this.data)
+                onImageSelected: function (e) {
+                    this.data.Img = e.detail;
+                }
             },
             mounted() {
                 $("#loadingToast").hide();

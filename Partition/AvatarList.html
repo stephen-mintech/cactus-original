@@ -117,8 +117,13 @@
             }    
          },
          methods: {
-            select: function (item) {
-               console.log('select:', item);
+            select: function (path) {
+               var src = path.replace('../', '');
+               var profileEdit = plus.webview.getWebviewById('ProfileEdit');
+               console.log(profileEdit);
+               profileEdit.evalJS('onImageSelected("'+ src +'")');
+
+               this.cancel();
             },
             phoneAlbum: function () {
                console.log('phoneAlbum');

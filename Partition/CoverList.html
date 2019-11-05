@@ -117,10 +117,12 @@
             }    
          },
          methods: {
-            select: function (item) {
-               var h = plus.webview.getWebviewById( plus.runtime.appid );
-	            console.log( "应用首页Webview窗口："+h.getURL() );
-               console.log('select:', item);
+            select: function (path) {
+               var src = path.replace('../', '');
+               var certUpload = plus.webview.getWebviewById('CertUpload');
+               certUpload.evalJS('onImageSelected("'+ src +'")');
+
+               this.cancel();
             },
             phoneAlbum: function () {
                console.log('phoneAlbum');

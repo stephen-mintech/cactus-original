@@ -1,4 +1,4 @@
-<div id="cert-upload" class="certUpload page bdbg" style="  ">
+﻿<div class="certUpload page bdbg" style="  ">
     <style>
     </style>
     <div class="flexbar navbg" style="display: flex;position:fixed;top:0;left:0;height:60px;z-index:300;width:100%;padding-bottom:10px;overflow:hidden">
@@ -24,29 +24,24 @@
             <div class="weui-gallery__opr">
                 <a href="javascript:" class="weui-gallery__del">
                     <i class="weui-icon-delete weui-icon_gallery-delete"></i>
+
                 </a>
             </div>
         </div>
-        <form id="form_jquery" @submit.prevent="onSubmit" action="#">
+        <form id="form_jquery" onsubmit="submitForm_jquery(); return false;" action="#">
             <div class="weui-cells__title">認證資訊上傳</div>
             <div class="weui-cells weui-cells_form">
                 <div class="weui-cell">
-                    <div class="weui-cell__hd"><label class="weui-label">暱稱/ID</label></div>
+                    <div class="weui-cell__hd"><label class="weui-label">遊戲暱稱/ID</label></div>
                     <div class="weui-cell__bd">
-                        <input v-model="model.GameName"  class="weui-input" type="text" name="GameName" placeholder="請輸入暱稱或ID">
+                        <input class="weui-input" type="text" name="GameName" placeholder="請輸入暱稱或ID">
                     </div>
                 </div>
 
             </div>
-            
             <input style="display:none" type="text" name="GameID" value="{{ID}}">
-            <div class="weui-cells__title">
-                <button @click.prevent="selectImage" class="weui-btn  weui-btn_mini weui-btn_default">選擇封面圖</button>
-            </div>
-            <div class="weui-cell">
-                <img v-if="model.ImgUrl" :src="model.ImgUrl" style="width: 80%;" >
-            </div>
-            <!-- <div class="weui-cells weui-cells_form">
+            <div class="weui-cells__title">可辨識技能程度之照片1張</div>
+            <div class="weui-cells weui-cells_form">
                 <div class="weui-cell">
                     <div class="weui-cell__bd">
                         <div class="weui-uploader">
@@ -70,9 +65,25 @@
                         </div>
                     </div>
                 </div>
-            </div> -->
+                <!--<div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <div class="weui-uploader">
+                            <div class="weui-uploader__hd">
+                                <p class="weui-uploader__title">圖片上傳</p>
+
+                            </div>
+                            <div class="weui-uploader__bd">
+                                <ul class="weui-uploader__files" id="uploaderFiles"></ul>
+                                <div class="weui-uploader__input-box">
+                                    <input id="uploaderInput" class="weui-uploader__input" name="file" type="file" accept="image/*">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
             <br>
-            <button type="submit" class="weui-btn weui-btn_primary">發送認證</button>
+            <a href="javascript:;" onclick="submitForm_jquery()" class="weui-btn weui-btn_primary">發送認證</a>
         </form>
 
     </div>
@@ -86,86 +97,6 @@
         </div>
     </div>
     <script type="text/javascript">
-        //console.log('id', "{{ID}}");
-        var id = "{{ID}}"
-        window.model = {
-            GameID: id
-        };
-
-        function onImageSelected(val){
-            var event = new CustomEvent('cover-selected', { 'detail': val });
-            window.dispatchEvent(event);
-        }
-        new Vue({
-            el: '#cert-upload',
-            data: {
-                model: {
-                    GameID: '',
-                    GameName: '',
-                    ImgUrl: ''
-                }
-            },
-            beforeMount: function () {
-                this.model.GameID = window.model.ID;
-                window.addEventListener('cover-selected', this.onImageSelected)   
-            },
-            methods: {
-                selectImage: function () {
-                    cw = plus.webview.create('Partition/CoverList.html', "CoverList", { "cachemode": "noCache", "backButtonAutoControl": "close", "background": "transparent", "popGesture": "close", "height": "100%", "margin": "auto", "width": "100%", "userSelect": false }, { paylist: [] });
-                    plus.webview.currentWebview().append(cw);
-                },
-                onImageSelected: function (e) {
-                    this.model.ImgUrl = e.detail;
-                },
-                onSubmit: function () {
-                    if (!this.model.GameName) {
-                        alert("暱稱不能為空!")
-                        return false;
-                    }
-                    if (!this.model.ImgUrl) {
-                        alert("暱稱不能為空!")
-                        return false;
-                    }
-                    this.submit();
-                },
-                submit: function () {
-                    $("#postMask").show();
-
-                    $.ajax({
-                        url: ajaxurl + "Certification",
-                        type: 'post',
-                        data: this.model,
-                        headers: { "Server_Token": encodeURIComponent(Server_Token) },
-                        success: function (r) {
-                            $("#postMask").hide();
-                            if (r.result_status) {
-                                if (r.result_status) {
-                                    $("#PostToast .weui-toast__content").text(r.result_message);
-                                    $("#PostToast").show();
-
-                                    plus.webview.getWebviewById('CertSkill').reload(true)
-                                    setTimeout(function () {
-                                        $("#PostToast").fadeOut(100);
-                                        plus.webview.close(plus.webview.currentWebview())
-                                    }, 2000);
-                                } else {
-                                    alert("資料更新失敗，請稍候再試");
-                                }
-                            } else {
-                                // $("#loadingToast").hide();
-                                // alert(r.result_message);
-
-                            }
-                        },
-                        error: function () {
-                            $("#postMask").hide();
-                            alert("網路錯誤");
-                        }
-                    });
-                },
-            }
-            
-        })
         //压缩图片
         var compressImage = function (url, filename, divid, cb) {
             var name = "_doc/upload/" + divid + "-" + filename;//_doc/upload/F_ZDDZZ-1467602809090.jpg

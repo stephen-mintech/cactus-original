@@ -205,7 +205,7 @@
                     } else {
                         GCloudVoiceEngine = plus.ios.importClass("GVGCloudVoice");
                         GCloudVoiceEngineInstance = GCloudVoiceEngine.sharedInstance();
-                        plus.ios.importClass("_cplay.WebUtil").setGVoiceAppInfo(GCloudVoiceEngineInstance, "1069760063", "29f84e2ca267ef95687b5fab81237dde", memid);
+                        plus.ios.importClass("CactusPark.WebUtil").setGVoiceAppInfo(GCloudVoiceEngineInstance, "1069760063", "29f84e2ca267ef95687b5fab81237dde", memid);
                     }
 
 
@@ -232,7 +232,7 @@
                             if (plus.os.name == "Android") {
                                 root = plus.android.importClass("tw.cactus.park.core.Bridge").getRoot();
                             } else {
-                                root = plus.ios.importClass("_cplay.WebUtil").getRoot();
+                                root = plus.ios.importClass("CactusPark.WebUtil").getRoot();
                             }
 
 
@@ -265,7 +265,7 @@
                         if (plus.os.name == "Android") {
                             root = plus.android.importClass("tw.cactus.park.core.Bridge").getRoot();
                         } else {
-                            root = plus.ios.importClass("_cplay.WebUtil").getRoot();
+                            root = plus.ios.importClass("CactusPark.WebUtil").getRoot();
                         }
                         p = plus.audio.createPlayer(root + "audio/call/1.mp3");
                         p.setRoute(plus.audio.ROUTE_EARPIECE);
@@ -336,13 +336,13 @@
                                     GCloudVoiceEngineInstance.EnableSpeakerOn(false);
                                     GCloudVoiceEngineInstance.JoinTeamRoom(roomid, 10 * 1000)
                                 } else {
-                                    delegate = plus.ios.importClass("_cplay.WebUtil").getGVoiceNotify(plus.webview.currentWebview().id, "callevent");
+                                    delegate = plus.ios.importClass("CactusPark.WebUtil").getGVoiceNotify(plus.webview.currentWebview().id, "callevent");
                                     GCloudVoiceEngineInstance.setDelegate(delegate);
                                     GCloudVoiceEngineInstance.setMode(0);
                                     GCloudVoicePoll = setInterval(function () { GCloudVoiceEngineInstance.poll() }, 100)
                                     GCloudVoiceEngineInstance.setMicVolume(100);
                                     GCloudVoiceEngineInstance.enableSpeakerOn(false);
-                                    plus.ios.importClass("_cplay.WebUtil").joinTeamRoom(GCloudVoiceEngineInstance, roomid, 10 * 1000);
+                                    plus.ios.importClass("CactusPark.WebUtil").joinTeamRoom(GCloudVoiceEngineInstance, roomid, 10 * 1000);
 
                                 }
 

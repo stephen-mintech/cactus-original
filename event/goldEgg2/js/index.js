@@ -94,7 +94,7 @@ document.addEventListener('plusready', function () {
             //if (plus.os.name == "Android") {
             //    bridge2 = plus.android.importClass('tw.cactus.park.core.Bridge');
             //} else if (plus.os.name == "iOS") {
-            //    bridge2 = plus.ios.importClass('_cplay.WebUtil');
+            //    bridge2 = plus.ios.importClass('CactusPark.WebUtil');
             //}
             //var pl = plus.audio.createPlayer(bridge2+"/event/goldEgg2/voice/break3.mp3");
             //金蛋破裂及锤子动画

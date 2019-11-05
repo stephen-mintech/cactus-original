@@ -14,7 +14,7 @@ function plusReady(){
     if (plus.os.name == "Android") {
         _bridge2 = plus.android.importClass('tw.cactus.park.core.Bridge');
     } else if (plus.os.name == "iOS") {
-        _bridge2 = plus.ios.importClass('_cplay.WebUtil');
+        _bridge2 = plus.ios.importClass('CactusPark.WebUtil');
     }
     
     var content = _bridge2.readFile("Version.json");

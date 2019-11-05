@@ -1,4 +1,4 @@
-﻿<style>
+<style>
       [draggable="true"] {
           /*
      To prevent user selecting inside the drag source
@@ -116,7 +116,8 @@
     <div class="page__bd" id="newinput" style="display:none">
 
         <div class="weui-cells__title"> <a href="javascript:;" @click="newpostback" class="weui-btn weui-btn_mini weui-btn_default">返回</a></div>
-        <div class="weui-cells__title">推薦預設</div>
+        <!-- 隱藏推薦預設
+		<div class="weui-cells__title">推薦預設</div>
         <div style="display:flex;flex-wrap:wrap;width:100%;margin-top:10px">
             <div v-for="item in Default" style="flex:1 1 33.33%;text-align:center">
                 <a href="javascript:;" @click="selectdf(item)" style="height:30px;" class="weui-btn weui-btn_mini weui-btn_primary">{{item.Title}}</a>
@@ -124,11 +125,13 @@
             </div>
 
         </div>
+		隱藏推薦預設-->
         <div class="weui-cells__title">新增項目</div>
      
         <div class="weui-cells weui-cells_radio">
         
-            <div class="weui-cell weui-cell_select weui-cell_select-after">
+            <!-- 隱藏類別
+			<div class="weui-cell weui-cell_select weui-cell_select-after">
                 <div class="weui-cell__hd">
                     <label for="" class="weui-label">類別</label>
                 </div>
@@ -138,7 +141,8 @@
                      
                     </select>
                 </div>
-            </div>
+            </div> 
+			隱藏類別-->
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">標題</label></div>
                 <div class="weui-cell__bd">
@@ -151,32 +155,13 @@
                     <textarea class="weui-textarea" rows="3" name="Memo" v-model="PostData.Memo" style="background-color: rgba(255, 255, 255, 0);user-select: all;-webkit-user-select: all;"></textarea>
                 </div>
             </div>
-            <!--<label class="weui-cell weui-check__label" for="x11" @click="PostData.CanFree=true">
-        <div class="weui-cell__bd">
-            <p>體驗單</p>
-        </div>
-        <div class="weui-cell__ft">
-            <input type="radio" class="weui-check" name="radio1" id="x11" v-bind="{checked:PostData.CanFree}" >
-            <span class="weui-icon-checked"></span>
-        </div>
-    </label>
-    <label class="weui-cell weui-check__label" for="x12" @click="PostData.CanFree=false">
-
-        <div class="weui-cell__bd">
-            <p>收費單</p>
-        </div>
-        <div class="weui-cell__ft">
-            <input type="radio" name="radio1" class="weui-check" id="x12" v-bind="{checked:!PostData.CanFree}" >
-            <span class="weui-icon-checked"></span>
-        </div>
-    </label>-->
 
             <div class="weui-cell weui-cell_vcode">
                 <div class="weui-cell__hd">
                     <label class="weui-label">收費</label>
                 </div>
                 <div class="weui-cell__bd">
-                    <input class="weui-input" type="number" name="Fee" pattern="[0-9]*" placeholder="請輸入收費" v-model.number="PostData.Fee">
+                    <input disabled class="weui-input" type="number" name="Fee" pattern="[0-9]*" placeholder="請輸入收費" v-model.number="PostData.Fee">
                 </div>
                 <div class="weui-cell__ft">
                     <div class="weui-vcode-btn" style="color:black">幣</div>

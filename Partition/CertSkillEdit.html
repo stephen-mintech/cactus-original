@@ -72,6 +72,7 @@
                     </div>
                 </div>
             </div>
+            <!-- 隱藏30元體驗
             <div class="weui-cells__title" style="margin-bottom:0">體驗技能設置，有助您得到更多訂單</div>
             <div class="weui-cells__title" style="margin-top:0">(每月1號重置次數)</div>
             <div class="weui-cells weui-cells_checkbox">
@@ -101,7 +102,7 @@
                     本月已提供30元體驗 {{FreeTimesLess}} 次 / 剩餘 {{(FreeTimesPreMonth - FreeTimesLess<0?0:FreeTimesPreMonth - FreeTimesLess)}} 次
                 </div>
             </div>
-        
+            隱藏30元體驗 --> 
             <div class="weui-cells__title">自訂音檔</div>
             <div class="weui-cells weui-cells_form">
                 <div class="weui-cell">
@@ -604,11 +605,11 @@
                 $gallery.fadeOut(100);
                 $('.flexbar').show()
             });
-            Bridge.getData("ReadSkillEdit", function (ReadSkillEdit) {
-                if (ReadSkillEdit != "1") {
-                    seerule();
-                }
-            })
+            // Bridge.getData("ReadSkillEdit", function (ReadSkillEdit) {
+            //     if (ReadSkillEdit != "1") {
+            //         seerule();
+            //     }
+            // })
         });
 
     </script>

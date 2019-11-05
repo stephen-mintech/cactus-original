@@ -147,7 +147,7 @@
                             timeout: 30000,
                             success: function (r) {
                                 if (r.result_status) {
-                                    alert("綁定完成,獲得一張30元體驗券")
+                                    alert("綁定完成")
                                     plus.webview.currentWebview().close()
                                 } else {
                                     alert(r.result_message);
