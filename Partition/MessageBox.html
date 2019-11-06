@@ -1,4 +1,4 @@
-﻿<div id="messageBox" class="messageBox page bdbg" style="  ">
+<div id="messageBox" class="messageBox page bdbg" style="  ">
     <style>
     </style>
 
@@ -35,7 +35,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="weui-media-box weui-media-box_small-appmsg"  v-if="(GInfo.MyCert.length?GInfo.MyCert:[]).filter(e=>e.isPass).length>0">
+                <!--  隱藏新進用戶
+				<div class="weui-media-box weui-media-box_small-appmsg"  v-if="(GInfo.MyCert.length?GInfo.MyCert:[]).filter(e=>e.isPass).length>0">
                     <div class="weui-cells">
                         <div class="weui-cell weui-cell_access" onclick="hovernav_new(this, 'id', {titleText:'新進用戶'})" btag="NewPlayer">
                             <div class="weui-cell__hd" style="position: relative;margin-right: 10px;text-align:center">
@@ -48,6 +49,7 @@
                         </div>
                     </div>
                 </div>
+				隱藏新進用戶 --> 
             </div>
         </div>
 

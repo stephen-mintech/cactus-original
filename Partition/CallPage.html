@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <script src="../js/vue.min.js"></script>
@@ -212,7 +212,7 @@
 
             </div>-->
             <div style="flex:0 0 100%;height:50%">
-                <img style="width:100%;height:100%;object-fit:cover;object-position:center;position:relative;" :src="herinfo.Img" />
+                <img style="width:100%;height:100%;object-fit:cover;object-position:center;position:relative;" :src="resolveAvatar(herinfo)" />
             </div>
             <div style="flex:0 0 100%;height:10px">
             </div>
@@ -403,6 +403,7 @@
             new Vue({
                 el: "#starlist",
                 data: {
+					
                     starcount: 200,
                 },
                 mounted: function () {
@@ -546,6 +547,12 @@
                     }
                 },
                 methods: {
+					resolveAvatar: function (item) {
+						if(item.Img.startsWith('http:')) return item.Img;	 
+						if(item.Img.startsWith('https:')) return item.Img;
+						
+					    return '../' + item.Img;		
+					},
                     imjoin: function () {
                         if (callbyme == "") {
                             var sendobj = { CallTarget: herinfo.Member_ID, Event: "Join" };

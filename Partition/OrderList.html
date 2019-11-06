@@ -1,4 +1,4 @@
-﻿<div class="flexbar navbg" style="position:fixed;top:0;left:0;height:60px;z-index:300;width:100%;overflow:hidden">
+<div class="flexbar navbg" style="position:fixed;top:0;left:0;height:60px;z-index:300;width:100%;overflow:hidden">
     <div class="memberinfo1" style="width: 10%;height:60px;position:relative;float:left;z-index:301; ">
         <div id="backSetting" class="backb" onclick="plus.webview.close(plus.webview.currentWebview())" style="width:30px;height:60px;border-radius: 999em;color:white">
             <i class="fa fa-angle-left" style="font-size:30px;position:relative;top:50%;left:50%;transform:translate(-50%,-50%)"> </i>
@@ -43,7 +43,8 @@
                         </div>
                         <div class="weui-cell__bd">
                             <p>{{item.Name}}</p>
-                            <p>{{item.GameName}}-{{JSON.parse(item.Member_Certification_History).Title}}</p>
+                            <p>{{item.GameName}} </p>
+							<!-- -{{JSON.parse(item.Member_Certification_History).Title}} -->
                        
                             <p style="font-size: 13px;color: #888888;" v-if="JSON.parse(item.Member_Certification_History).CanFree!=true">費用:{{JSON.parse(item.Member_Certification_History).Fee}}幣/1{{JSON.parse(item.Member_Certification_History).Unit}}</p>
                             <p style="font-size: 13px;color: #888888;" v-if="JSON.parse(item.Member_Certification_History).CanFree==true">費用:30元體驗單/1局</p>
@@ -60,8 +61,15 @@
                             <p style="font-size: 13px;color: #888888;">下單數:{{item.Times}}</p>
                         </div>
                         <div class="weui-cell__ft" style="font-size: 12px;" v-bind:style="{'color': ((item.Order_Status==5)?'#dc2873':'#808080')}">
-                            <span v-if="Type=='Sell'"> {{(item.Order_Status==5)?"已收款":"未收款"}}{{(JSON.parse(item.Member_Certification_History).Fee==0 && item.Times==1 ? 20 :JSON.parse(item.Member_Certification_History).Fee*item.Times)}}幣</span>
-                            <span v-if="Type=='Buy'"> {{(item.Order_Status==5)?"已支付":"未支付"}}{{(JSON.parse(item.Member_Certification_History).Fee==0 && item.Times==1 ? ('1體驗券') :(JSON.parse(item.Member_Certification_History).Fee*item.Times+'幣'))}}</span>
+                            <span v-if="Type=='Sell'"> 
+							{{(item.Order_Status==5)?"已收款":"未收款"}}
+							{{ JSON.parse(item.Member_Certification_History).Fee*item.Times }}幣
+							
+							</span>
+                            <span v-if="Type=='Buy'">
+							{{(item.Order_Status==5)?"已支付":"未支付"}}
+							{{ JSON.parse(item.Member_Certification_History).Fee*item.Times+'幣' }}
+							</span>
                         </div>
                     </div>
                 </div>
