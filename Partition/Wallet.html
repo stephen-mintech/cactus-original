@@ -1,4 +1,4 @@
-﻿<div class="wallet page bdbg" v-if="GInfo.MyInfo" id="wallet" style="">
+<div class="wallet page bdbg" v-if="GInfo.MyInfo" id="wallet" style="">
     <style>
     </style>
     <div class="page__hd hdbg" style="height:20%;position:relative">
@@ -83,7 +83,7 @@
         </div>
 
         <div class="weui-cells" style="">
-            <div class="weui-cell weui-cell_access"  v-if="!conf.hidenews" onclick="hovernav(this,'id')" btag="GiftList">
+            <div class="weui-cell weui-cell_access" onclick="hovernav(this,'id')" btag="GiftList">
                 <div class="weui-cell__hd" style="position: relative;margin-right: 10px;">
                     <img src="img/icon/giftlist.png" style="width: 40px;display: block">
                 </div>
@@ -92,7 +92,8 @@
 
                 </div>
             </div>
-            <div class="weui-cell weui-cell_access" onclick="hovernav(this,'id')" btag="Coupon">
+            <!--  隱藏體驗券
+			<div class="weui-cell weui-cell_access" onclick="hovernav(this,'id')" btag="Coupon">
                 <div class="weui-cell__hd" style="position: relative;margin-right: 10px;">
                     <img src="img/icon/ticket.png" style="width: 40px;display: block">
                 </div>
@@ -102,6 +103,7 @@
                     <span class="weui-badge" v-if="cpcount != 0" style="margin-left: 5px;margin-right: 5px;">{{cpcount}}</span>
                 </div>
             </div>
+			 隱藏體驗券 -->
         </div>
 
         <div class="weui-cells">

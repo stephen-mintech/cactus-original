@@ -1,6 +1,4 @@
-﻿<style>
-
-</style>
+﻿
 <div id="fb-root"></div>
 
 <div class="settingregpage page " style="background-color:#a6df9a;background-repeat:no-repeat;background-size:100% 100%">
@@ -14,8 +12,6 @@
 
                 </div>
             </div>
-            <!--隱藏 Logo 圖片
-             隱藏隱藏 Logo 圖片 -->
 
             <p style="text-align:center;line-height:10vh">
                 <span style="padding-right:10px">仙人掌公園</span>     
@@ -81,8 +77,9 @@
                 </div>
                 <div class="weui-btn-area" style="">
                     <!-- <a class="weui-btn weui-btn_default" style="width:90%;" onclick="beforelogin('GUEST')">匿名登入</a> -->
-                    <button class="weui-btn" style="width:90%;color:#fff;background-color:#a6df9a;" onclick="guestLogin()">匿名登入</button>    
+                    <button class="weui-btn" style="width:90%;color:#fff;background-color:#ffe599;" onclick="guestLogin()">匿名登入</button>    
                 </div>
+               
             </div>
             <!--<div class=" weui-cells_checkbox">
         <label class="weui-cell " for="s11">
@@ -129,7 +126,7 @@
     </div>
     <script>
         function guestLogin() {
-            console.log('guestLogin');
+            
             plus.nativeUI.showWaiting("驗證中...");
             $.ajax({
                 url: ajaxurl + "thirdLogin",
