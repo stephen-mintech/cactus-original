@@ -90,12 +90,12 @@
         <div id="" class="weui-tabbar__item" style="flex: 1">
             <a href="javascript:;" style="margin:0px 7px 5px 7px" class="weui-btn weui-btn_default" onclick="createchat('{{data.Member.Member_ID}}')">聊天</a>
         </div>
-        <div class="weui-tabbar__item isand" onclick="hovernav_gift(this)" btag="GiftPage" bparam="{{data.Member.Member_ID}}" style="flex: 1;">
+        <div class="weui-tabbar__item" onclick="hovernav_gift(this)" btag="GiftPage" bparam="{{data.Member.Member_ID}}" style="flex: 1;">
             <a href="javascript:;" style="margin:0px 7px 5px 7px" class="weui-btn weui-btn_default">送禮</a>
 
         </div>
         <div id="" class="weui-tabbar__item" style="flex: 0 0 50%;">
-            <a href="javascript:;" style="margin:0px 7px 5px 7px" btag="OrderCheckPage" onclick='hovernav(this,"{\"M\":\"{{data.Member.Member_ID}}\"}")' class="weui-btn weui-btn_primary isand">我要下單</a>
+            <a href="javascript:;" style="margin:0px 7px 5px 7px" btag="OrderCheckPage" onclick='hovernav(this,"{\"M\":\"{{data.Member.Member_ID}}\"}")' class="weui-btn weui-btn_primary">我要下單</a>
             <!-- 
             <a href="javascript:;" style="margin:0px 7px 5px 7px" btag="OrderCheckPage" onclick='hovernav(this,"{\"M\":\"{{data.Member.Member_ID}}\"}")' class="weui-btn weui-btn_primary isand">我要下單</a>
             <a href="javascript:;" style="margin:0px 7px 5px 7px" btag="OrderCheckPage" onclick='hovernav(this,"{\"M\":\"{{data.Member.Member_ID}}\"}")' class="weui-btn weui-btn_primary isnotand">申請教學</a>
@@ -257,8 +257,7 @@
             <div style="float:right;text-align:center;padding: 15px; border-left: 1px solid #E5E5E5;margin-left:10px">
 
                 <p class="weui-media-box__desc" style=" ">接單999次</p>
-                <div style="" btag="OrderCheckPage" class="weui-btn weui-btn_mini weui-btn_follow isnotand">申請教學</div>
-                <div style="" btag="OrderCheckPage" class="weui-btn weui-btn_mini weui-btn_follow isand">我要下單</div>
+                <div style="" btag="OrderCheckPage" class="weui-btn weui-btn_mini weui-btn_follow">我要下單</div>
             </div>
 
         </div>
