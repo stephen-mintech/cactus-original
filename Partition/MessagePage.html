@@ -1,6 +1,6 @@
-﻿<div class="messagePage page bdbg" style="width:100%;overflow-x:hidden;overflow-y:hidden">
-    <style>
-        .weui-grid2 {
+<div class="messagePage page bdbg" style="width:100%;overflow-x:hidden;overflow-y:hidden">
+	<style>
+		.weui-grid2 {
             position: relative;
             display: inline-block;
             margin-top: 5px;
@@ -216,214 +216,226 @@
             }
     </style>
 
-    <div class="weui-tab" style="overflow-x:hidden;overflow-y:visible">
-        <div id="hdfix" style="position: fixed;width:100%;z-index:300;overflow-y:visible">
+	<div class="weui-tab" style="overflow-x:hidden;overflow-y:visible">
+		<div id="hdfix" style="position: fixed;width:100%;z-index:300;overflow-y:visible">
 
-            <div class="flexbar navbg" style="display: flex;padding-bottom:10px;overflow-x:hidden;overflow-y:visible;flex-wrap:wrap;">
-                <div class="memberinfo1" style="width: 10%;height:60px;position:relative; flex: 0 0 10%; ">
-                    <div id="backSetting" class="backb" onclick="plus.webview.close(plus.webview.currentWebview())" style="margin:0 auto;width:100%;height:100%;border-radius: 999em;color:white">
-                        <i class="fa fa-angle-left" style="font-size:30px;position:relative;top:50%;left:50%;transform:translate(-50%,-50%)"> </i>
-                    </div>
-                </div>
-                <div id="hdfixvue" class="memberinfo " style="height:60px;width: 90%;position:relative;top:0px;flex: 0 0 90%;opacity:0">
-                    <a href="javascript:void(0);" style="padding:5px" class="weui-media-box weui-media-box_appmsg" onclick="hovernavre(this,'{{sheinfo.Member_ID}}','{{sheinfo.Name}}','{{sheinfo.Img}}')" btag="PlayerPage">
-                        <!--<div class="weui-media-box__hd2">
+			<div class="flexbar navbg" style="display: flex;padding-bottom:10px;overflow-x:hidden;overflow-y:visible;flex-wrap:wrap;">
+				<div class="memberinfo1" style="width: 10%;height:60px;position:relative; flex: 0 0 10%; ">
+					<div id="backSetting" class="backb" onclick="plus.webview.close(plus.webview.currentWebview())" style="margin:0 auto;width:100%;height:100%;border-radius: 999em;color:white">
+						<i class="fa fa-angle-left" style="font-size:30px;position:relative;top:50%;left:50%;transform:translate(-50%,-50%)">
+						</i>
+					</div>
+				</div>
+				<div id="hdfixvue" class="memberinfo " style="height:60px;width: 90%;position:relative;top:0px;flex: 0 0 90%;opacity:0">
+					<a href="javascript:void(0);" style="padding:5px" class="weui-media-box weui-media-box_appmsg" onclick="hovernavre(this,'{{sheinfo.Member_ID}}','{{sheinfo.Name}}','{{sheinfo.Img}}')"
+					 btag="PlayerPage">
+						<!--<div class="weui-media-box__hd2">
                     <img class="weui-media-box__thumb" style="border-radius: 0.5em;" src="{{sheinfo.Img}}" alt="">
                 </div>-->
 
-                        <div class="weui-media-box__bd">
-                            <h4 class="weui-media-box__title" style="color:white">{{(order?((order.Order_Status)?"與":""):"")}} {{sheinfo.Name}} {{(order?((order.Order_Status)?"訂單進行中":""):"")}}</h4>
+						<div class="weui-media-box__bd">
+							<h4 class="weui-media-box__title" style="color:white">{{(order?((order.Order_Status)?"與":""):"")}}
+								{{sheinfo.Name}} {{(order?((order.Order_Status)?"訂單進行中":""):"")}}</h4>
 
-                        </div>
+						</div>
 
-                        <img class="weui-media-box__thumb" style="margin-right:10px;object-fit:cover;border-radius:999em;width:50px;height:50px" src="{{sheinfo.Img}}" alt="">
+						<img class="weui-media-box__thumb" style="margin-right:10px;object-fit:cover;border-radius:999em;width:50px;height:50px"
+						 src="{{sheinfo.Img}}" alt="">
 
-                    </a>
-                    <div class="js_dialog" id="orderlistp" v-if="(order?((order.Order_Status)?true:false):false)" style="display: none;">
-                        <div class="weui-mask" onclick="$('#orderlistp').hide()"></div>
-                        <div class="weui-dialog">
-                            <div class="weui-dialog__hd bdbg"><strong class="weui-dialog__title">訂單總覽</strong></div>
-                            <div class="weui-dialog__bd bdbg" style="overflow-y:auto;height:350px;padding:0">
-                                <div v-for="(item,idx) in orderlist">
-                                    <div class="weui-form-preview">
+					</a>
+					<div class="js_dialog" id="orderlistp" v-if="(order?((order.Order_Status)?true:false):false)" style="display: none;">
+						<div class="weui-mask" onclick="$('#orderlistp').hide()"></div>
+						<div class="weui-dialog">
+							<div class="weui-dialog__hd bdbg"><strong class="weui-dialog__title">訂單總覽</strong></div>
+							<div class="weui-dialog__bd bdbg" style="overflow-y:auto;height:350px;padding:0">
+								<div v-for="(item,idx) in orderlist">
+									<div class="weui-form-preview">
 
-                                        <div class="weui-form-preview__bd">
-                                            <div class="weui-form-preview__item">
-                                                <label class="weui-form-preview__label">單號:</label>
-                                                <span class="weui-form-preview__value">{{item.OrderNo}}</span>
-                                            </div>
-                                            <div class="weui-form-preview__item">
-                                                <label class="weui-form-preview__label">技能: {{item.GameName}}-{{JSON.parse(item.Member_Certification_History).Title}}</label>
-                                                <span class="weui-form-preview__value" v-if="JSON.parse(order.Member_Certification_History).CanFree!=true">{{JSON.parse(item.Member_Certification_History).Fee*item.Times}}幣/{{item.Times}}{{JSON.parse(item.Member_Certification_History).Unit}}</span>
-                                                <span class="weui-form-preview__value" v-if="JSON.parse(order.Member_Certification_History).CanFree==true">30元體驗單/1局</span>
-                                            </div>
+										<div class="weui-form-preview__bd">
+											<div class="weui-form-preview__item">
+												<label class="weui-form-preview__label">單號:</label>
+												<span class="weui-form-preview__value">{{item.OrderNo}}</span>
+											</div>
+											<div class="weui-form-preview__item">
+												<label class="weui-form-preview__label">技能: {{item.GameName}}-{{JSON.parse(item.Member_Certification_History).Title}}</label>
+												<span class="weui-form-preview__value" v-if="JSON.parse(order.Member_Certification_History).CanFree!=true">{{JSON.parse(item.Member_Certification_History).Fee*item.Times}}幣/{{item.Times}}{{JSON.parse(item.Member_Certification_History).Unit}}</span>
+												<span class="weui-form-preview__value" v-if="JSON.parse(order.Member_Certification_History).CanFree==true">30元體驗單/1局</span>
+											</div>
 
-                                            <div class="weui-form-preview__item">
-                                                <label class="weui-form-preview__label">預約時間:</label>
-                                                <span class="weui-form-preview__value">{{moment(item.PreDate.toString(), "YYYY-MM-DDTHH:mm:ss").calendar()}}</span>
-                                            </div>
-                                        </div>
-                                        <div class="weui-form-preview__ft">
-                                            <a class="weui-form-preview__btn weui-form-preview__btn_primary chgo" href="javascript:;" :bidx="idx" @click2="OrderControl.changeorder(idx)" >切換</a>
-                                        </div>
-                                    </div>
-                                    <br>
-                                </div>
-                            </div>
-                            <div class="weui-dialog__ft bdbg">
-                                <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default" onclick="$('#orderlistp').hide()">返回</a>
-                                <!--<a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">知道了</a>-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="orderpanel" style="width:100%;overflow-x:auto;overflow-y:visible">
-                    <div id="vapp0" style="display:none;overflow-y:visible">
+											<div class="weui-form-preview__item">
+												<label class="weui-form-preview__label">預約時間:</label>
+												<span class="weui-form-preview__value">{{moment(item.PreDate.toString(), "YYYY-MM-DDTHH:mm:ss").calendar()}}</span>
+											</div>
+										</div>
+										<div class="weui-form-preview__ft">
+											<a class="weui-form-preview__btn weui-form-preview__btn_primary chgo" href="javascript:;" :bidx="idx"
+											 @click2="OrderControl.changeorder(idx)">切換</a>
+										</div>
+									</div>
+									<br>
+								</div>
+							</div>
+							<div class="weui-dialog__ft bdbg">
+								<a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default" onclick="$('#orderlistp').hide()">返回</a>
+								<!--<a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">知道了</a>-->
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="orderpanel" style="width:100%;overflow-x:auto;overflow-y:visible">
+					<div id="vapp0" style="display:none;overflow-y:visible">
 
-                        <div id="orderinfo" v-if="(order!=null )" class="orderinfo" style="position:relative;flex: 0 0 100%;background-color:white ">
-                            <div class="weui-btn weui-btn_mini weui-btn_follow" style="float:right;margin-top:5px;right:5px" href="javascript:" @click="OrderControl.showlist()" id="">訂單總覽</div>
-                            <div style="margin-left:2%;color:gray">
-                                <p class="page__desc" style="min-height:0">訂單單號:{{order.OrderNo}}</p>
-                                <p class="page__desc" style="min-height:0">技能:{{order.GameName}}-{{JSON.parse(order.Member_Certification_History).Title}}</p>
-                                <p class="page__desc" style="min-height:0" v-if="JSON.parse(order.Member_Certification_History).CanFree!=true">費用:{{JSON.parse(order.Member_Certification_History).Fee*order.Times}}幣/{{order.Times}}{{JSON.parse(order.Member_Certification_History).Unit}}</p>
-                                <p class="page__desc" style="min-height:0" v-if="JSON.parse(order.Member_Certification_History).CanFree==true">費用: 30元體驗單/1局</p>
+						<div id="orderinfo" v-if="(order!=null )" class="orderinfo" style="position:relative;flex: 0 0 100%;background-color:white ">
+							<div class="weui-btn weui-btn_mini weui-btn_follow" style="float:right;margin-top:5px;right:5px" href="javascript:"
+							 @click="OrderControl.showlist()" id="">訂單總覽</div>
+							<div style="margin-left:2%;color:gray">
+								<p class="page__desc" style="min-height:0">訂單單號:{{order.OrderNo}}</p>
+								<p class="page__desc" style="min-height:0">技能:{{order.GameName}}-{{JSON.parse(order.Member_Certification_History).Title}}</p>
+								<p class="page__desc" style="min-height:0" v-if="JSON.parse(order.Member_Certification_History).CanFree!=true">費用:{{JSON.parse(order.Member_Certification_History).Fee*order.Times}}幣/{{order.Times}}{{JSON.parse(order.Member_Certification_History).Unit}}</p>
+								<p class="page__desc" style="min-height:0" v-if="JSON.parse(order.Member_Certification_History).CanFree==true">費用:
+									30元體驗單/1局</p>
 
-                            </div>
-                            <br>
-                            <div style="width:100%;position:relative;">
+							</div>
+							<br>
+							<div style="width:100%;position:relative;">
 
-                                <div v-if="order.Order_Status == 8" style="width:100%;height:100%;background-color:rgba(0,0,0,0.3)">
-                                    交易申請取消中
+								<div v-if="order.Order_Status == 8" style="width:100%;height:100%;background-color:rgba(0,0,0,0.3)">
+									交易申請取消中
 
-                                </div>
-                                <div v-if="order.Order_Status == 7" style="width:100%;height:100%;background-color:rgba(0,0,0,0.3)">
-                                    客服調解中
+								</div>
+								<div v-if="order.Order_Status == 7" style="width:100%;height:100%;background-color:rgba(0,0,0,0.3)">
+									客服調解中
 
-                                </div>
-                                <ul v-if="order.Order_Status != 8 && order.Order_Status != 7" class="order_progress">
-                                    <li v-bind:class="{active:true,'active': N1Active,'N1Active': true}">已下單</li>
-                                    <li v-bind:class="{active:true,'active': N2Active,'N2Active': true}">待確認</li>
-                                    <li v-bind:class="{active:true,'active': N3Active,'N3Active': true}">待服務</li>
-                                    <li v-bind:class="{active:true,'active': N4Active,'N4Active': true}">評價中</li>
-                                </ul>
-                            </div>
-                            <div style="clear:both"></div>
+								</div>
+								<ul v-if="order.Order_Status != 8 && order.Order_Status != 7" class="order_progress">
+									<li v-bind:class="{active:true,'active': N1Active,'N1Active': true}">已下單</li>
+									<li v-bind:class="{active:true,'active': N2Active,'N2Active': true}">待確認</li>
+									<li v-bind:class="{active:true,'active': N3Active,'N3Active': true}">待服務</li>
+									<li v-bind:class="{active:true,'active': N4Active,'N4Active': true}">評價中</li>
+								</ul>
+							</div>
+							<div style="clear:both"></div>
 
-                            <span style="float:right;padding-right:5px;" v-if="order.Order_Status != 7">
+							<span style="float:right;padding-right:5px;" v-if="order.Order_Status != 7">
 
-                                <a v-if="btnshower=='{{myinfo.Member_ID}}'" @click="nextstep" href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary">{{btntext}}</a>
-                                <a href="javascript:;" @click="cancelorder" v-if="order.Order_Status != 8 && order.Order_Status != 4" class="weui-btn weui-btn_mini weui-btn_warn">交易取消</a>
-                                <a href="javascript:;" @click="keeporder" v-if="order.Order_Status == 8 && order.OP == '{{myinfo.Member_ID}}'" class="weui-btn weui-btn_mini weui-btn_primary">繼續交易</a>
-                                <a href="javascript:;" @click="cancelorder_twice" v-if="order.Order_Status == 8 && order.OP != '{{myinfo.Member_ID}}'" class="weui-btn weui-btn_mini weui-btn_warn">接受取消</a>
-                                <a href="javascript:;" @click="keeporder" v-if="order.Order_Status == 8 && order.OP != '{{myinfo.Member_ID}}'" class="weui-btn weui-btn_mini weui-btn_primary">繼續交易</a>
-                                <!--<a href="javascript:;" @click="appealorder" style="background-color:black" class="weui-btn weui-btn_mini weui-btn_warn">申訴</a>-->
-                            </span>
-                            <div style="clear:both;margin-bottom:10px"></div>
+								<a v-if="btnshower=='{{myinfo.Member_ID}}'" @click="nextstep" href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary">{{btntext}}</a>
+								<a href="javascript:;" @click="cancelorder" v-if="order.Order_Status != 8 && order.Order_Status != 4" class="weui-btn weui-btn_mini weui-btn_warn">交易取消</a>
+								<a href="javascript:;" @click="keeporder" v-if="order.Order_Status == 8 && order.OP == '{{myinfo.Member_ID}}'"
+								 class="weui-btn weui-btn_mini weui-btn_primary">繼續交易</a>
+								<a href="javascript:;" @click="cancelorder_twice" v-if="order.Order_Status == 8 && order.OP != '{{myinfo.Member_ID}}'"
+								 class="weui-btn weui-btn_mini weui-btn_warn">接受取消</a>
+								<a href="javascript:;" @click="keeporder" v-if="order.Order_Status == 8 && order.OP != '{{myinfo.Member_ID}}'"
+								 class="weui-btn weui-btn_mini weui-btn_primary">繼續交易</a>
+								<!--<a href="javascript:;" @click="appealorder" style="background-color:black" class="weui-btn weui-btn_mini weui-btn_warn">申訴</a>-->
+							</span>
+							<div style="clear:both;margin-bottom:10px"></div>
 
-                        </div>
+						</div>
 
-                    </div>
+					</div>
 
-                </div>
+				</div>
 
-            </div>
-            <a href="javascript:;" v-if="order!=null" onclick="$('#orderinfo').toggle();$(this).find('i').toggle()" class="orderinfo weui-btn weui-btn_mini weui-btn_default" style="position:absolute;height:20px;font-size:12px;line-height:20px;right:10px;bottom:0;transform:translateY(50%);">
-                <i class="fa fa-1x fa-angle-up"></i>
-                <i class="fa fa-1x fa-angle-down" style="display:none"></i>
-            </a>
-        </div>
-        <div style="display:none" id="audiodiv"></div>
-        <div class="weui-tab__panel " id="dom_id" style="height: 100%;box-sizing: border-box;  border: 0; ">
-            <ul id="result"></ul>
+			</div>
+			<a href="javascript:;" v-if="order!=null" onclick="$('#orderinfo').toggle();$(this).find('i').toggle()" class="orderinfo weui-btn weui-btn_mini weui-btn_default"
+			 style="position:absolute;height:20px;font-size:12px;line-height:20px;right:10px;bottom:0;transform:translateY(50%);">
+				<i class="fa fa-1x fa-angle-up"></i>
+				<i class="fa fa-1x fa-angle-down" style="display:none"></i>
+			</a>
+		</div>
+		<div style="display:none" id="audiodiv"></div>
+		<div class="weui-tab__panel " id="dom_id" style="height: 100%;box-sizing: border-box;  border: 0; ">
+			<ul id="result"></ul>
 
-        </div>
-        <div style="overflow-x:hidden;overflow-y:hidden" id="extrabar">
-            <div class="weui-tabbar" v-if="'{{sheinfo.Member_ID}}' !='admin'" style="position: fixed;background-color:lightgray">
-                <div class="weui-cell" style="flex:0 0 65%">
+		</div>
+		<div style="overflow-x:hidden;overflow-y:hidden" id="extrabar">
+			<div class="weui-tabbar" v-if="'{{sheinfo.Member_ID}}' !='admin'" style="position: fixed;background-color:lightgray">
+				<div class="weui-cell" style="flex:0 0 65%">
 
-                    <div class="weui-cell__bd">
-                        <form action="" onsubmit="sendmsg(this); return false;">
-                            <input class="weui-input" type="text" id="msg" placeholder="說點什麼吧~~" style="background-color:transparent;-webkit-appearance:none;user-select: all;-webkit-user-select: all;">
-                        </form>
+					<div class="weui-cell__bd">
+						<form action="" onsubmit="sendmsg(this); return false;">
+							<input class="weui-input" type="text" id="msg" placeholder="說點什麼吧~~" style="background-color:transparent;-webkit-appearance:none;user-select: all;-webkit-user-select: all;">
+						</form>
 
-                    </div>
+					</div>
 
 
-                </div>
-                <!--<div class="" style="flex:0 0 20%">
+				</div>
+				<!--<div class="" style="flex:0 0 20%">
 
                 </div>-->
-                <div class="" style="flex:0 0 35%">
-                    <button class="weui-btn_disabled weui-btn_mini weui-btn_primary sendbtn" style="position:relative;top:50%;transform:translateY(-50%)" disabled type="button" href="javascript:" onclick="sendmsg(this)" id="">傳送</button>
-                    <a class="" href="javascript:" @click="isshoworder=true" id="" style="margin-left: auto;margin-right: auto;padding-left: 2px;text-align: center;font-size: 14px;">
-                        <i class="fa fa-2x fa-plus-circle" style="position:relative;top:50%;transform:translateY(-50%);line-height:18px;color:gray"></i>
-                    </a>
-                </div>
-            </div>
-            <div v-bind:style="{display:(isshoworder2?'block':'none')}" style="position:absolute;top:0;width:100%;height:100%">
-                <div class="weui-mask" id="" @click="isshoworder2=false" v-bind:style="{display:(isshoworder2?'block':'none')}"></div>
-                <div v-bind:style="{display:(isshoworder2?'block':'none')}" id="messageBtn" class="bdbg " style="text-align:center;z-index:1001;width:100px;height:100px;border-radius:999em;position:relative;top:50%;left:50%;transform:translate(-50%,-50%)">
-                    <div class="button__content--listen ">
-                        <i class="ion-mic-a fa-4x text-inverse " style="color:dimgray"></i>
-                    </div>
+				<div class="" style="flex:0 0 35%">
+					<button class="weui-btn_disabled weui-btn_mini weui-btn_primary sendbtn" style="position:relative;top:50%;transform:translateY(-50%)"
+					 disabled type="button" href="javascript:" onclick="sendmsg(this)" id="">傳送</button>
+					<a class="" href="javascript:" @click="isshoworder=true" id="" style="margin-left: auto;margin-right: auto;padding-left: 2px;text-align: center;font-size: 14px;">
+						<i class="fa fa-2x fa-plus-circle" style="position:relative;top:50%;transform:translateY(-50%);line-height:18px;color:gray"></i>
+					</a>
+				</div>
+			</div>
+			<div v-bind:style="{display:(isshoworder2?'block':'none')}" style="position:absolute;top:0;width:100%;height:100%">
+				<div class="weui-mask" id="" @click="isshoworder2=false" v-bind:style="{display:(isshoworder2?'block':'none')}"></div>
+				<div v-bind:style="{display:(isshoworder2?'block':'none')}" id="messageBtn" class="bdbg " style="text-align:center;z-index:1001;width:100px;height:100px;border-radius:999em;position:relative;top:50%;left:50%;transform:translate(-50%,-50%)">
+					<div class="button__content--listen ">
+						<i class="ion-mic-a fa-4x text-inverse " style="color:dimgray"></i>
+					</div>
 
-                </div>
-            </div>
-            <div style="position:relative;top:9999px">
-                <div class="weui-mask" id="" @click="isshoworder=false" v-bind:style="{display:(isshoworder?'block':'none')}"></div>
-                <div class="weui-actionsheet" v-bind:class="{'weui-actionsheet_toggle':isshoworder}" id="iosActionsheet">
-                    <!--<div class="weui-actionsheet__title">
+				</div>
+			</div>
+			<div style="position:relative;top:9999px">
+				<div class="weui-mask" id="" @click="isshoworder=false" v-bind:style="{display:(isshoworder?'block':'none')}"></div>
+				<div class="weui-actionsheet" v-bind:class="{'weui-actionsheet_toggle':isshoworder}" id="iosActionsheet">
+					<!--<div class="weui-actionsheet__title">
                         <p class="weui-actionsheet__title-text">这是一个标题，可以为一行或者两行。</p>
                     </div>-->
-                    <div class="weui-actionsheet__menu">
-                        <div class="weui-grids" style="text-align:center">
-                            <a href="javascript:;" @click="sendpic()" ref="myphoto" class="weui-grid" v-if="(isblock!=true)">
-                                <div class="weui-grid__icon">
-                                    <i style="color:black;" class="ion-images fa-1x text-inverse"></i>
-                                </div>
-                                <p class="weui-grid__label">圖片</p>
-                            </a>
-                            <a href="javascript:;" @click="sendvoice()" class="weui-grid" v-if="(isblock!=true)">
-                                <div class="weui-grid__icon">
-                                    <i style="color:black" class="ion-mic-a fa-1x text-inverse"></i>
-                                </div>
-                                <p class="weui-grid__label">錄音</p>
-                            </a>
-                            <a href="javascript:;" @click="sendvideo()" class="weui-grid" v-if="(isblock!=true)">
-                                <div class="weui-grid__icon">
-                                    <i style="color:black" class="ion-videocamera fa-1x text-inverse"></i>
-                                </div>
-                                <p class="weui-grid__label">影片</p>
-                            </a>
-                            <a href="javascript:;" v-if="'{{sheinfo.Member_ID}}' !='admin' && (isblock!=true) " @click="callphone()" class="weui-grid">
-                                <div class="weui-grid__icon">
-                                    <i style="color:black" class="ion-ios-telephone fa-1x text-inverse"></i>
-                                </div>
-                                <p class="weui-grid__label">語音通話</p>
-                            </a>
-                            <a href="javascript:;" v-if="'{{sheinfo.Member_ID}}' !='admin'" @click="blockplayer()" class="weui-grid">
-                                <div class="weui-grid__icon">
-                                    <i style="color:black" class="ion-ios-eye fa-1x text-inverse"></i>
-                                </div>
-                                <p class="weui-grid__label">{{(isblock==true)?"解除封鎖":"封鎖"}}</p>
-                            </a>
-                            <a href="javascript:;" v-if="'{{sheinfo.Member_ID}}' !='admin'" onclick="trashmsg()" class="weui-grid">
-                                <div class="weui-grid__icon">
-                                    <i style="color:black" class="ion-ios-paper fa-1x text-inverse"></i>
-                                </div>
-                                <p class="weui-grid__label">舉報</p>
-                            </a>
-                            <!--<a href="javascript:;" class="weui-grid button__content button__content--listen">
+					<div class="weui-actionsheet__menu">
+						<div class="weui-grids" style="text-align:center">
+							<a href="javascript:;" @click="sendpic()" ref="myphoto" class="weui-grid" v-if="(isblock!=true)">
+								<div class="weui-grid__icon">
+									<i style="color:black;" class="ion-images fa-1x text-inverse"></i>
+								</div>
+								<p class="weui-grid__label">圖片</p>
+							</a>
+							<a href="javascript:;" @click="sendvoice()" class="weui-grid" v-if="(isblock!=true)">
+								<div class="weui-grid__icon">
+									<i style="color:black" class="ion-mic-a fa-1x text-inverse"></i>
+								</div>
+								<p class="weui-grid__label">錄音</p>
+							</a>
+							<a href="javascript:;" @click="sendvideo()" class="weui-grid" v-if="(isblock!=true)">
+								<div class="weui-grid__icon">
+									<i style="color:black" class="ion-videocamera fa-1x text-inverse"></i>
+								</div>
+								<p class="weui-grid__label">影片</p>
+							</a>
+							<a href="javascript:;" v-if="'{{sheinfo.Member_ID}}' !='admin' && (isblock!=true) " @click="callphone()" class="weui-grid">
+								<div class="weui-grid__icon">
+									<i style="color:black" class="ion-ios-telephone fa-1x text-inverse"></i>
+								</div>
+								<p class="weui-grid__label">語音通話</p>
+							</a>
+							<a href="javascript:;" v-if="'{{sheinfo.Member_ID}}' !='admin'" @click="blockplayer()" class="weui-grid">
+								<div class="weui-grid__icon">
+									<i style="color:black" class="ion-ios-eye fa-1x text-inverse"></i>
+								</div>
+								<p class="weui-grid__label">{{(isblock==true)?"解除封鎖":"封鎖"}}</p>
+							</a>
+							<a href="javascript:;" v-if="'{{sheinfo.Member_ID}}' !='admin'" onclick="trashmsg()" class="weui-grid">
+								<div class="weui-grid__icon">
+									<i style="color:black" class="ion-ios-paper fa-1x text-inverse"></i>
+								</div>
+								<p class="weui-grid__label">舉報</p>
+							</a>
+							<!--<a href="javascript:;" class="weui-grid button__content button__content--listen">
                                 <div class="weui-grid__icon">
                                     <img src="./images/icon_tabbar.png" alt="">
                                 </div>
                                 <p class="weui-grid__label">Grid</p>
                             </a>-->
-                            <!--<button class="button button--hidden">
+							<!--<button class="button button--hidden">
                                 <span class="button__content button__content--start">听这首歌</span>
                                 <span class="button__content button__content--listen"><span class="icon icon--microphone"></span></span>
                             </button>-->
-                            <!--<a href="javascript:;" class="weui-grid">
+							<!--<a href="javascript:;" class="weui-grid">
                                 <div class="weui-grid__icon">
                                     <img src="./images/icon_tabbar.png" alt="">
                                 </div>
@@ -436,30 +448,30 @@
                                 <p class="weui-grid__label">Grid</p>
                             </a>-->
 
-                        </div>
+						</div>
 
-                    </div>
-                    <div class="weui-actionsheet__action">
-                        <div class="weui-actionsheet__cell" @click="isshoworder=false">取消</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script type="text/html" id="warnmsg">
-        <li style="text-align:center;padding:10px 0 ">
+					</div>
+					<div class="weui-actionsheet__action">
+						<div class="weui-actionsheet__cell" @click="isshoworder=false">取消</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/html" id="warnmsg">
+		<li style="text-align:center;padding:10px 0 ">
             <span onclick="trashmsg()" style="position:relative;font-size:12px;color:blue;background-color:lightgray;padding:3px 10px;border-radius:999em">被騷擾了嗎?快速舉報!</span>
 
         </li>
     </script>
-    <script type="text/html" id="timemsg">
-        <li style="text-align:center;padding:10px 0 ">
+	<script type="text/html" id="timemsg">
+		<li style="text-align:center;padding:10px 0 ">
             <span style="position:relative;font-size:12px;color:dimgray;background-color:lightgray;padding:3px 10px;border-radius:999em"></span>
 
         </li>
     </script>
-    <script type="text/html" id="othermsg">
-        <li>
+	<script type="text/html" id="othermsg">
+		<li>
             <div class="weui-media-box weui-media-box_appmsg weui-media-box_text" style="position:relative;bottom:0;padding:3px">
                 <div class="weui-media-box__hd" style="position: absolute;left: 0;height:100%">
                     <!--<img class="weui-media-box__thumb" style="border-radius:0.5em;" src="{{sheinfo.Img}}" alt="">-->
@@ -476,8 +488,8 @@
             </div>
         </li>
     </script>
-    <script type="text/html" id="mymsg">
-        <li>
+	<script type="text/html" id="mymsg">
+		<li>
             <div class="weui-media-box weui-media-box_appmsg weui-media-box_text" style="padding:3px;flex-wrap: wrap;">
 
                 <div class="weui-media-box__bd" style="padding-right:60px">
@@ -496,10 +508,10 @@
 
         </li>
     </script>
-    <script>
+	<script>
 
 
-        $('#result').on('touchstart', '.msgcontent', function (e,f,g) {
+		$('#result').on('touchstart', '.msgcontent', function (e,f,g) {
             var self = this;
             this.CountDelay = setTimeout(function () {
               //  alert(self.CountDelay)
@@ -1151,6 +1163,7 @@
                                 $('#orderlistp').hide()
                             },
                             cancelorder: function () {
+								console.log('cancelorder');
                                 var cw;
                                 if (JSON.parse(Server_Token).Status == "管理員") {
                                     cw = plus.webview.create(debugurl + "Partition/CancelOrder.html", "callcr", { "cachemode": "noCache", "background": "transparent", "popGesture": "close", "height": "100%", "margin": "auto", "width": "100%" }, { orderid: this.order.Order_ID });
@@ -1263,20 +1276,31 @@
                                     });
                             },
                             nextstep: function () {
+								console.log('nextstep, this.order.Order_Status:', this.order.Order_Status);
+								
                                 var self = this;
-                                plus.nativeUI.showWaiting(this.btntext + "中");
+                                //plus.nativeUI.showWaiting(this.btntext + "中");
                                 if (this.order.Order_Status == 8) {
                                     plus.nativeUI.closeWaiting();
-                                }
-                                else if (this.order.Order_Status == 4) {
-                                    
+                                } else if (this.order.Order_Status == 2) {
+								
+									var rateUserView = plus.webview.create('Partition/RateUser.html', "callr", { "cachemode": "noCache", "background": "transparent", "popGesture": "close", "height": "100%", "margin": "auto", "width": "100%" }, { orderid: this.order.Order_ID });
+									rateUserView.addEventListener('close', function (e) {
+									     // plus.nativeUI.closeWaiting();
+									}, false);
+									plus.webview.currentWebview().append(rateUserView);
+								} else if (this.order.Order_Status == 4) {
+                                
+									
                                     if (self.order.isFree == false) {
+										
                                         var cw;
                                         if (JSON.parse(Server_Token).Status == "管理員") {
                                             cw = plus.webview.create(debugurl + "Partition/RateOrder.html", "callr", { "cachemode": "noCache", "background": "transparent", "popGesture": "close", "height": "100%", "margin": "auto", "width": "100%" }, { orderid: this.order.Order_ID });
                                         }
                                         else {
                                             cw = plus.webview.create('Partition/RateOrder.html', "callr", { "cachemode": "noCache", "background": "transparent", "popGesture": "close", "height": "100%", "margin": "auto", "width": "100%" }, { orderid: this.order.Order_ID });
+											
                                         }
                                         cw.addEventListener('close', function (e) {
                                             // plus.nativeUI.closeWaiting();
@@ -1343,14 +1367,16 @@
                             }
                         },
                         mounted: function () {
-                            this.order = (OrderControl.orderlist[0] || null)
+							console.log('mounted');
+                            this.order = (OrderControl.orderlist[0] || null);
+							console.log('order', this.order);
                             $(".chgo").on("click", function () {
                                 var d = parseInt($(this).attr("bidx"));
                                 OrderControl.changeorder(d)
                             })
                         },
                         updated: function () {
-
+							console.log('updated. order:', this.order);
                             if (this.order) {
 
                                 if (this.order.Order_Status == 1) {
@@ -1566,8 +1592,8 @@
 
         $(".page.layers").css("overflow","hidden")
     </script>
-    <script type="text/html" id="voicetemp">
-        <div id="#id" @click="playaudio" style="height:100%;color:black;width:100%;border-radius:999em;overflow:hidden">
+	<script type="text/html" id="voicetemp">
+		<div id="#id" @click="playaudio" style="height:100%;color:black;width:100%;border-radius:999em;overflow:hidden">
 
             <div style="width:100%;height:100%;padding:5px 15px;" v-bind:style="{'background':'linear-gradient(to right, rgba(0,0,0,.3) '+(currentTime/duration*100)+'%,  rgba(0,0,0,0) '+(((currentTime/duration))*100)+'%)'}">
                 <i class=" fa-1x text-inverse" v-bind:class='{"ion-ios-play":(!isplaying),"ion-ios-pause":isplaying}' style="margin:15px 0 auto"></i>
@@ -1578,275 +1604,297 @@
         </div>
 
     </script>
-    <script type="text/javascript">
-        function createUpload(url, cb) {
-            msgvue.isshoworder2 = false;
-            var wa = plus.nativeUI.showWaiting();
-            //alert(ajaxurl + "UpdateTitleImg");
-            var task = plus.uploader.createUpload(ajaxurl + "UploadMsg", {
-                method: "POST", timeout: 0, blocksize: 0
-            },
-                function (t, status) {
-                    //alert(t.responseText);
-                    var r = JSON.parse(t.responseText);
-                    if (r.result_status) {
-                        var elm = $("<audio src='" + r.result_content + "'></audio>")
+	<script type="text/javascript">
+		function createUpload(url, cb) {
+			msgvue.isshoworder2 = false;
+			var wa = plus.nativeUI.showWaiting();
+			//alert(ajaxurl + "UpdateTitleImg");
+			var task = plus.uploader.createUpload(ajaxurl + "UploadMsg", {
+					method: "POST",
+					timeout: 0,
+					blocksize: 0
+				},
+				function(t, status) {
+					//alert(t.responseText);
+					var r = JSON.parse(t.responseText);
+					if (r.result_status) {
+						var elm = $("<audio src='" + r.result_content + "'></audio>")
 
-                        $("#audiodiv").empty()
-                        $("#audiodiv").append(elm);
-                        elm.on("loadedmetadata", function () {
+						$("#audiodiv").empty()
+						$("#audiodiv").append(elm);
+						elm.on("loadedmetadata", function() {
 
-                           // console.dir(this.duration)
-                            var tl =Math.floor(this.duration / (1))
-                            wa.close();
-                            var $html = $($("#mymsg").html());
-                            var msg = "[msgvoice:" + r.result_content + ":" + tl + "]";
-                            $html.find(".msgcontent").html(msg);
-                            if (datanowstring != moment().format('L')) {
-                                datanowstring = moment().format('L');
-                                var $timehtml = $($("#timemsg").html());
-                                $timehtml.find("span").text(datanowstring);
-                                $("#result").append($timehtml);
-                            }
-                            $html.find(".TimeShow").text(moment().format('LT'));
-                            getimdata("sendmsg_new", { targetid: "{{sheinfo.Member_ID}}", msg: msg }, function (ee) { })
-                            //bim.sendmsg("{{sheinfo.Member_ID}}", msg, function () { })
-                            var chkst = $html.find(".msgcontent").html();
-                            $html.find(".msgcontent")[0].SourseText = $html.find(".msgcontent").html();
-                            if (chkst.indexOf("[msgimg:") == 0) {
-                                var url = chkst.replace("[msgimg:", "").split("]")[0];
-                                var newhtml = '<img src="' + url + '" style="width:auto;height:auto;max-width:150px;max-height:300px;object-fit:scale-down" onclick="showimg(\'' + url + '\')"  />';
-                                $html.find(".msgcontent").html(newhtml);
-                                $("#result").append($html);
-                            } else if (chkst.indexOf("[msgvideo:") == 0) {
-                                //<video v-if="JSON.parse(item.ImgList).Video!=''" binfo="newstitleVI" style="position:relative;top:0;left:50%;transform:translateX(-50%);width:100%;height:100%;max-height:200px;z-index:2" :src="JSON.parse(item.ImgList).Video" :poster="JSON.parse(item.ImgList).GIF" preload="metadata" loop muted playsinline webkit-playsinline />
-                                var url = chkst.replace("[msgvideo:", "").split("]")[0];
-                                var newhtml = '<video src="' + url + 'mp4" poster="' + url + 'jpg" style="width:150px;height:100px;max-width:150px;max-height:300px;object-fit:scale-down" preload="none"   />';
-                                newhtml += '<a style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)" onclick="showimg(\'' + url + 'mp4\')"><i class="fa fa-2x fa-play" style="color:white"></a>'
-                                $html.find(".msgcontent").html(newhtml);
-                                $("#result").append($html);
-                            } else if (chkst.indexOf("[msgvoice:") == 0) {
-                                var newhtml = "";
-                                var url = chkst.replace("[msgvoice:", "").split("]")[0].split(":")[1];
-                                var dur = chkst.replace("[msgvoice:", "").split("]")[0].split(":")[2];
-                                var name = "V_" + url.split("/")[url.split("/").length - 1].split(".")[0];
-                                var $voicehtml = $("#voicetemp").html();
-                                $voicehtml = $voicehtml.replace("#id", name);
-                                $html.find(".msgcontent").css("padding", "0px")
-                                $html.find(".msgcontent").html($voicehtml);
-                                $("#result").append($html);
-                                initvoice(name, url, dur)
-                            } else {
+							// console.dir(this.duration)
+							var tl = Math.floor(this.duration / (1))
+							wa.close();
+							var $html = $($("#mymsg").html());
+							var msg = "[msgvoice:" + r.result_content + ":" + tl + "]";
+							$html.find(".msgcontent").html(msg);
+							if (datanowstring != moment().format('L')) {
+								datanowstring = moment().format('L');
+								var $timehtml = $($("#timemsg").html());
+								$timehtml.find("span").text(datanowstring);
+								$("#result").append($timehtml);
+							}
+							$html.find(".TimeShow").text(moment().format('LT'));
+							getimdata("sendmsg_new", {
+								targetid: "{{sheinfo.Member_ID}}",
+								msg: msg
+							}, function(ee) {})
+							//bim.sendmsg("{{sheinfo.Member_ID}}", msg, function () { })
+							var chkst = $html.find(".msgcontent").html();
+							$html.find(".msgcontent")[0].SourseText = $html.find(".msgcontent").html();
+							if (chkst.indexOf("[msgimg:") == 0) {
+								var url = chkst.replace("[msgimg:", "").split("]")[0];
+								var newhtml = '<img src="' + url +
+									'" style="width:auto;height:auto;max-width:150px;max-height:300px;object-fit:scale-down" onclick="showimg(\'' +
+									url + '\')"  />';
+								$html.find(".msgcontent").html(newhtml);
+								$("#result").append($html);
+							} else if (chkst.indexOf("[msgvideo:") == 0) {
+								//<video v-if="JSON.parse(item.ImgList).Video!=''" binfo="newstitleVI" style="position:relative;top:0;left:50%;transform:translateX(-50%);width:100%;height:100%;max-height:200px;z-index:2" :src="JSON.parse(item.ImgList).Video" :poster="JSON.parse(item.ImgList).GIF" preload="metadata" loop muted playsinline webkit-playsinline />
+								var url = chkst.replace("[msgvideo:", "").split("]")[0];
+								var newhtml = '<video src="' + url + 'mp4" poster="' + url +
+									'jpg" style="width:150px;height:100px;max-width:150px;max-height:300px;object-fit:scale-down" preload="none"   />';
+								newhtml +=
+									'<a style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)" onclick="showimg(\'' + url +
+									'mp4\')"><i class="fa fa-2x fa-play" style="color:white"></a>'
+								$html.find(".msgcontent").html(newhtml);
+								$("#result").append($html);
+							} else if (chkst.indexOf("[msgvoice:") == 0) {
+								var newhtml = "";
+								var url = chkst.replace("[msgvoice:", "").split("]")[0].split(":")[1];
+								var dur = chkst.replace("[msgvoice:", "").split("]")[0].split(":")[2];
+								var name = "V_" + url.split("/")[url.split("/").length - 1].split(".")[0];
+								var $voicehtml = $("#voicetemp").html();
+								$voicehtml = $voicehtml.replace("#id", name);
+								$html.find(".msgcontent").css("padding", "0px")
+								$html.find(".msgcontent").html($voicehtml);
+								$("#result").append($html);
+								initvoice(name, url, dur)
+							} else {
 
-                                $("#result").append($html);
-                            }
-
-
-                            $("#dom_id").scrollTop($("#dom_id")[0].scrollHeight);
-                        });
-
-
-
-                        //self.data.Img = r.result_content + "?" + Math.random();
-                        //plus.webview.all()[plus.webview.all().length - 2].loadURL("index.html?p=Setting");
-                    }
-                    else {
-                        alert(r.result_message);
-                        wa.close();
-                    }
-                }
-            );
-            task.addFile(url, { key: "file" });
-            task.addData("type", "voice");
-            task.setRequestHeader("Server_Token", encodeURIComponent(Server_Token))
-            task.start();
-        }
-
-        var r = null, t = null, ri = null, rt = null, p = null;
-        var entry = null;
-        var isstart = false;
-        var isplaying = false;
-        function stopRecord() {
-           // console.dir("RECORDStop")
-            isstart = false;
-            if (r != null) {
-              //  clearTimeout(t);
-                r.stop();
-            }
-
-        }
-        function startRecord(ele) {
-            //  console.dir("RECORD")
-            isstart = true;
-            //$(ele).find("i").show();
-            r = plus.audio.getRecorder();
-            if (r == null) {
-                alert('錄音實例化失敗');
-                return;
-            }
-            var forma = "";
-
-            if (plus.os.name == "Android")
-                forma = "amr";
-            else
-                forma = "aac";
-
-            r.record({ filename: '_doc/audio/', format: forma, }, function (p) {
-               // $(ele).find("i").hide();
-               // $(ele).find("span").text("");
-                createUpload(p, function (t) {
-
-                });
-            }, function (e) {
-                alert('錄音失敗：' + e.message);
-            });
-            //t = setTimeout(function () { stopRecord(); }, 30000);
-
-        }
+								$("#result").append($html);
+							}
 
 
-        var btnElem = document.getElementById("messageBtn");//获取ID
-        var posStart = 0;//初始化起点坐标
-        var posEnd = 0;//初始化终点坐标
-        var posMove = 0;//初始化滑动坐标
-       // console.log(screen);
-        function initEvent() {
-            btnElem.addEventListener("touchstart", function (event) {
-                event.preventDefault();//阻止浏览器默认行为
-                posStart = 0;
-                posStart = event.touches[0].pageY;//获取起点坐标
-               // btnElem.value = '松开 结束';
-                $(btnElem).addClass("button--animate");
-                $(btnElem).find("i").css("color","red");
-                //button--animate
-                startRecord();
-               // console.log("start");
-              //  console.log(posStart + '---------开始坐标');
-            });
-            //btnElem.addEventListener("touchmove", function (event) {
-            //    event.preventDefault();//阻止浏览器默认行为
-            //    posMove = 0;
-            //    posMove = event.targetTouches[0].pageY;//获取滑动实时坐标
-            //    if (posStart - posMove < 500) {
-            //        btnElem.value = '松开 结束';
-            //    } else {
-            //        btnElem.value = '松开手指，取消发送';
-            //    }
-            //    /*console.log(posStart+'---------');
-            //    console.log(posMove+'+++++++++');*/
-            //});
-            btnElem.addEventListener("touchend", function (event) {
-                event.preventDefault();
-                posEnd = 0;
-                posEnd = event.changedTouches[0].pageY;//获取终点坐标
-               // btnElem.value = '按住 说话';
-                $(btnElem).removeClass("button--animate");
-                $(btnElem).find("i").css("color", "dimgray");
-              //  console.log("End");
-              //  console.log(posEnd + '---------结束坐标');
-                //if (posStart - posEnd < 500) {
-                //    console.log("发送成功");
-                //    save();
-                //} else {
-                //    console.log("取消发送");
-                //    console.log("Cancel");
-                //};
-                stopRecord();
-            });
-        };
-        initEvent();
-        function initvoice(id,url,dur) {
-            new Vue({
-                el: "#"+id,
-                data: {
-                    orga: "https://"+url,
-                    mins: 0,
-                    seconds: 0,
-                    isplaying: false,
-                    currentTime: 0.0,
-                    audioobj: null,
-                    duration: 0,
-                    invaupl: 0
-                },
-                created: function () {
-
-                    var tl = parseFloat(dur) ;
-                    this.duration = parseFloat(dur) ;
-                    this.mins = Math.floor(tl / (60));
-                    tl -= this.mins * (60);
-                    this.seconds = Math.floor(tl / (1));
-                    tl -= this.seconds * (1);
-                    this.currentTime = 0.0;
-                   // console.dir("this.seconds")
-                   // console.dir(parseInt(dur))
-                },
-                methods: {
-                    playaudio: function () {
-                        var self = this;
-                        if ((this.orga || "") != "") {
-                            var elm = $("<audio src='" + this.orga + "'></audio>")
-
-                            $("#audiodiv").empty()
-                            $("#audiodiv").append(elm);
-
-                            elm.on("loadedmetadata", function () {
-                              //  console.dir("canplay")
-                                self.audioobj = this;
-                              //  console.dir("this.duration")
-                              //  console.dir(this.duration)
-                                var tl = this.duration;
-                                self.duration = this.duration;
-                                self.mins = Math.floor(tl / (60));
-                                tl -= self.mins * (60);
-                                self.seconds = Math.floor(tl / (1));
-                                tl -= self.seconds * (1);
-                                self.currentTime = this.currentTime;
-
-                                if (self.audioobj) {
+							$("#dom_id").scrollTop($("#dom_id")[0].scrollHeight);
+						});
 
 
-                                    self.isplaying = !self.isplaying;
-                                 //   console.dir(self.isplaying)
-                                    if (self.isplaying) {
-                                        self.audioobj.play();
-                                        self.invaupl = setInterval(function () {
-                                            var tl = self.audioobj.duration - self.audioobj.currentTime;
-                                        //    console.dir(self.audioobj.currentTime)
-                                            self.mins = Math.floor(tl / (60));
-                                            tl -= self.mins * (60);
-                                            self.seconds = Math.floor(tl / (1));
-                                            tl -= self.seconds * (1);
-                                            self.currentTime = self.audioobj.currentTime;
 
-                                        }, 50)
-                                    } else {
-                                        self.audioobj.pause();
-                                        clearInterval(self.invaupl);
-                                    }
-                                }
-                            });
-                            elm.on("ended", function () {
+						//self.data.Img = r.result_content + "?" + Math.random();
+						//plus.webview.all()[plus.webview.all().length - 2].loadURL("index.html?p=Setting");
+					} else {
+						alert(r.result_message);
+						wa.close();
+					}
+				}
+			);
+			task.addFile(url, {
+				key: "file"
+			});
+			task.addData("type", "voice");
+			task.setRequestHeader("Server_Token", encodeURIComponent(Server_Token))
+			task.start();
+		}
 
-                                this.currentTime = 0;
-                            });
+		var r = null,
+			t = null,
+			ri = null,
+			rt = null,
+			p = null;
+		var entry = null;
+		var isstart = false;
+		var isplaying = false;
 
-                        }
+		function stopRecord() {
+			// console.dir("RECORDStop")
+			isstart = false;
+			if (r != null) {
+				//  clearTimeout(t);
+				r.stop();
+			}
+
+		}
+
+		function startRecord(ele) {
+			//  console.dir("RECORD")
+			isstart = true;
+			//$(ele).find("i").show();
+			r = plus.audio.getRecorder();
+			if (r == null) {
+				alert('錄音實例化失敗');
+				return;
+			}
+			var forma = "";
+
+			if (plus.os.name == "Android")
+				forma = "amr";
+			else
+				forma = "aac";
+
+			r.record({
+				filename: '_doc/audio/',
+				format: forma,
+			}, function(p) {
+				// $(ele).find("i").hide();
+				// $(ele).find("span").text("");
+				console.log(p);
+				createUpload(p, function(t) {
+
+				});
+			}, function(e) {
+				alert('錄音失敗：' + e.message);
+			});
+			//t = setTimeout(function () { stopRecord(); }, 30000);
+
+		}
 
 
-                    },
-                    padding1: function (num, length) {
-                        for (var len = (num + "").length; len < length; len = num.length) {
-                            num = "0" + num;
-                        }
-                        return num;
-                    }
-                },
-            })
-        }
+		var btnElem = document.getElementById("messageBtn"); //获取ID
+		var posStart = 0; //初始化起点坐标
+		var posEnd = 0; //初始化终点坐标
+		var posMove = 0; //初始化滑动坐标
+		// console.log(screen);
+		function initEvent() {
+			btnElem.addEventListener("touchstart", function(event) {
+				event.preventDefault(); //阻止浏览器默认行为
+				posStart = 0;
+				posStart = event.touches[0].pageY; //获取起点坐标
+				// btnElem.value = '松开 结束';
+				$(btnElem).addClass("button--animate");
+				$(btnElem).find("i").css("color", "red");
+				//button--animate
+				startRecord();
+				// console.log("start");
+				//  console.log(posStart + '---------开始坐标');
+			});
+			//btnElem.addEventListener("touchmove", function (event) {
+			//    event.preventDefault();//阻止浏览器默认行为
+			//    posMove = 0;
+			//    posMove = event.targetTouches[0].pageY;//获取滑动实时坐标
+			//    if (posStart - posMove < 500) {
+			//        btnElem.value = '松开 结束';
+			//    } else {
+			//        btnElem.value = '松开手指，取消发送';
+			//    }
+			//    /*console.log(posStart+'---------');
+			//    console.log(posMove+'+++++++++');*/
+			//});
+			btnElem.addEventListener("touchend", function(event) {
+				event.preventDefault();
+				posEnd = 0;
+				posEnd = event.changedTouches[0].pageY; //获取终点坐标
+				// btnElem.value = '按住 说话';
+				$(btnElem).removeClass("button--animate");
+				$(btnElem).find("i").css("color", "dimgray");
+				//  console.log("End");
+				//  console.log(posEnd + '---------结束坐标');
+				//if (posStart - posEnd < 500) {
+				//    console.log("发送成功");
+				//    save();
+				//} else {
+				//    console.log("取消发送");
+				//    console.log("Cancel");
+				//};
+				stopRecord();
+			});
+		};
+		initEvent();
 
-        plus.webview.currentWebview().addEventListener('close', function (e) {
+		function initvoice(id, url, dur) {
+			new Vue({
+				el: "#" + id,
+				data: {
+					orga: "https://" + url,
+					mins: 0,
+					seconds: 0,
+					isplaying: false,
+					currentTime: 0.0,
+					audioobj: null,
+					duration: 0,
+					invaupl: 0
+				},
+				created: function() {
 
-            plus.webview.getLaunchWebview().evalJS("reloadmsgbox()");
-        }, false);
-    </script>
+					var tl = parseFloat(dur);
+					this.duration = parseFloat(dur);
+					this.mins = Math.floor(tl / (60));
+					tl -= this.mins * (60);
+					this.seconds = Math.floor(tl / (1));
+					tl -= this.seconds * (1);
+					this.currentTime = 0.0;
+					// console.dir("this.seconds")
+					// console.dir(parseInt(dur))
+				},
+				methods: {
+					playaudio: function() {
+						var self = this;
+						if ((this.orga || "") != "") {
+							var elm = $("<audio src='" + this.orga + "'></audio>")
+
+							$("#audiodiv").empty()
+							$("#audiodiv").append(elm);
+
+							elm.on("loadedmetadata", function() {
+								//  console.dir("canplay")
+								self.audioobj = this;
+								//  console.dir("this.duration")
+								//  console.dir(this.duration)
+								var tl = this.duration;
+								self.duration = this.duration;
+								self.mins = Math.floor(tl / (60));
+								tl -= self.mins * (60);
+								self.seconds = Math.floor(tl / (1));
+								tl -= self.seconds * (1);
+								self.currentTime = this.currentTime;
+
+								if (self.audioobj) {
+
+
+									self.isplaying = !self.isplaying;
+									//   console.dir(self.isplaying)
+									if (self.isplaying) {
+										self.audioobj.play();
+										self.invaupl = setInterval(function() {
+											var tl = self.audioobj.duration - self.audioobj.currentTime;
+											//    console.dir(self.audioobj.currentTime)
+											self.mins = Math.floor(tl / (60));
+											tl -= self.mins * (60);
+											self.seconds = Math.floor(tl / (1));
+											tl -= self.seconds * (1);
+											self.currentTime = self.audioobj.currentTime;
+
+										}, 50)
+									} else {
+										self.audioobj.pause();
+										clearInterval(self.invaupl);
+									}
+								}
+							});
+							elm.on("ended", function() {
+
+								this.currentTime = 0;
+							});
+
+						}
+
+
+					},
+					padding1: function(num, length) {
+						for (var len = (num + "").length; len < length; len = num.length) {
+							num = "0" + num;
+						}
+						return num;
+					}
+				},
+			})
+		}
+
+		plus.webview.currentWebview().addEventListener('close', function(e) {
+
+			plus.webview.getLaunchWebview().evalJS("reloadmsgbox()");
+		}, false);
+	</script>
 </div>

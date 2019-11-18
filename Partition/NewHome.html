@@ -265,7 +265,10 @@
             },
             methods: {
                 getAvatar: function (item) {
-                    return 'background-image: url("' + item.Img +'")';
+					var path = 'img/avatars/1.jpg';
+					if(item.Img) path = item.Img; 
+					
+					return 'background-image: url("' + path +'")';
                 },
                 paidan: function () {
                     var nviewobj = {};
