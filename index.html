@@ -1309,13 +1309,16 @@
             // console.dir("a")
             //alert(7);
             // console.dir(plus.android.importClass('tw.cactus.park.core.Bridge'));
-            Bridge.getData("APIUrl", function (apiurl) {
+            
+			
+			
+			Bridge.getData("APIUrl", function (apiurl) {
                 // alert(apiurl);
                 ajaxurl = apiurl;
                 Bridge.getData("Server_Token",
                     function (tok) {
                         console.dir("tok")
-                        console.dir(tok)
+                        console.dir(tok);
                         if (tok) {
                             var odata = JSON.parse(tok);
                             var data = {};
@@ -1465,13 +1468,16 @@
                                     }
                                 }
                             })
-                            console.dir("tok2")
+                            console.dir("tok2");
+							console.log('data', data);
                             $.ajax({
                                 url: ajaxurl + "Login",
                                 type: 'post',
                                 data: data,
                                 timeout: 30000,
                                 success: function (r) {
+									console.log('response', r);
+									return;
                                     if (r.result_status) {
                                         if ((r.result_message || "") != "") {
                                             alert(r.result_message);
@@ -1722,31 +1728,7 @@
 
 
         }, false);
-        //document.addEventListener("jpush.receiveMessage", function (msg) {
-
-        //    if (msg.arguments.type == "click") {
-        //        //console.dir(msg.arguments.payload.PageMoveTo);
-        //        var str = msg.arguments.payload.PageMoveTo;
-        //        var page = str.split("|")[0];
-        //        if (page == "msg") {
-        //            var op = plus.webview.getWebviewById("MessagePage");
-        //            if (op)
-        //                op.close();
-        //            var html = "<a onclick='hovernav(this,\"" + str.split("|")[1] + "\")' btag=\"MessagePage\"></a>"
-        //            //console.dir(html)
-        //            $(html).click();
-        //        }
-        //    }
-        //    if (msg.arguments.type == "receive") {
-        //        //console.dir(msg.arguments.payload.PageMoveTo);
-        //        var str = msg.arguments.payload.PageMoveTo;
-        //        var page = str.split("|")[0];
-        //        if (page == "order") {
-
-        //        }
-        //    }
-
-        //}, false);
+        
         var OrderCountt = 0;
         var UnreadUpdatet = 0;
         var infodot = new Vue({
@@ -1899,8 +1881,6 @@
         }
         $(function () {
             $ready = true;
-            //alert("$ready")
-
 
             indexready();
 

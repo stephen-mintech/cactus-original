@@ -474,10 +474,10 @@
 				onSubmit: function() {
 					console.log('onSubmit')
 					this.clearError();
-					if (!this.model.Content) {
-						this.addError('Content', '內容不可為空');
-						return;
-					}
+					// if (!this.model.Content) {
+					// 	this.addError('Content', '內容不可為空');
+					// 	return;
+					// }
 					var btnSubmit = $("#btnSubmit");
 					btnSubmit.attr("onclick", false);
 

@@ -1,4 +1,4 @@
-﻿var BridgeClass = function () {
+var BridgeClass = function () {
     Object.defineProperties(this, {
         getSystem: {
             writable: false, value: function () { return _getSystem(); }
@@ -171,6 +171,7 @@
         _bridge.getPaymentToken(productName, price);
     }
     var _signOut = function () {
+		
         if ((Server_Token||"") != "")
            _deleteJPushAlias(JSON.parse(Server_Token).Member_ID.replace(/\-/g, ""));
         Bridge.setData("Server_Token", "", function () {
@@ -179,6 +180,13 @@
             var ws = plus.webview.currentWebview();
             ws.loadURL("index.html?" + Math.random());
         });
+		
+		plus.webview.all().forEach(function (view){
+			if(view.id == plus.runtime.appid) view.reload();
+			else view.close();
+		});
+		
+		console.log('_signOut');
       
     }
     var paymentTokenCallbackCB;

@@ -126,12 +126,11 @@
     </div>
     <script>
         function guestLogin() {
-            
             plus.nativeUI.showWaiting("驗證中...");
             $.ajax({
-                url: ajaxurl + "thirdLogin",
+                url: ajaxurl + "GuestLogin",
                 type: 'post',
-                data: { from: 'GUEST', key: "" },
+                data: { uuid: plus.device.uuid },
                 timeout: 30000,
                 success: function (r) {
                     if (r.result_status) {
@@ -300,18 +299,18 @@
             $(".weui-navbar").hide();
             Bridge.settokenCallback(function (from, key) {
                 plus.nativeUI.showWaiting("驗證中...");
-                console.dir("from:" + from)
-                console.dir("key:" + key)
+                // console.dir("from:" + from);
+                // console.dir("key:" + key);
+                // console.dir("uuid:" + plus.device.uuid);
                 $.ajax({
                     url: ajaxurl + "thirdLogin",
                     type: 'post',
-                    data: { from: from, key: key },
+                    data: { from: from, key: key, uuid: plus.device.uuid },
                     timeout: 30000,
                     success: function (r) {
+                        
+                        Server_Token = JSON.stringify(r.result_content);
                         if (r.result_status) {
-
-                            Server_Token = JSON.stringify(r.result_content);
-
                             Bridge.setData("Server_Token", Server_Token, function () {
                                 plus.nativeUI.closeWaiting();
                                 var ws = plus.webview.currentWebview();
