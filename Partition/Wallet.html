@@ -235,12 +235,13 @@
         new Vue({
             el: '#wallet',
             data: {
+                user: null,
 				loginConfirmed: false,
                 cpcount: 0
             },
             methods: {
 				isGuest: function () {
-					return true;
+                    return this.user.From.toUpperCase() == 'GUEST';
 				},
                 chgpoint: function () {
                     var self = this;
@@ -259,7 +260,7 @@
                     }, "", "請輸入要轉換的點數", ["確定", "取消"]);
                 },
                 info: function () {
-                    //plus.nativeUI.alert("紅利是從官方活動獲取，或是從推薦分紅而來。玩家若是擁有紅利，可以在消費過中進行折抵，折抵上限為該筆交易金額的20%。\r\n\r\n陪玩師若擁有紅利，可以連同收益在隔月進行提現，紅利與新台幣的兌換比例為1:1。", function () {
+                    //plus.nativeUI.alert("紅利是從官方活動獲取，或是從推薦分紅而來。玩家若是擁有紅利，可以在消費過中進行折抵，折抵上限為該筆交易金額的20%。\r\n\r\n傾聽師若擁有紅利，可以連同收益在隔月進行提現，紅利與新台幣的兌換比例為1:1。", function () {
 
                     //    }, "", "我知道了");
                     if (plus.os.name == "iOS") {
@@ -274,7 +275,6 @@
                  
                 },
 				onPayClicked: function () {
-					console.log('onPayClicked');
 					console.log('plus.os.name', plus.os.name);
 					if (plus.os.name == "Android") {
 					
@@ -303,6 +303,9 @@
 				}
             },
             mounted() {
+                var token = plus.storage.getItem("Server_Token");
+                this.user =JSON.parse(token);
+
                 var self = this;
                 $.ajax({
                     url: ajaxurl + "Coupon",
@@ -318,9 +321,7 @@
                     }
                 });
 
-                //var Server_Token = plus.storage.getItem("Server_Token");
-                // var user = JSON.stringify(Server_Token);
-                console.log('Server_Token', plus.storage.getItem("Server_Token"));
+                
 
             },
 

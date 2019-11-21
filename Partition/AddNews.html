@@ -100,7 +100,7 @@
 								</div>
 								<div v-if="selectedAttachment && selectedAttachment.type == 'voice'" :style="getAttachmentStyle(selectedAttachment)"
 								 class="weui-gallery__img" id="galleryImg">
-									
+
 								</div>
 								<div v-if="selectedAttachment && selectedAttachment.type == 'video'" class="weui-gallery__img" id="galleryImg">
 									<video :src="selectedAttachment.origin" style="max-width:100%;max-height:100%;height:auto;width:auto;position:relative;top:50%;left:50%;transform:translate(-50%,-50%)"
@@ -168,24 +168,25 @@
 														<video :src="item.origin" style="max-width:100%;max-height:100%;height:auto;width:auto;position:relative;top:50%;left:50%;transform:translate(-50%,-50%)"
 														 preload="auto" autoplay loop muted playsinline webkit-playsinline />
 													</li>
-													<li v-for="item in attachedVoices" :key="item.id" class="weui-uploader__file" >
+													<li v-for="item in attachedVoices" :key="item.id" class="weui-uploader__file">
 														<div class="msgcontent" style="float: right;position: relative; display: inline; word-break: break-word; color: #a6df9a;; padding: 0px; background-color:#F8F8F8; font-size: 14px; border-radius: 1em;">
 															<div style="height: 100%; width: 100%; border-radius: 999em; overflow: hidden;">
 																<div style="width: 100%; height: 100%; padding: 5px 15px;">
-																	<i v-if="voicePlay.status == 'play'" v-on:click="stopVoice(item)" class=" fa-1x text-inverse ion-ios-pause" style="margin: 15px 0px auto;"></i>
-																	<span v-else v-on:click="playVoice(item)" >
+																	<i v-if="voicePlay.status == 'play'" v-on:click="stopVoice(item)" class=" fa-1x text-inverse ion-ios-pause"
+																	 style="margin: 15px 0px auto;"></i>
+																	<span v-else v-on:click="playVoice(item)">
 																		<i class="fa-1x text-inverse ion-ios-play" style="margin: 15px 0px auto;"></i>
 																		<span style="position: relative; padding-left: 5px; margin: 15px 0px auto;border-left: 1px solid gray;">
 																			{{ getDurationText(item) }}
 																		</span>
 																	</span>
-																	
+
 																</div>
 															</div>
-															
+
 														</div>
 														<i v-show="voicePlay.status != 'play'" v-on:click="removeVoice(item.id)" class="fa fa-times-circle" style="color:gray;padding-left: 30px;padding-top: 20px;"></i>
-														
+
 													</li>
 												</ul>
 
@@ -346,7 +347,7 @@
 
 					if (type == 'image' || type == 'video') {
 						window.openGallery(type);
-					}else{
+					} else {
 						this.voiceRecording = true;
 					}
 
@@ -376,7 +377,7 @@
 					this.selectedAttachment = this.getAttachmentById(id);
 					$("#gallery").fadeIn(100);
 					$("#posthd").hide();
-					
+
 				},
 				cancelSelectAttachment: function() {
 					this.selectedAttachment = null;
@@ -385,10 +386,10 @@
 				},
 				removeVoice: function(id) {
 					this.removeAttachment(id);
-					if(this.player) this.stopVoice();
+					if (this.player) this.stopVoice();
 				},
 				removeAttachment: function(id) {
-					if(!id) id = this.selectedAttachment.id;
+					if (!id) id = this.selectedAttachment.id;
 					var idx = this.attachments.findIndex(function(item) {
 						return item.id == id;
 					});
@@ -402,46 +403,54 @@
 				},
 				playVoice: function(item) {
 					console.log('playVoice');
-					
+
 					this.player = plus.audio.createPlayer(item.origin);
-					
-					this.player.addEventListener("play", function(){
+
+					this.player.addEventListener("play", function() {
 						window.dispatchEvent(new CustomEvent('voice-play', {
-							'detail': { status: 'play' }
+							'detail': {
+								status: 'play'
+							}
 						}));
 					});
-					this.player.addEventListener("stop", function(){
+					this.player.addEventListener("stop", function() {
 						window.dispatchEvent(new CustomEvent('voice-play', {
-							'detail': { status: 'stop' }
+							'detail': {
+								status: 'stop'
+							}
 						}));
 					});
-					this.player.addEventListener("ended", function(){
-					    window.dispatchEvent(new CustomEvent('voice-play', {
-					    	'detail': { status: 'ended' }
-					    }));
-					});
-					this.player.addEventListener("error", function(){
+					this.player.addEventListener("ended", function() {
 						window.dispatchEvent(new CustomEvent('voice-play', {
-							'detail': { status: 'error' }
+							'detail': {
+								status: 'ended'
+							}
 						}));
 					});
-					
-					this.player.play(function () {
+					this.player.addEventListener("error", function() {
+						window.dispatchEvent(new CustomEvent('voice-play', {
+							'detail': {
+								status: 'error'
+							}
+						}));
+					});
+
+					this.player.play(function() {
 						console.log('play cb');
-					}, function (err) {
-						console.error("Audio play error: " + err.message); 
-					}); 
+					}, function(err) {
+						console.error("Audio play error: " + err.message);
+					});
 				},
 				voicePlayEvent: function(e) {
 					var status = e.detail.status;
 					this.voicePlay.status = status;
-					if(status == 'ended'){
+					if (status == 'ended') {
 						this.player.close();
 					}
 				},
 				stopVoice: function(item) {
 					this.player.stop();
-					this.player.close();				
+					this.player.close();
 				},
 				hasError: function(key) {
 					if (!this.errors.length) return false;
@@ -474,10 +483,16 @@
 				onSubmit: function() {
 					console.log('onSubmit')
 					this.clearError();
-					// if (!this.model.Content) {
-					// 	this.addError('Content', '內容不可為空');
-					// 	return;
-					// }
+					if (!this.attachments.length) {
+						if (!this.model.Content) {
+							this.addError('Content', '內容不可為空');
+							return;
+						}
+					}
+
+					if (!this.model.Content) this.model.Content = '';
+
+
 					var btnSubmit = $("#btnSubmit");
 					btnSubmit.attr("onclick", false);
 
@@ -499,7 +514,7 @@
 						var voiceItem = this.attachedVoices[i];
 						voiceList.push(voiceItem.origin);
 					}
-					
+
 					console.log('fileList', fileList);
 					console.log('fileGifList', fileGifList);
 					console.log('voiceList', voiceList);
@@ -580,7 +595,7 @@
 				var newdata = data.filter(e => e.isPass == true);
 				if (newdata.length == 0) {
 					plus.nativeUI.closeWaiting();
-					alert("只要成為陪玩師，就可以發佈動態喔~");
+					alert("只要成為傾聽師，就可以發佈動態喔~");
 					plus.webview.close(plus.webview.currentWebview())
 					return;
 				}
@@ -620,7 +635,7 @@
 										origin: origin,
 										path: path
 									};
-									
+
 									console.log('detail', detail);
 									window.dispatchEvent(new CustomEvent('add-photo', {
 										'detail': detail
@@ -712,7 +727,7 @@
 										origin: fs.root.toLocalURL() + "tmp.mp4",
 										path: fs.root.toLocalURL() + "tmp.jpg"
 									};
-									
+
 									console.log('detail', detail);
 									window.dispatchEvent(new CustomEvent('add-video', {
 										'detail': detail
@@ -800,7 +815,7 @@
 			}
 		}
 
-		
+
 
 		function onVoiceRecorded(path) {
 			var player = plus.audio.createPlayer(path);

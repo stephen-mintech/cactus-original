@@ -1279,14 +1279,14 @@
 								console.log('nextstep, this.order.Order_Status:', this.order.Order_Status);
 								
                                 var self = this;
-                                //plus.nativeUI.showWaiting(this.btntext + "中");
+                                plus.nativeUI.showWaiting(this.btntext + "中");
                                 if (this.order.Order_Status == 8) {
                                     plus.nativeUI.closeWaiting();
                                 } else if (this.order.Order_Status == 2) {
 								
 									var rateUserView = plus.webview.create('Partition/RateUser.html', "callr", { "cachemode": "noCache", "background": "transparent", "popGesture": "close", "height": "100%", "margin": "auto", "width": "100%" }, { orderid: this.order.Order_ID });
 									rateUserView.addEventListener('close', function (e) {
-									     // plus.nativeUI.closeWaiting();
+									     plus.nativeUI.closeWaiting();
 									}, false);
 									plus.webview.currentWebview().append(rateUserView);
 								} else if (this.order.Order_Status == 4) {
@@ -1303,7 +1303,7 @@
 											
                                         }
                                         cw.addEventListener('close', function (e) {
-                                            // plus.nativeUI.closeWaiting();
+                                           
                                         }, false);
                                         plus.webview.currentWebview().append(cw)
                                     } else {
@@ -1325,7 +1325,6 @@
                                                     alert("體驗單自動完成評價,評價完成");
 
                                                 }
-                                               // plus.webview.close(plus.webview.currentWebview())
                                             },
                                             error: function (jqXHR, textStatus, errorThrown) {
                                                 plus.nativeUI.closeWaiting();
