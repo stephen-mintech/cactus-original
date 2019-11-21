@@ -1289,6 +1289,7 @@
 									     plus.nativeUI.closeWaiting();
 									}, false);
 									plus.webview.currentWebview().append(rateUserView);
+
 								} else if (this.order.Order_Status == 4) {
                                 
 									
@@ -1305,7 +1306,7 @@
                                         cw.addEventListener('close', function (e) {
                                            
                                         }, false);
-                                        plus.webview.currentWebview().append(cw)
+                                        plus.webview.currentWebview().append(cw);
                                     } else {
                                        
                                         $.ajax({

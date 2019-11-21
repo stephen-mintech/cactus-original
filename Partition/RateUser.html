@@ -164,47 +164,37 @@
         function sendmsg() {
             var msg = $("textarea[name=Content]").val();
             var rate = getRating();
-            if (!(rate)) {
-                alert("請先選擇評分");
-                return;
-            }
-			
 			var share = '';
          
-            if (false) {
-           
-            } else {
-                plus.nativeUI.showWaiting("存檔中");
-                $.ajax({
-                    url: ajaxurl + "Order/" + plus.webview.currentWebview().orderid,
-                    type: 'patch',
-                    data: { rate: rate, msg: msg, share:share },
-                    headers: { "Server_Token": encodeURIComponent(Server_Token) },
-                    timeout: 30000,
-                    success: function (r) {
-                        if (!r.result_status) {
-                            plus.nativeUI.closeWaiting();
-                          
-                            alert(r.result_message);
-                        } else {
-                          
-                            plus.nativeUI.closeWaiting();
-                            alert("評價完成");
-                     
-                        }
-                        plus.webview.close(plus.webview.currentWebview())
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
+            plus.nativeUI.showWaiting("存檔中");
+            $.ajax({
+                url: ajaxurl + "Order/" + plus.webview.currentWebview().orderid,
+                type: 'patch',
+                data: { rate: rate, msg: msg, share:share },
+                headers: { "Server_Token": encodeURIComponent(Server_Token) },
+                timeout: 30000,
+                success: function (r) {
+                    if (!r.result_status) {
                         plus.nativeUI.closeWaiting();
                       
-                        alert(textStatus)
-                    },
-                    complete: function () {
-                     
+                        alert(r.result_message);
+                    } else {
+                      
+                        plus.nativeUI.closeWaiting();
+                        alert("評估完成");
+                 
                     }
-                });
-
-            }
+                    plus.webview.close(plus.webview.currentWebview())
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    plus.nativeUI.closeWaiting();
+                  
+                    alert(textStatus)
+                },
+                complete: function () {
+                 
+                }
+            });
         }
     </script>
 	
