@@ -213,12 +213,13 @@
 
 				<div class="weui-mask" id="" @click="voiceRecording=false" v-bind:style="{display:(voiceRecording?'block':'none')}">
 
-				</div>
-				<div id="voice-msg-btn" class="bdbg" v-bind:style="{display:(voiceRecording?'block':'none')}" style="text-align:center;z-index:1001;width:100px;height:100px;border-radius:999em;position:relative;top:50%;left:50%;transform:translate(-50%,-50%)">
-					<div class="button__content--listen">
-						<i class="ion-mic-a fa-4x text-inverse " style="color:dimgray"></i>
-					</div>
+				
+					<div id="voice-msg-btn" class="bdbg" v-bind:style="{display:(voiceRecording?'block':'none')}" style="text-align:center;z-index:1001;width:100px;height:100px;border-radius:999em;position:relative;top:50%;left:50%;transform:translate(-50%,-50%)">
+						<div class="button__content--listen">
+							<i class="ion-mic-a fa-4x text-inverse " style="color:dimgray"></i>
+						</div>
 
+					</div>
 				</div>
 			</div>
 		</div>
@@ -311,6 +312,7 @@
 					if (item.type == 'video') return 'background-image:url(' + item.path + ')';
 				},
 				getDurationText: function(item) {
+					console.log('getDurationText', item);
 					var minutes = item.minutes;
 					if (item.minutes < 10) minutes = '0' + minutes;
 
@@ -369,7 +371,6 @@
 				},
 				addVoice: function(e) {
 					this.voiceRecording = false;
-					console.log('addVoicessss');
 					console.log('addVoice', e.detail);
 					this.addAttachments(e.detail);
 				},
@@ -500,6 +501,7 @@
 					var fileList = [];
 					var fileGifList = [];
 					var voiceList = [];
+					
 
 					for (var i = 0; i < this.attachedImages.length; i++) {
 						var imageItem = this.attachedImages[i];
@@ -514,6 +516,7 @@
 						var voiceItem = this.attachedVoices[i];
 						voiceList.push(voiceItem.origin);
 					}
+					
 
 					console.log('fileList', fileList);
 					console.log('fileGifList', fileGifList);
@@ -551,7 +554,7 @@
 							} else {
 								$("#loadingToast").hide();
 								alert(r.result_message)
-								$(e).attr("onclick", "newpost(this)");
+								//$(e).attr("onclick", "newpost(this)");
 							}
 						}
 					);
@@ -576,7 +579,11 @@
 							key: "voice"
 						});
 					}
-
+					
+					var voiceDuration = '';
+					if(this.attachedVoices.length) voiceDuration = this.getDurationText(this.attachedVoices[0]);
+					
+					task.addData("Voice", voiceDuration);
 					task.addData("Content", this.model.Content);
 					task.addData("Kind", this.model.Kind);
 					task.setRequestHeader("Server_Token", encodeURIComponent(Server_Token))

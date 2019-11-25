@@ -87,7 +87,7 @@
 				<source src='' type='video/mp4'>
 			</video>
 
-			<img class="demoimg" style="width:auto;height:auto;max-width:100%;max-height:70%;display:none" alt="">
+			<img class="demoimg" src="img/covers/1.jpg" style="width:auto;height:auto;max-width:100%;max-height:70%;display:none" alt="">
 			<div class="swiper-container" style="">
 				<div class="swiper-wrapper">
 
@@ -134,94 +134,194 @@
 				</div>
 
 			</div>
-			<article id="article-content" class="weui-article" style="background-color:white">
+			<div v-if="article" id="main-content">
+				<article id="article-content" class="weui-article" style="background-color:white">
 
-				<p>{{data.Content}}</p>
-				
-				<div v-if="voiceUrl"  v-on:click="playVoice" style="word-break: break-word;color: white;width: 80px;height:30px;padding: 0px;background-color: rgb(166, 223, 154);font-size: 14px;border-radius: 1em;">
-					<div style="height: 100%; color: black; width: 100%; border-radius: 999em; overflow: hidden;">
-						<div style="width: 100%; height: 100%; padding: 5px 15px;">
-							<div v-if="voiceStatus == ''">
-								<i class=" fa-1x text-inverse ion-ios-play" style="margin: 15px 0px auto;"></i>
-								<span style="position: relative; padding-left: 2px; margin: 15px 0px auto;">
-								{{   getDurationText() }}
-								</span>
+					<p>
+						{{article.Content}}
+					</p>
+
+					<div v-if="article.voice" v-on:click="playVoice(article.voice)" style="word-break: break-word;color: white;width: 80px;height:30px;padding: 0px;background-color: rgb(166, 223, 154);font-size: 14px;border-radius: 1em;">
+						<div style="height: 100%; color: black; width: 100%; border-radius: 999em; overflow: hidden;">
+							<div style="width: 100%; height: 100%; padding: 5px 15px;">
+
+								<div v-if="isPlaying(article.voice)">
+									<i class=" fa-1x text-inverse ion-ios-pause" style="margin: 15px 0px auto;"></i>
+								</div>
+								<div v-else-if="isPaused(article.voice)">
+									<i class=" fa-1x text-inverse ion-ios-play" style="margin: 15px 0px auto;"></i>
+								</div>
+								<div v-else>
+									<i class=" fa-1x text-inverse ion-ios-play" style="margin: 15px 0px auto;"></i>
+									<span style="position: relative; padding-left: 2px; margin: 15px 0px auto;">
+										{{ article.voice.duration }}
+									</span>
+								</div>
+
+
 							</div>
-							<div v-if="voiceStatus == 'playing'">
-								<i class=" fa-1x text-inverse ion-ios-pause" style="margin: 15px 0px auto;"></i>
+						</div>
+					</div>
+
+					<p class="page__desc" style="min-height: 14px;padding-top: 10px;">
+						{{article.CreateTime}}
+					</p>
+					<div v-show="false" class="" id="postlist" style="white-space: nowrap;width: auto;list-style: none;display: flex;margin:10px 0px 20px 0px; padding: 10px 15px;">
+
+						<div style="width:100%;box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);margin-right:20px">
+
+							<a href="javascript:void(0);" onclick="hovernav(this,'id')" btag="Skill" class="weui-media-box weui-media-box_appmsg skillinfo">
+
+								<div class="weui-media-box__hd">
+									<img class="weui-media-box__thumb" style="position:relative;top:50%;left:50%;transform:translate(-50%,-50%);width:auto;height:auto;max-width:100%;max-height:100%;padding-right:5px"
+									 src="http://p5.img.cctvpic.com/nettv/newgame/2012/0821/20120821061520782.jpg" alt="">
+								</div>
+								<div class="weui-media-box__bd">
+									<h6 class="weui-media-box__title gamename">英雄聯盟</h6>
+									<p class="weui-media-box__desc gamefee" style="color:red">200元/1小時</p>
+								</div>
+								<div style="position:relative;right:0;display: flex;text-align:center;padding: 15px; border-left: 1px solid #E5E5E5;margin-left:10px">
+									<p class="weui-media-box__desc OrderTimes" style=" ">接單999次</p>
+
+								</div>
+							</a>
+
+
+						</div>
+					</div>
+				</article>
+
+				<div v-bind:style="{display:(voiceRecording?'block':'none')}" v-show="voiceRecording" style="position:absolute;top:0;width:100%;height:100%">
+
+					<div class="weui-mask" id="" @click="voiceRecording=false" v-bind:style="{display:(voiceRecording?'block':'none')}">
+
+						<div id="voice-msg-btn" class="bdbg" v-bind:style="{display:(voiceRecording?'block':'none')}" style="text-align:center;z-index:1099;width:100px;height:100px;border-radius:999em;position:relative;top:50%;left:50%;transform:translate(-50%,-50%)">
+							<div class="button__content--listen">
+								<i class="ion-mic-a fa-4x text-inverse " style="color:dimgray"></i>
 							</div>
-							<div v-if="voiceStatus == 'paused'">
-								<i class=" fa-1x text-inverse ion-ios-play" style="margin: 15px 0px auto;"></i>
-							</div>
-							
-							
+
 						</div>
 					</div>
 				</div>
 
-				<p class="page__desc" style="min-height: 14px;padding-top: 10px;">{{data.CreateTime}}</p>
-				<div class="" id="postlist" style="white-space: nowrap;width: auto;list-style: none;display: flex;margin:10px 0px 20px 0px; padding: 10px 15px;">
+				<div class="weui-panel weui-panel_access">
+					<div class="weui-panel__hd">
+						留言 {{ article.CommentCount }}
+					</div>
+					<div style="background-color: #EFEFF4;">
 
-					<div style="width:100%;box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);margin-right:20px">
+						<div class="weui-search-bar">
+							<div class="weui-search-bar__form">
+								<div class="weui-search-bar__box">
 
-						<a href="javascript:void(0);" onclick="hovernav(this,'id')" btag="Skill" class="weui-media-box weui-media-box_appmsg skillinfo">
+									<input type="text" v-on:focus="beginComment" v-model="commentModel.Content" class="weui-search-bar__input" id="commentInput"
+									 placeholder="留點什麼吧" required="">
+									<a href="javascript:" class="weui-icon-clear" id=""></a>
+								</div>
+								<label class="weui-search-bar__label" id="searchText" style="font-weight:300;padding-left: 30px;transform-origin: 0px 0px; opacity: 1; transform: scale(1, 1);text-align:left">
 
+									<span>留點什麼吧</span>
+								</label>
+							</div>
+							<a v-on:click.prevent="submitComment" href="javascript:" class="weui-search-bar__cancel-btn">發送</a>
+							<a v-on:click.prevent="cancelComment" href="javascript:" class="weui-search-bar__cancel-btn">取消</a>
+						</div>
+						<div v-show="commentting" class="weui-uploader__bd">
+							<a v-if="canAddVoice" v-on:click.prevent="beginVoiceRecording" href="javascript:;" style="margin: 10px;" class="weui-btn weui-btn_mini weui-btn_primary">
+								錄音
+							</a>
+							<ul v-if="attachments.length" class="weui-uploader__files">
+								<li class="weui-uploader__file" style="margin: 10px;">
+									<div class="msgcontent" style="float: right;position: relative; display: inline; word-break: break-word; color: #a6df9a;; padding: 0px; background-color:#F8F8F8; font-size: 14px; border-radius: 1em;">
+										<div style="height: 100%; width: 100%; border-radius: 999em; overflow: hidden;">
+											<div style="width: 100%; height: 100%; padding: 5px 15px;">
+												<i v-if="plusVoiceStatus == 'play'" v-on:click="stopAttachmentVoice" class=" fa-1x text-inverse ion-ios-pause"
+												 style="margin: 15px 0px auto;">
+												</i>
+												<span v-else v-on:click="playAttachmentVoice(attachments[0])">
+													<i class="fa-1x text-inverse ion-ios-play" style="margin: 15px 0px auto;"></i>
+													<span style="position: relative; padding-left: 5px; margin: 15px 0px auto;border-left: 1px solid gray;">
+														{{ attachments[0].duration }}
+													</span>
+												</span>
+
+											</div>
+										</div>
+
+									</div>
+									<i v-show="plusVoiceStatus != 'play'" v-on:click="removeAttachment" class="fa fa-times-circle" style="color:gray;padding-left: 30px;padding-top: 20px;"></i>
+								</li>
+							</ul>
+
+						</div>
+					</div>
+
+
+					<div class="weui-panel__bd">
+						<div v-for="(item, index) in commentList" :key="index" class="weui-media-box weui-media-box_appmsg weui-media-box_text">
+							<!-- <button v-if="canRemoveComment(item)" v-on:click.prevent="removeComment(item)" type="button" style="position:absolute; top:0; right:0;" class="weui-btn weui-btn_mini weui-btn_default">
+								<i class="fa fa-x fa-trash-o"></i>
+							</button> -->
 							<div class="weui-media-box__hd">
-								<img class="weui-media-box__thumb" style="position:relative;top:50%;left:50%;transform:translate(-50%,-50%);width:auto;height:auto;max-width:100%;max-height:100%;padding-right:5px"
-								 src="http://p5.img.cctvpic.com/nettv/newgame/2012/0821/20120821061520782.jpg" alt="">
+								<img class="weui-media-box__thumb" :src="item.Member_Img" style="object-fit:cover;border-radius:999em;width:50px;height:50px"
+								 alt="">
 							</div>
 							<div class="weui-media-box__bd">
-								<h6 class="weui-media-box__title gamename">英雄聯盟</h6>
-								<p class="weui-media-box__desc gamefee" style="color:red">200元/1小時</p>
+								<h4 class="weui-media-box__title">{{ item.Member_Name }}</h4>
+								<p class="weui-media-box__desc">{{ item.Content }}</p>
+
+								<div v-if="item.voice" v-on:click="playVoice(item.voice)" style="word-break: break-word;color: white;width: 80px;height:30px;padding: 0px;background-color: rgb(166, 223, 154);font-size: 14px;border-radius: 1em;">
+									<div style="height: 100%; color: black; width: 100%; border-radius: 999em; overflow: hidden;">
+										<div style="width: 100%; height: 100%; padding: 5px 15px;">
+											<div v-if="isPlaying(item.voice)">
+												<i class=" fa-1x text-inverse ion-ios-pause" style="margin: 15px 0px auto;"></i>
+											</div>
+											<div v-else-if="isPaused(item.voice)">
+												<i class=" fa-1x text-inverse ion-ios-play" style="margin: 15px 0px auto;"></i>
+											</div>
+											<div v-else>
+												<i class=" fa-1x text-inverse ion-ios-play" style="margin: 15px 0px auto;"></i>
+												<span style="position: relative; padding-left: 2px; margin: 15px 0px auto;">
+													{{ item.voice.duration }}
+												</span>
+											</div>
+											<!-- <div>
+												<i class=" fa-1x text-inverse ion-ios-play" style="margin: 15px 0px auto;"></i>
+												<span style="position: relative; padding-left: 2px; margin: 15px 0px auto;">
+													{{ item.voice.duration }}
+												</span>
+											</div> -->
+										</div>
+									</div>
+								</div>
+
+								<ul class="weui-media-box__info">
+									<li class="weui-media-box__info__meta">{{ item.Member_Status }}</li>
+									<li class="weui-media-box__info__meta">{{ item.CreateTime }}</li>
+								</ul>
 							</div>
-							<div style="position:relative;right:0;display: flex;text-align:center;padding: 15px; border-left: 1px solid #E5E5E5;margin-left:10px">
-								<p class="weui-media-box__desc OrderTimes" style=" ">接單999次</p>
+
+						</div>
+					</div>
+
+				</div>
+				<div class="weui-panel weui-panel_access">
+
+					<div class="weui-panel__bd">
+						<a href="javascript:void(0);" class="weui-cell weui-cell_access">
+
+							<div class="weui-media-box__bd">
+								<p class="weui-media-box__desc" binfo="likecount">讚 {{article.LikeCount}}</p>
+								<br>
+								<p class="weui-media-box__desc" binfo="likelist">{{article.LikeTop20}}&nbsp;</p>
 
 							</div>
+
 						</a>
 
-
 					</div>
-				</div>
-			</article>
-			<div class="weui-panel weui-panel_access">
-
-				<div class="weui-panel__bd">
-					<a href="javascript:void(0);" class="weui-cell weui-cell_access">
-
-						<div class="weui-media-box__bd">
-							<p class="weui-media-box__desc" binfo="likecount">讚 {{data.LikeCount}}</p>
-							<br>
-							<p class="weui-media-box__desc" binfo="likelist">{{data.LikeTop20}}&nbsp;</p>
-
-						</div>
-
-					</a>
 
 				</div>
-
-			</div>
-			<div class="weui-panel weui-panel_access">
-				<div class="weui-panel__hd">留言 {{data.CommentCount}}</div>
-				<div class="weui-search-bar" id="searchBar" onclick="gotag()">
-					<form class="weui-search-bar__form" id="commentform" onsubmit="sendcomment($('#commentInput').val()); return false;">
-						<div class="weui-search-bar__box">
-
-							<input type="text" class="weui-search-bar__input" id="commentInput" placeholder="留點什麼吧" required="">
-							<a href="javascript:" class="weui-icon-clear" id=""></a>
-						</div>
-						<label class="weui-search-bar__label" onclick="gotag()" id="searchText" style="font-weight:300;padding-left: 30px;transform-origin: 0px 0px; opacity: 1; transform: scale(1, 1);text-align:left">
-
-							<span>留點什麼吧</span>
-						</label>
-					</form>
-					<a href="javascript:" class="weui-search-bar__cancel-btn" onclick="sendcomment($('#commentInput').val())" id="">發送</a>
-					<a href="javascript:" class="weui-search-bar__cancel-btn" id="">取消</a>
-				</div>
-				<div class="weui-panel__bd commentlist">
-
-				</div>
-
 			</div>
 		</div>
 		<div class="page__ft " style="">
@@ -236,26 +336,7 @@
 		</div>
 	</div>
 
-	<script type="text/html" id="commentcard">
 
-		<div class="weui-media-box weui-media-box_appmsg weui-media-box_text">
-            <div class="weui-media-box__hd" onclick="hovernav_new(this,'{{Member_ID}}',{titleText:'{{Member_Name}}',img:'{{Member_Img}}',moreinfo: true,type: 'transparent'})" btag="PlayerPage">
-                <img class="weui-media-box__thumb" src="{{Member_Img}}_s" style="object-fit:cover;border-radius:999em;width:50px;height:50px" onerror="this.src='img/icon/noimage_person.png'" alt="">
-
-                <!--<img class="weui-media-box__thumb" src="{{Member_Img}}" alt="">-->
-            </div>
-            <div class="weui-media-box__bd">
-                <h4 class="weui-media-box__title">{{Member_Name}}</h4>
-                <p class="weui-media-box__desc">{{Content}}</p>
-                <ul class="weui-media-box__info">
-                    <li class="weui-media-box__info__meta">{{Member_Status}}</li>
-                    <li class="weui-media-box__info__meta">{{CreateTime}}</li>
-
-                </ul>
-            </div>
-
-        </div>
-    </script>
 	<script type="text/html" id="giftaction">
 
 		<a class="weui-grid">
@@ -289,12 +370,9 @@
 		bottomEl.css("bottom", false)
 		bottomEl.css("top", document.documentElement.clientHeight - $(bottomEl).height() + 'px')
 
-		function gotag() {
-			$('<a href="#searchBar"></a>').click();
 
-
-		}
 		var data = JSON.parse("{{data}}");
+		console.log('data', data);
 
 		function hovernavc(el) {
 			hovernav_new(el, data.Member.Member_ID, {
@@ -432,6 +510,7 @@
 		var ImgList = JSON.parse(data.ImgList)
 		var isonsubmit = false;
 
+
 		function sendcomment(st) {
 			if (isonsubmit)
 				return;
@@ -481,6 +560,7 @@
 
 
 		}
+		
 
 		function democomp() {
 			//alert("c")
@@ -691,11 +771,11 @@
 			$("video").each(function() {
 				this.volume = 1;
 			});
-			for (var i = 0; i < data.CommentList.length; i++) {
-				var $html = $(publicTools.BBVue($("#commentcard").html(), data.CommentList[i]));
-				$(".commentlist").append($html);
+			// for (var i = 0; i < data.CommentList.length; i++) {
+			// 	var $html = $(publicTools.BBVue($("#commentcard").html(), data.CommentList[i]));
+			// 	$(".commentlist").append($html);
 
-			}
+			// }
 			if (data.Member.isFollow) {
 				$(".weui-btn_notfollow").text("關注中");
 				$(".weui-btn_notfollow").removeClass("weui-btn_notfollow").addClass("weui-btn_follow");
@@ -771,121 +851,434 @@
 
 			if (ImgList.Video != "") {
 				$(".demoimg").remove();
-				//$(".demovideo").attr("loadeddata", "democomp()");
-				//$(".demovideo")[0].src = ImgList.Video;
-				//$(".demovideo")[0].play();
 				$(".demovideo").attr("onloadedmetadata", "democomp()");
 				$(".demovideo").attr("onerror", "democomp()");
 				$(".demovideo").attr("src", ImgList.Video);
-				// $("#loadingToast").hide();
-				// $(".demovideo")[0].play();
 			} else if (ImgList.Img.length != 0) {
 				$(".demoimg").attr("onload", "democomp()");
 				$(".demoimg")[0].src = ImgList.Img[0];
 			} else {
 				$(".swiper-container").prev().hide();
 				$(".swiper-container").hide();
-				// $("#loadingToastnews").hide();
 			}
-			//plus.nativeUI.closeWaiting();
-			//plus.webview.currentWebview().show("slide-in-right");
 		});
 	</script>
 	<script>
 		new Vue({
-			el: "#article-content",
+			el: "#main-content",
 			data: {
-				model: null,
-				voiceUrl: '',
-				minutes: 0,
-				seconds: 0,
+				user: null,
+				article: null,
+				commentList: [],
+				selectedVoice: null,
 				voicePlayer: null,
-				voiceStatus: ''
+				voiceStatus: '',
+
+				plusVoicePlayer: null,
+				plusVoiceStatus: '',
+
+				commentModel: {
+					NewsId: '',
+					Content: '',
+					Voice: '',
+					file: ''
+				},
+				attachments: [],
+				commentting: false,
+				voiceRecording: false,
+				submitting: false
+			},
+			computed: {
+				canAddVoice: function() {
+					return this.attachments.length < 1 && this.commentting;
+				}
 			},
 			created: function() {
+				this.user = JSON.parse(Server_Token);
+				
+				window.addEventListener('plus-voice-player-event', this.plusVoicePlayerEventHandler);
 				window.addEventListener('voice-player-event', this.voicePlayerEventHandler);
-				
-				this.model = data;
-				let voiceList = JSON.parse(data.VoiceList);
-				
-				if(voiceList && voiceList.Voice) {
-					
-					this.voiceUrl = voiceList.Voice;
-					this.voicePlayer = new Audio(this.voiceUrl);
-					
-					console.log('duration', this.voicePlayer.duration);
-					this.voicePlayer.addEventListener('loadeddata', () => {
-					    window.dispatchEvent(new CustomEvent('voice-player-event', {
-					    	'detail': { name: 'loadeddata'}
-					    }));
-					})
-					
-					this.voicePlayer.addEventListener("playing", function(){
-						window.dispatchEvent(new CustomEvent('voice-player-event', {
-							'detail': { status: 'playing' }
-						}));
-					});
-					this.voicePlayer.addEventListener("ended", function(){
-						window.dispatchEvent(new CustomEvent('voice-player-event', {
-							'detail': { status: 'ended' }
-						}));
-					});
-					this.voicePlayer.addEventListener("error", function(err){
-						console.error(err);
-						window.dispatchEvent(new CustomEvent('voice-player-event', {
-							'detail': { status: 'error' }
-						}));
-					});
-					
-					
-				}
-				
-				
+
+				this.article = Object.assign({}, data);
+				this.article.voice = this.mapVoice(data, data.Member_News_ID);
+
+				this.mapCommentList(data.CommentList);
+
+				this.initcommentModel();
+
+				window.addEventListener('add-voice', this.addVoice);
+
+				window.addEventListener('comment-created', this.onCommentCreated);
+
 			},
 			methods: {
-				playVoice: function() {
-					console.log('paused', this.voicePlayer.paused);
-					if (this.voicePlayer.paused) {
-					   this.voicePlayer.play();
-					   this.voiceStatus =  'playing';
-					}   
-					else {
-					   this.voicePlayer.pause();
-					   this.voiceStatus = 'paused';
+				onCommentCreated: function(e) {
+					this.initcommentModel();
+					this.commentting = false;
+					var comments = e.detail.comments;
+					this.mapCommentList(comments);
+				},
+				mapCommentList: function(comments) {
+					console.log('mapCommentList', comments);
+					this.commentList = [];
+					for (var i = 0; i < comments.length; i++) {
+						var comment = Object.assign({}, comments[i]);
+						comment.voice = this.mapVoice(comment, comment.Id);
+						this.commentList.push(comment);
 					}
+				},
+				canRemoveComment: function(item) {
+					return item.Member_ID == this.user.Member_ID;
+				},
+				initcommentModel: function() {
+					this.commentModel = {
+						NewsId: this.article.Member_News_ID,
+						Content: '',
+						Voice: '',
+						file: ''
+					};
+					this.attachments = [];
+				},
+				mapVoice: function(item, id) {
+					if (!item.VoiceList) return null;
+					var obj = JSON.parse(item.VoiceList);
+					if (obj.Voice) {
+						var voice = {
+							id: id,
+							url: '',
+							duration: ''
+						};
+						var parts = obj.Voice.split(';');
+						voice.url = parts[0];
+						if (parts.length > 1) {
+							voice.duration = parts[1];
+						}
+						return voice;
+					} else return null;
+				},
+				initVoicePlayer: function(item) {
+					this.voicePlayer = new Audio(item.url);
+
+					this.voicePlayer.addEventListener("playing", function() {
+						window.dispatchEvent(new CustomEvent('voice-player-event', {
+							'detail': {
+								status: 'playing'
+							}
+						}));
+					});
+					this.voicePlayer.addEventListener("ended", function() {
+						window.dispatchEvent(new CustomEvent('voice-player-event', {
+							'detail': {
+								status: 'ended'
+							}
+						}));
+					});
+					this.voicePlayer.addEventListener("error", function(err) {
+						console.error(err);
+						window.dispatchEvent(new CustomEvent('voice-player-event', {
+							'detail': {
+								status: 'error'
+							}
+						}));
+					});
+
+				},
+				playVoice: function(item) {
+					console.log('playVoice', item);
+					if (this.selectedVoice && this.selectedVoice.id == item.id) {
+						if (this.voicePlayer.paused) {
+							this.voicePlayer.play();
+							this.voiceStatus = 'playing';
+						} else {
+							this.voicePlayer.pause();
+							this.voiceStatus = 'paused';
+						}
+					} else {
+						if (this.voicePlayer) {
+							if (this.voicePlayer.paused) {
+
+							} else {
+								this.voicePlayer.pause();
+								this.voiceStatus = 'paused';
+							}
+						}
+
+						this.selectedVoice = item;
+						console.log('selectedVoice:', this.selectedVoice);
+						this.initVoicePlayer(item);
+						this.voicePlayer.play();
+					}
+
+				},
+				isPlaying: function(voice) {
+					if (this.selectedVoice && this.selectedVoice.id == voice.id) {
+						return this.voiceStatus == 'playing';
+					} else return false;
+				},
+				isPaused: function(voice) {
+					if (this.selectedVoice && this.selectedVoice.id == voice.id) {
+						return this.voiceStatus == 'paused';
+					} else return false;
 				},
 				voicePlayerEventHandler: function(e) {
-					var name = e.detail.name;
-					if(name === 'loadeddata') {
-						var duration = this.voicePlayer.duration;
-						this.minutes = Math.floor(duration / (60));
-						this.seconds = Math.floor(duration / (1));
-						
-					}else {
-						var status = e.detail.status;
-						this.onPlayerStatusChanged(status);						
-					}
-					
-				},
-				onPlayerStatusChanged: function(status){
-					if(status == 'ended') this.voiceStatus = '';
-					else if(status == 'error') {
+					var status = e.detail.status;
+					if (status == 'error') {
 						this.onVoiceError();
-					}else this.voiceStatus = status;
+					} else this.voiceStatus = status;
+
 				},
-				getDurationText: function() {
-					var minutes = this.minutes;
-					if (minutes < 10) minutes = '0' + minutes;
-				
-					var seconds = this.seconds;
-					if (seconds < 10) seconds = '0' + seconds;
-				
-					return minutes + '"' + seconds;
+				plusVoicePlayerEventHandler: function(e) {
+					var status = e.detail.status;
+					this.plusVoiceStatus = status;
+					console.log('plusVoiceStatus', this.plusVoiceStatus);
+					if (status == 'ended') {
+						this.plusVoicePlayer.close();
+					}
+
 				},
 				onVoiceError: function() {
-					
-				}
+
+				},
+				beginComment: function() {
+					this.commentting = true;
+				},
+				cancelComment: function() {
+					this.commentting = false;
+					this.initcommentModel();
+				},
+				beginVoiceRecording: function() {
+					this.voiceRecording = true;
+				},
+				stopVoiceRecording: function() {
+					this.voiceRecording = false;
+				},
+				addVoice: function(e) {
+					this.voiceRecording = false;
+					console.log('addVoice', e.detail);
+					this.addAttachments(e.detail);
+					console.log(this.attachments[0]);
+				},
+				addAttachments: function(item) {
+					var minutes = item.minutes;
+					if (item.minutes < 10) minutes = '0' + minutes;
+
+					var seconds = item.seconds;
+					if (item.seconds < 10) seconds = '0' + seconds;
+
+					item.duration = minutes + '"' + seconds;
+					item.id = '__';
+					this.attachments.push(item);
+				},
+				removeAttachment: function() {
+					this.attachments = [];
+					this.stopAttachmentVoice();
+				},
+				playAttachmentVoice: function(item) {
+					console.log('playAttachmentVoice', item);
+
+					this.plusVoicePlayer = plus.audio.createPlayer(item.origin);
+
+					this.plusVoicePlayer.addEventListener("play", function() {
+						window.dispatchEvent(new CustomEvent('plus-voice-player-event', {
+							'detail': {
+								status: 'play'
+							}
+						}));
+					});
+					this.plusVoicePlayer.addEventListener("stop", function() {
+						window.dispatchEvent(new CustomEvent('plus-voice-player-event', {
+							'detail': {
+								status: 'stop'
+							}
+						}));
+					});
+					this.plusVoicePlayer.addEventListener("ended", function() {
+						window.dispatchEvent(new CustomEvent('plus-voice-player-event', {
+							'detail': {
+								status: 'ended'
+							}
+						}));
+					});
+					this.plusVoicePlayer.addEventListener("error", function(err) {
+						console.error(err);
+						window.dispatchEvent(new CustomEvent('plus-voice-player-event', {
+							'detail': {
+								status: 'error'
+							}
+						}));
+					});
+
+					this.plusVoicePlayer.play(function() {
+						console.log('play cb');
+					}, function(err) {
+						console.error("Audio play error: " + err.message);
+					});
+				},
+				stopAttachmentVoice: function() {
+					console.log('stopAttachmentVoice');
+					if (this.plusVoicePlayer) {
+						this.plusVoicePlayer.stop();
+						this.plusVoicePlayer.close();
+					}
+				},
+				submitComment: function() {
+					console.log('submitComment');
+					var newsId = this.article.Member_News_ID;
+					this.commentModel.NewsId = newsId;
+					$("#loadingToast").show();
+
+					var voiceList = [];
+					if (this.attachments.length) {
+						var voiceItem = this.attachments[0];
+						voiceList.push(voiceItem.origin);
+						this.commentModel.Voice = voiceItem.duration;
+					} else this.commentModel.Voice = '';
+
+					var task = plus.uploader.createUpload(ajaxurl + "NewsComment", {
+							method: "POST",
+							timeout: 0,
+							blocksize: 0
+						},
+						function(t, status) {
+							$.ajax({
+								url: ajaxurl + "NewsComment",
+								type: 'get',
+								data: {
+									newsId: newsId
+								},
+								headers: {
+									"Server_Token": encodeURIComponent(Server_Token)
+								},
+								timeout: 30000,
+								success: function(res) {
+									$("#loadingToast").hide();
+									window.dispatchEvent(new CustomEvent('comment-created', {
+										detail: {
+											comments: res.result_content
+										}
+									}));
+								},
+								error: function() {
+									alert("網路錯誤");
+
+								}
+							});
+						}
+					); //end of task
+
+					if (voiceList.length) {
+						task.addFile(voiceList[0], {
+							key: "voice"
+						});
+					}
+
+					task.addData("NewsId", this.commentModel.NewsId);
+					task.addData("Content", this.commentModel.Content);
+					task.addData("Voice", this.commentModel.Voice);
+					task.setRequestHeader("Server_Token", encodeURIComponent(Server_Token))
+					task.start();
+				} // end submitComment
+
 			}
+		});
+	</script>
+	<script>
+		// 控制錄音
+		var posStart = 0; //初始化起点坐标
+		var posEnd = 0; //初始化终点坐标
+		var posMove = 0; //初始化滑动坐标
+
+		var r = null,
+			t = null,
+			ri = null,
+			rt = null,
+			p = null;
+		var entry = null;
+		var isstart = false;
+		var isplaying = false;
+
+		function startRecord(ele) {
+			isstart = true;
+			r = plus.audio.getRecorder();
+			if (r == null) {
+				alert('錄音實例化失敗');
+				return;
+			}
+			var forma = "";
+
+			if (plus.os.name == "Android") forma = "amr";
+			else forma = "aac";
+
+			r.record({
+				filename: '_doc/audio/',
+				format: forma,
+			}, function(path) {
+				onVoiceRecorded(path);
+			}, function(e) {
+				alert('錄音失敗：' + e.message);
+			});
+
+		}
+
+
+		function stopRecord() {
+			isstart = false;
+			if (r != null) {
+				r.stop();
+			}
+		}
+
+
+
+		function onVoiceRecorded(path) {
+			var player = plus.audio.createPlayer(path);
+
+			plus.io.resolveLocalFileSystemURL(path, function(entry) {
+				var origin = entry.toLocalURL();
+				setTimeout(function() {
+					var duration = player.getDuration();
+					var detail = {
+						type: 'voice',
+						origin: origin,
+						path: path,
+						minutes: Math.floor(duration / (60)),
+						seconds: Math.floor(duration / (1))
+					};
+					window.dispatchEvent(new CustomEvent('add-voice', {
+						'detail': detail
+					}));
+
+					player.close();
+				}, 500)
+
+
+			}, function(e) {
+				alert('錄音失敗：' + e.message);
+			});
+
+		}
+
+		var voiceBtn = document.getElementById("voice-msg-btn");
+		voiceBtn.addEventListener("touchstart", function(e) {
+			e.preventDefault(); //阻止浏览器默认行为
+			posStart = 0;
+			posStart = e.touches[0].pageY; //获取起点坐标
+			// btnElem.value = '松开 结束';
+			$(voiceBtn).addClass("button--animate");
+			$(voiceBtn).find("i").css("color", "red");
+
+			startRecord();
+		});
+
+		voiceBtn.addEventListener("touchend", function(e) {
+			e.preventDefault();
+			posEnd = 0;
+			posEnd = e.changedTouches[0].pageY; //获取终点坐标
+
+			$(voiceBtn).removeClass("button--animate");
+			$(voiceBtn).find("i").css("color", "dimgray");
+
+			stopRecord();
 		});
 	</script>
 </div>
