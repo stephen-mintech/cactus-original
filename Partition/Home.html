@@ -266,12 +266,12 @@
 
 									<div style="flex:1;" @click="hovernav(index,item.Member_News_ID,item)" gi="clickdiv">
 										<i alt="" class="fa fa-1x fa-comment-o" style="font-size:14px;"> </i>
-										留言
+										留言 {{item.CommentCount}}
 									</div>
 									<div style="flex:1" @click="setLiked(item.Member_News_ID)" gi="clickdiv">
 										<i v-if="item.Liked" alt="" binfo="followicon" class="fa fa-1x fa-heart" style="color:red"></i>
 										<i v-if="!item.Liked" alt="" binfo="followicon" class="fa fa-1x fa-heart-o" style=""></i>
-										<span binfo="followcount">讚{{item.LikeCount}}</span>
+										<span binfo="followcount">讚 {{item.LikeCount}}</span>
 									</div>
 
 								</div>
@@ -324,6 +324,7 @@
 		var data = top["DataBase"]["Home"];
 
 		console.log('data', data);
+		
 		var nowdata = [];
 		var isfirsttime = true;
 		var cardlistinterval;
@@ -353,7 +354,7 @@
 			}
 
 			function checkvideo(el) {
-				// console.dir("checkvideo")
+				
 				if ($(el).is("[isbg]")) {
 					el.pause();
 					clearInterval(el["Thead"]);
@@ -366,12 +367,12 @@
 						.height() / 2) < $(document).height())) &&
 					((vr.left > 0 && vr.left < $(document).width()) && (vr.right > 0 && vr.right < $(document).width()))) {
 
-					//console.dir("play")
+					
 					el.play();
 				} else {
 
 					if ((el.readyState != 1) && (el.readyState != 0) && (el.paused == false)) {
-						//console.dir("pause")
+						
 						el.pause();
 					}
 
@@ -383,15 +384,7 @@
 
 
 			setTimeout(function() {
-
-				// console.dir(plus.screen.resolutionHeight);
 				var nDivHight = plus.screen.resolutionHeight;
-				//$('#cardlist').masonry({
-				//    itemSelector: '.mitem',
-				//    columnWidth: function (containerWidth) {
-				//        return $('#cardlist').width() /1;
-				//    }
-				//})
 				$("#swipe-1").scroll(function() {
 
 					try {
@@ -403,11 +396,6 @@
 							nowdata = Enumerable.from(cardlist.chosealldata).take(subpage * perpage).toArray();
 							cardlist.newslist = nowdata;
 						}
-						//var allv = $(".home.page video");
-						//for (var i = 0; i < allv.length; i++) {
-						//    //   console.dir(i)
-						//    checkvideo(allv[i])
-						//}
 					} catch (e) {
 
 					}
@@ -417,27 +405,9 @@
 				$(".home.page").scroll(function() {
 
 					try {
-						//var nScrollHight = $(this)[0].scrollHeight;
-						//var nScrollTop = $(this)[0].scrollTop;
-						//console.log(nScrollTop)
+						
 						$("#scmask").hide();
-						//if ($("#homepost")[0].getBoundingClientRect().bottom >= $("#homenav")[0].getBoundingClientRect().y) {
-						//    $("#scmask").hide();
-						//} else {
-						//    $("#scmask").show();
-						//}
-						//$("#homenav")[0].scrollHeight+$("#homenav")[0].getBoundingClientRect().y
-						//$("#swipe-1")[0].getBoundingClientRect().top
-						//$("#swipe-1")[0].getBoundingClientRect().top = $("#homenav").height()+$("#homepost").height()
-						//$(".home.page")[0].scrollHeight
-						// checkvideo();
-
-						//if (nScrollTop + nDivHight + 200 >= nScrollHight) {
-
-						//    subpage++;
-						//    nowdata = Enumerable.from(data).take(subpage * perpage).toArray();
-						//    cardlist.newslist = nowdata;
-						//}
+						
 					} catch (ex) {
 
 					}
@@ -449,16 +419,9 @@
 				cardlist.newslist = Object.assign({}, cardlist.newslist, nowdata);
 				console.log('nowdata', nowdata);
 			}, 30)
+				
 			if (!(cardlistinterval)) {
-				//cardlistinterval = setInterval(function () {
-				//    if (!cardlist.ispop) {
-				//        try {
-				//            $('#cardlist').masonry('reload')
-				//        } catch (ex) { }
-				//    }
-
-
-				//}, 300)
+				
 			}
 
 
@@ -478,7 +441,50 @@
 					isdone: false
 				},
 				created: function() {
-					alert('created');
+					console.log('created');
+					var self = this;
+					this.ch = 0;
+					self.odata = null;
+					self.ishidefinish = true;
+				
+				},
+				mounted: function() {
+					this.getdata()
+				
+				},
+				updated: function() {
+					try {
+						var my = $(".home.page")[0];
+						var cuh = $(".home.page .page__hd").height();
+						var vber = ($(my)[0].scrollTop - cuh);
+						var vser = ($(my)[0].scrollTop - cuh + $(document).height());
+				
+				
+						var allv = $(".home.page video");
+				
+						allv.on("loadedmetadata", function() {
+							var self = this;
+							if (!(this["intv"])) {
+								self["intv"] = 1;
+								checkvideo(self)
+							}
+							if (!(self["Thead"])) {
+				
+								self["Thead"] = setInterval(function() {
+									if ($(".home.page video").length == 0) {
+										clearInterval(self["Thead"]);
+										$(self).remove();
+									}
+				
+									checkvideo(self)
+								}, 300)
+							}
+						})
+				
+						$("#homepagebd").height($("body").height() - 100)
+					} catch (ex) {
+				
+					}
 				},
 				methods: {
 					hasVoice: function(item) {
@@ -499,7 +505,6 @@
 							timeout: 30000,
 							success: function(r) {
 								if (r.result_status) {
-									//followsuccess
 
 									if (r.result_content != "") {
 										plus.webview.getLaunchWebview().evalJS(" if (cardlist.newslist.find(e => e.Member_News_ID == '" + id +
@@ -532,12 +537,11 @@
 
 					},
 					masktouchmove: function() {
-						console.dir("masktouchmove")
+						console.dir("masktouchmove");
 					},
 					hovernav: function(idx, id, odata) {
-						console.dir(1, odata)
-						hovernav(this.$refs["child"][idx], id)
-						//w.show("slide-in-right");
+						console.dir(1, odata);
+						hovernav(this.$refs["child"][idx], id);
 					},
 
 					hovernav2: function(idx, id, odata) {
@@ -548,13 +552,11 @@
 							img: odata.Member.Img,
 							moreinfo: true,
 							type: 'transparent'
-						})
-						//w.show("slide-in-right");
+						});
 					},
 					hovernav3: function(idx, id, odata) {
 						console.dir(3, odata)
-						hovernav(this.$refs["child3"][idx], id)
-						//w.show("slide-in-right");
+						hovernav(this.$refs["child3"][idx], id);
 					},
 					deleteme: function(idx, id) {
 						var self = this;
@@ -570,7 +572,7 @@
 									timeout: 30000,
 									success: function(r) {
 										if (r.result_status) {
-											//item.Member_News_ID
+											
 											if (self.newslist)
 												self.newslist.splice(self.newslist.indexOf(self.newslist.find(e => e.Member_News_ID == id)), 1)
 											for (var i = 0; i < self.alldata.length; i++) {
@@ -579,7 +581,7 @@
 													item.splice(item.indexOf(item.find(e => e.Member_News_ID == id)), 1)
 											}
 
-											// $(self.$refs["child"][idx]).remove();
+											
 										} else {
 											console.error(r.result_message);
 										}
@@ -635,21 +637,6 @@
 							self.isdone = true;
 							self.chgtag(self.ch);
 						})
-						//bbim.getNewsListAll(JSON.stringify(allpa), function (rl) {
-						//    for (var i = 0; i < rl.length; i++) {
-						//        var r = rl[i];
-						//        if (r.result_status) {
-						//            self.alldata.push({
-						//                idx: r.result_message,
-						//                data: r.result_content
-						//            })
-						//        } else {
-						//            console.error(r.result_message);
-						//        }
-						//    }
-
-						//    self.chgtag(self.ch);
-						//})
 					},
 					chgtag: function(idx, elidx) {
 						if (this.isdone == false)
@@ -671,9 +658,6 @@
 
 
 						this.ispop = false;
-						//  console.dir("idx"+idx)
-						//  $("#homenav .weui-bar__item_on").removeClass("weui-bar__item_on");
-						//  $("[homenav=" + idx + "]").addClass("weui-bar__item_on");
 						var urlparam = "0";
 						if (idx == 0) {
 							urlparam = "0";
@@ -685,7 +669,6 @@
 
 						nowdata = [];
 						this.newslist = nowdata;
-						// Object.assign(this.$data.newslist, nowdata);
 						var self = this;
 						$("#loadmore").show();
 
@@ -713,109 +696,14 @@
 
 					}
 				},
-				created: function() {
-					var self = this;
-					this.ch = 0;
-					//if (this.ch == 3) {
-					//    $("#homepost").hide();
-					//    $("#homeskilllist").hide();
-					//    $(".home.page .page__hd").hide();
-					//    $("#homenav").hide();
-					//    $("#scmask").hide();
-					//}
-					//if (plus.webview.getWebviewById('NewsPage') == null) {
-					//    plus.nativeUI.showWaiting("載入中...");
-					//    if (JSON.parse(Server_Token).Status == "管理員") {
-					//        top["NewsPagew"] = plus.webview.create(debugurl + 'layout.html?needim=false&p=preload&param=&_=' + Math.random(), "NewsPage", { "cachemode": "cacheElseNetwork", "background": "#84D8ff", "backgroundColorTop": "#84D8ff", "backgroundColorBottom": "#84D8ff", "popGesture": "hide", "backButtonAutoControl": "hide" });
-					//    }
-					//    else {
-					//        top["NewsPagew"] = plus.webview.create('layout.html?needim=false&p=preload&param=&_=' + Math.random(), "NewsPage", { "cachemode": "cacheElseNetwork", "background": "#84D8ff", "backgroundColorTop": "#84D8ff", "backgroundColorBottom": "#84D8ff", "popGesture": "hide", "backButtonAutoControl": "hide" });
-					//    }
-					//    top["NewsPagew"].addEventListener('rendered', function (e) {
-					//        console.dir('rendered')
-					//        self.ishidefinish = true;
-					//        plus.nativeUI.closeWaiting();
-					//    }, false);
-
-					//} else {
-					//    top["NewsPagew"] = plus.webview.getWebviewById('NewsPage')
-
-					//}
-					self.odata = null;
-					self.ishidefinish = true;
-
-				},
-				mounted: function() {
-					this.getdata()
-					// this.chgtag(this.ch);
-
-					// console.dir("mounted")
-					// console.dir($("#indextab .weui-bar__item_on").attr("homech"))
-					//indextab
-
-				},
-				updated: function() {
-					try {
-						var my = $(".home.page")[0];
-						var cuh = $(".home.page .page__hd").height();
-						var vber = ($(my)[0].scrollTop - cuh);
-						var vser = ($(my)[0].scrollTop - cuh + $(document).height());
-
-						//cardlist2
-
-
-						var allv = $(".home.page video");
-
-						allv.on("loadedmetadata", function() {
-							//  console.dir("loadedmetadata")
-							var self = this;
-							if (!(this["intv"])) {
-								self["intv"] = 1;
-								//self.play();
-								checkvideo(self)
-							}
-							if (!(self["Thead"])) {
-
-								self["Thead"] = setInterval(function() {
-									if ($(".home.page video").length == 0) {
-										clearInterval(self["Thead"]);
-										$(self).remove();
-									}
-
-									checkvideo(self)
-								}, 300)
-							}
-						})
-
-						$("#homepagebd").height($("body").height() - 100)
-					} catch (ex) {
-
-					}
-				}
+				
+				
+				
 
 			})
-			//$('#scmask').on('show', function () {
-			//   // console.log('#foo is now visible');
-			//    cardlist.maskisshow = true;
-			//});
-
-			//$('#scmask').on('hide', function () {
-			//  //  console.log('#foo is hidden');
-			//    cardlist.maskisshow = false;
-			//});
-			// M.Tabs.init($('#homenav')[0]);
-			// M.Tabs.init($('#homenav')[0], { "swipeable": true });
 			$(".tabs .indicator").css("background-color", "#a6df9a");
 			$(".tabs .indicator").css("height", "4px");
-			// $(".tabs-content").height($(document).height() - 138)
-			//for (var i = 1; i <= 4; i++) {
-			//    $("#swipe-" + i).height($(document).height())
-			//}
-			//  $("#swipe-1").height($(document).height() - 138)
 			$("#swipe-1").show();
-			//$("#scmask").on("touchmove", function (evt) {
-			//    evt.stopPropagation();
-			//});
 			$("#swipe-1").css("-webkit-overflow-scrolling", "touch");
 			$(".home.page").css("-webkit-overflow-scrolling", "touch");
 
